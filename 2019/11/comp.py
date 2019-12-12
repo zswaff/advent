@@ -15,16 +15,17 @@ class Comp:
         99: (0, {})
     }
 
-    def __init__(self, ops=None, fin=None, inputs=None, verbose=False):
+    def __init__(self, ops=None, fin=None, verbose=False):
         self._verbose = verbose
         if fin:
             with open(fin) as fin:
                 ops = [int(e) for e in fin.read().strip().split(',')]
         self._input_ops = list(ops)
-        self._ops = defaultdict(int, enumerate(ops))
+
+        self._ops = defaultdict(int, enumerate(self._input_ops))
         self._instr_ptr = 0
         self._rel_base = 0
-        self._inputs = [] if inputs is None else list(inputs)
+        self._inputs = []
         self._input_idx = 0
         self._outputs = []
         self._paused = False
@@ -36,6 +37,7 @@ class Comp:
         self._ops = defaultdict(int, enumerate(self._input_ops))
         self._instr_ptr = 0
         self._rel_base = 0
+        self._inputs = []
         self._input_idx = 0
         self._outputs = []
         self._paused = False
