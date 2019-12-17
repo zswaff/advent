@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 with open('inp.txt') as fin:
     lines = [e.strip().split(')') for e in fin.readlines()]
 sat_cent = {e[1]: e[0] for e in lines}

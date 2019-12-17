@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 from collections import defaultdict
 
 
 with open('inp.txt') as fin:
     ops = [int(e) for e in fin.read().strip().split(',')]
-
 
 def run_computer(ops, inputs, verbose=False):
     code_args = {

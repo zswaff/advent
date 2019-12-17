@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 from collections import Counter
 
 
 x, y = 25, 6
-
 
 with open('inp.txt') as fin:
     digs = [int(e) for e in fin.read().strip()]

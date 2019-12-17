@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 from functools import lru_cache
 
 
@@ -18,3 +22,18 @@ print(rec(150, cntrs))
 
 
 # part 2
+def rec2(amt, rem):
+    if amt == 0:
+        return [[]]
+    if amt < 0 or len(rem) == 0:
+        return []
+    res = []
+    for i, e in enumerate(rem):
+        rres = rec2(amt - e, rem[i + 1:])
+        for f in rres:
+            res.append([e] + list(f))
+    return res
+
+r = rec2(150, cntrs)
+m = min(len(e) for e in r)
+print(sum(len(e) == m for e in r))

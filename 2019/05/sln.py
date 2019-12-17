@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 with open('inp.txt') as fin:
     ops = [int(e) for e in fin.read().strip().split(',')]
 
