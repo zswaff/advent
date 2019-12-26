@@ -1,0 +1,23 @@
+south
+west
+west
+take easter egg
+east
+east
+north
+north
+east
+south
+east
+east
+take hologram
+east
+take dark matter
+north
+north
+east
+take klein bottle
+north
+north
+west
+west
