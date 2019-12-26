@@ -18,8 +18,6 @@ print(sum(
 
 
 # part 2
-print(v)
-
 DIRS = {
     0: (0, -1),
     1: (1, 0),
@@ -65,9 +63,41 @@ for e in rt:
     if e not in rtm:
         rtm[e] = len(rtm)
     rts.append(rtm[e])
+x = ''.join(str(e) for e in rts)
 
-# todo generate these
-A = [0, 1, 2]
-B = [2, 0, 3, 2]
-C = [0, 1, 1]
-main = ['A', 'A', 'B', 'C', 'B', 'C', 'B', 'C', 'B', 'A']
+def attempt(ls):
+    s = x
+    abc = [''] * 3
+    r = []
+    while len(s) != 0:
+        for i, (l, e) in enumerate(zip(ls, abc)):
+            if len(e) != l:
+                abc[i] = e = s[:l]
+            if s.startswith(e):
+                s = s[l:]
+                r.append(chr(ord('A') + i))
+                break
+        else:
+            return None
+    return r, list(abc[0]), list(abc[1]), list(abc[2])
+
+def find():
+    for al in range(1, 6):
+        for bl in range(1, 6):
+            for cl in range(1, 6):
+                e = attempt([al, bl, cl])
+                if e is not None:
+                    return e
+    return None
+
+r = find()
+m = r[0]
+rrtm = {v: k for k, v in rtm.items()}
+abc = [[g for f in e for g in rrtm[int(f)]] for e in r[1:]]
+inp = [ord(g) for g in '\n'.join(','.join(str(f) for f in e) for e in [m] + abc + [['n'], []])]
+
+with open('inp.txt') as fin:
+    ops = [int(e) for e in fin.read().strip().split(',')]
+ops[0] = 2
+cmp = Comp(ops=ops).add_inputs(inp)
+print(cmp.outputs[-1])

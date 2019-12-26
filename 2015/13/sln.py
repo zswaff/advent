@@ -7,7 +7,7 @@ from collections import defaultdict
 from itertools import permutations
 
 
-FMT = r'(?P<n1>[A-Za-z]+) would (?P<feel>lose|gain) (?P<amt>\d+) happiness units by sitting next to (?P<n2>[A-Za-z]+).'
+FMT = r'(?P<n1>[A-Za-z]+) would (?P<feel>lose|gain) (?P<e>\d+) happiness units by sitting next to (?P<n2>[A-Za-z]+).'
 
 
 with open('inp.txt') as fin:
@@ -16,7 +16,7 @@ nodes = set()
 edges = defaultdict(dict)
 for line in lines:
     match = re.match(FMT, line).groupdict()
-    n1, n2, amt, feel = match['n1'], match['n2'], int(match['amt']), match['feel']
+    n1, n2, amt, feel = match['n1'], match['n2'], int(match['e']), match['feel']
     if feel == 'lose':
         amt *= -1
     nodes |= {n1, n2}
