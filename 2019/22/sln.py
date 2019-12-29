@@ -17,23 +17,60 @@ for op, e in lines:
         l = l[int(e):] + l[:int(e)]
         continue
     if op == 'deal with increment':
-        ol = list(l)
+        nd = {}
         for i in range(t):
-            l[(i * int(e)) % t] = ol[i]
+            nd[(i * int(e)) % t] = l[i]
+        l = [nd[i] for i in range(t)]
         continue
 print(l.index(2019))
 
 
 # part 2
-# r = s
-# for op, e in reversed(lines):
-#     if op == 'deal into new':
-#         r = t - r - 1
-#         continue
-#     if op == 'cut':
-#         r = (r + e) % t
-#         continue
-#     if op == 'deal with increment':
-#
-#         continue
-# print(r)
+t = 119315717514047
+n = 101741582076661
+
+def mod_inv(num, modulus):
+    num %= modulus
+
+    def egcd(a, b):
+        if a == 0:
+            return b, 0, 1
+        else:
+            g, y, x = egcd(b % a, a)
+            return g, x - (b // a) * y, y
+
+    g, x, y = egcd(num, modulus)
+    if g != 1:
+        raise Exception('modular inverse does not exist')
+    else:
+        return x % modulus
+
+
+def shuff_inv(idx):
+    r = idx
+    for op, e in reversed(lines):
+        if op == 'deal into new':
+            r = t - r - 1
+            continue
+        if op == 'cut':
+            r = (r + int(e)) % t
+            continue
+        if op == 'deal with increment':
+            r = (mod_inv(int(e), t)) * r % t
+            continue
+    return r
+
+# y = ax + b
+x1 = 1
+y1 = shuff_inv(x1)
+x2 = 2
+y2 = shuff_inv(x2)
+
+# y1 - y2 = a(x1 - x2)
+a = (y1 - y2) * mod_inv(x1 - x2, t) % t
+b = (y1 - a) % t
+
+# yf = a(a(...) + b) + b
+#    = a ** n * xi + b * (a ** (n-1) + ... + 1)
+#    = a ** n * xi + b * (a ** n - 1) / (a - 1)
+print(2020 * pow(a, n, t) % t + b * (pow(a, n, t) - 1) * mod_inv(a - 1, t) % t)
