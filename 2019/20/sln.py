@@ -106,9 +106,9 @@ for p in ps:
 
 def bfs():
     s = set()
-    q = [(0, (aa, 0), [])]
+    q = [(0, (aa, 0))]
     while len(q) != 0:
-        d, lr, temp = heappop(q)
+        d, lr = heappop(q)
         s.add(lr)
         l, r = lr
         for n, (dd, dr) in w[l].items():
@@ -118,6 +118,6 @@ def bfs():
                 continue
             if nlr == (zz, 0):
                 return d + dd
-            heappush(q, (d + dd, nlr, list(temp) + [(ps[n], nr)]))
+            heappush(q, (d + dd, nlr))
 
 print(bfs())
