@@ -1,94 +1,109 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import math
-from collections import deque, defaultdict
+
+import itertools
 from heapq import heappush, heappop
-from functools import lru_cache
+
+
+class PQ:
+    def __init__(self):
+        self.__heap = []
+        self.__dict = {}
+        self.__count = itertools.count()
+
+    def __remove(self, item):
+        elem = self.__dict.pop(item)
+        elem[-1] = None
+
+    def push(self, item, priority):
+        if item in self.__dict:
+            if self.__dict[item][0] <= priority:
+                return
+            self.__remove(item)
+        elem = [priority, next(self.__count), item]
+        heappush(self.__heap, elem)
+        self.__dict[item] = elem
+
+    def pop(self):
+        while self.__heap:
+            priority, _, item = heappop(self.__heap)
+            if item is not None:
+                del self.__dict[item]
+                return item, priority
+        raise KeyError('PQ Empty')
+
+
+DIRS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+NOT_KEYS = {'#', '.'}
 
 
 with open('inp.txt') as fin:
     lines = [e.strip() for e in fin.readlines()]
-g = {(x, y): e for y, row in enumerate(lines) for x, e in enumerate(row)}
-st = [k for k, v in g.items() if v == '@'][0]
-g[st] = '.'
-aks = frozenset(e for e in g.values() if e.islower())
+g_orig = {(x, y): e for y, row in enumerate(lines) for x, e in enumerate(row)}
+start = [k for k, v in g_orig.items() if v == '@'][0]
+g_orig[start] = '.'
+goal = frozenset(e for e in g_orig.values() if e.islower())
 
 
 # part 1
-# @lru_cache()
-# def cached_tile_search(start, keys):
-#     ks = set(keys)
-#     s = set()
-#     q = deque([(start, 0)])
-#     res = []
-#     while len(q) != 0:
-#         l, c = q.popleft()
-#         s.add(l)
-#         for d in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-#             n = l[0] + d[0], l[1] + d[1]
-#             e = g[n]
-#             if n in s or e == '#' or (e.isupper() and e.lower() not in ks):
-#                 continue
-#             if e.islower() and e not in ks:
-#                 res.append((e, n, c + 1))
-#                 continue
-#             q.append((n, c + 1))
-#     return res
-#
-# def bfs():
-#     s = set()
-#     q = [(0, st, frozenset())]
-#     c = 0
-#     while len(q) != 0:
-#         # print(q)
-#         d, l, ks = heappop(q)
-#         c += 1
-#         if c % 10000 == 0:
-#             print(c, d)
-#         # print(l, d, ks)
-#         if ks == aks:
-#             return d
-#         s.add((l, ks))
-#         ns = cached_tile_search(l, ks)
-#         for k, nl, dd in ns:
-#             nks = ks | {k}
-#             if (nl, nks) in s:
-#                 continue
-#             heappush(q, (d + dd, nl, nks))
-#
-# print(bfs())
+g_pos = {}
+for pos, val in g_orig.items():
+    if val == '#':
+        continue
+    x, y = pos
+    g_pos[pos] = []
+    for dx, dy in DIRS:
+        n_pos = x + dx, y + dy
+        if n_pos not in g_orig or g_orig[n_pos] == '#':
+            continue
+        g_pos[pos].append(n_pos)
 
-
-@lru_cache()
-def accessible(s, ks):
-    q = deque([(s, 0)])
-    s = set()
-    res = []
-    while len(q) != 0:
-        l, c = q.popleft()
-        s.add(l)
-        for d in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-            n = l[0] + d[0], l[1] + d[1]
-            e = g[n]
-            if n in s or e == '#' or (e.isupper() and e.lower() not in ks):
+def get_nbors(pos):
+    o_val = g_orig[pos]
+    q = [(pos, 0)]
+    visited = set()
+    result = []
+    while q:
+        c_pos, c_dist = q.pop(0)
+        c_val = g_orig[c_pos]
+        if c_val != o_val and c_val not in NOT_KEYS:
+            result.append((c_val, c_dist))
+        visited.add(c_pos)
+        if c_val != o_val and c_val.isupper():
+            continue
+        for n_pos in g_pos[c_pos]:
+            if n_pos in visited:
                 continue
-            if e.islower() and e not in ks:
-                res.append((n, c + 1))
-                continue
-            q.append((n, c + 1))
-    return res
+            q.append((n_pos, c_dist + 1))
+    return result
 
-@lru_cache()
-def search(s, ks):
-    if ks == aks:
-        return 0
-    k = g[s]
-    nks = ks | {k}
-    y = accessible(s, nks)
-    # print(y)
-    x = [c + search(n, nks) for n, c in y]
-    # print(x)
-    return min(x + [math.inf])
+g_adj = {'@': get_nbors(start)}
+for pos, val in g_orig.items():
+    if val in NOT_KEYS:
+        continue
+    g_adj[val] = get_nbors(pos)
 
-print(search(st, frozenset()))
+pq = PQ()
+pq.push(('@', frozenset()), 0)
+visited = set()
+while True:
+    c_state, c_dist = pq.pop()
+    c_val, c_keys = c_state
+    if c_keys == goal:
+        print(c_dist)
+        break
+    visited.add(c_state)
+    for n_val, n_delta in g_adj[c_val]:
+        is_key = n_val.islower()
+        if not is_key and n_val.lower() not in c_keys:
+            continue
+        n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
+        n_state = n_val, n_keys
+        if n_state in visited:
+            continue
+        pq.push(n_state, c_dist + n_delta)
+
+
+# part 2
+
