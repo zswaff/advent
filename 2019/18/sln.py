@@ -120,48 +120,25 @@ starts = [(start[0] + dx, start[1] + dy) for dx, dy in DIAGS]
 g_adj = get_adj(g_new, starts)
 
 pq = PQ()
-pq.push((0, 1, 2, 3, frozenset()), 0)
+pq.push(((0, 1, 2, 3), frozenset()), 0)
 visited = set()
 while True:
     c_state, c_dist = pq.pop()
-    cv0, cv1, cv2, cv3, c_keys = c_state
+    c_vals, c_keys = c_state
     if c_keys == goal:
         print(c_dist)
         break
     visited.add(c_state)
-    for n_val, n_delta in g_adj[cv0]:
-        is_key = n_val.islower()
-        if not is_key and n_val.lower() not in c_keys:
-            continue
-        n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
-        n_state = n_val, cv1, cv2, cv3, n_keys
-        if n_state in visited:
-            continue
-        pq.push(n_state, c_dist + n_delta)
-    for n_val, n_delta in g_adj[cv1]:
-        is_key = n_val.islower()
-        if not is_key and n_val.lower() not in c_keys:
-            continue
-        n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
-        n_state = cv0, n_val, cv2, cv3, n_keys
-        if n_state in visited:
-            continue
-        pq.push(n_state, c_dist + n_delta)
-    for n_val, n_delta in g_adj[cv2]:
-        is_key = n_val.islower()
-        if not is_key and n_val.lower() not in c_keys:
-            continue
-        n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
-        n_state = cv0, cv1, n_val, cv3, n_keys
-        if n_state in visited:
-            continue
-        pq.push(n_state, c_dist + n_delta)
-    for n_val, n_delta in g_adj[cv3]:
-        is_key = n_val.islower()
-        if not is_key and n_val.lower() not in c_keys:
-            continue
-        n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
-        n_state = cv0, cv1, cv2, n_val, n_keys
-        if n_state in visited:
-            continue
-        pq.push(n_state, c_dist + n_delta)
+    for tup_ind, c_val in enumerate(c_vals):
+        for n_val, n_delta in g_adj[c_val]:
+            is_key = n_val.islower()
+            if not is_key and n_val.lower() not in c_keys:
+                continue
+            n_vals = list(c_vals)
+            n_vals[tup_ind] = n_val
+            n_vals = tuple(n_vals)
+            n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
+            n_state = n_vals, n_keys
+            if n_state in visited:
+                continue
+            pq.push(n_state, c_dist + n_delta)
