@@ -34,8 +34,49 @@ class PQ:
         raise KeyError('PQ Empty')
 
 
-DIRS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+STRTS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+DIAGS = [(1, 1), (1, -1), (-1, -1), (-1, 1)]
 NOT_KEYS = {'#', '.'}
+
+
+def get_adj(g_orig, starts):
+    g_pos = {}
+    for pos, val in g_orig.items():
+        if val == '#':
+            continue
+        x, y = pos
+        g_pos[pos] = []
+        for dx, dy in STRTS:
+            n_pos = x + dx, y + dy
+            if n_pos not in g_orig or g_orig[n_pos] == '#':
+                continue
+            g_pos[pos].append(n_pos)
+
+    def get_nbors(pos):
+        o_val = g_orig[pos]
+        q = [(pos, 0)]
+        visited = set()
+        result = []
+        while q:
+            c_pos, c_dist = q.pop(0)
+            c_val = g_orig[c_pos]
+            if c_val != o_val and c_val not in NOT_KEYS:
+                result.append((c_val, c_dist))
+            visited.add(c_pos)
+            if c_val != o_val and c_val.isupper():
+                continue
+            for n_pos in g_pos[c_pos]:
+                if n_pos in visited:
+                    continue
+                q.append((n_pos, c_dist + 1))
+        return result
+
+    g_adj = {i: get_nbors(e) for i, e in enumerate(starts)}
+    for pos, val in g_orig.items():
+        if val in NOT_KEYS:
+            continue
+        g_adj[val] = get_nbors(pos)
+    return g_adj
 
 
 with open('inp.txt') as fin:
@@ -47,45 +88,10 @@ goal = frozenset(e for e in g_orig.values() if e.islower())
 
 
 # part 1
-g_pos = {}
-for pos, val in g_orig.items():
-    if val == '#':
-        continue
-    x, y = pos
-    g_pos[pos] = []
-    for dx, dy in DIRS:
-        n_pos = x + dx, y + dy
-        if n_pos not in g_orig or g_orig[n_pos] == '#':
-            continue
-        g_pos[pos].append(n_pos)
-
-def get_nbors(pos):
-    o_val = g_orig[pos]
-    q = [(pos, 0)]
-    visited = set()
-    result = []
-    while q:
-        c_pos, c_dist = q.pop(0)
-        c_val = g_orig[c_pos]
-        if c_val != o_val and c_val not in NOT_KEYS:
-            result.append((c_val, c_dist))
-        visited.add(c_pos)
-        if c_val != o_val and c_val.isupper():
-            continue
-        for n_pos in g_pos[c_pos]:
-            if n_pos in visited:
-                continue
-            q.append((n_pos, c_dist + 1))
-    return result
-
-g_adj = {'@': get_nbors(start)}
-for pos, val in g_orig.items():
-    if val in NOT_KEYS:
-        continue
-    g_adj[val] = get_nbors(pos)
+g_adj = get_adj(g_orig, [start])
 
 pq = PQ()
-pq.push(('@', frozenset()), 0)
+pq.push((0, frozenset()), 0)
 visited = set()
 while True:
     c_state, c_dist = pq.pop()
@@ -106,4 +112,56 @@ while True:
 
 
 # part 2
+g_new = {k: v for k, v in g_orig.items()}
+g_new[start] = '#'
+g_new.update({(start[0] + dx, start[1] + dy): '#' for dx, dy in STRTS})
+starts = [(start[0] + dx, start[1] + dy) for dx, dy in DIAGS]
 
+g_adj = get_adj(g_new, starts)
+
+pq = PQ()
+pq.push((0, 1, 2, 3, frozenset()), 0)
+visited = set()
+while True:
+    c_state, c_dist = pq.pop()
+    cv0, cv1, cv2, cv3, c_keys = c_state
+    if c_keys == goal:
+        print(c_dist)
+        break
+    visited.add(c_state)
+    for n_val, n_delta in g_adj[cv0]:
+        is_key = n_val.islower()
+        if not is_key and n_val.lower() not in c_keys:
+            continue
+        n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
+        n_state = n_val, cv1, cv2, cv3, n_keys
+        if n_state in visited:
+            continue
+        pq.push(n_state, c_dist + n_delta)
+    for n_val, n_delta in g_adj[cv1]:
+        is_key = n_val.islower()
+        if not is_key and n_val.lower() not in c_keys:
+            continue
+        n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
+        n_state = cv0, n_val, cv2, cv3, n_keys
+        if n_state in visited:
+            continue
+        pq.push(n_state, c_dist + n_delta)
+    for n_val, n_delta in g_adj[cv2]:
+        is_key = n_val.islower()
+        if not is_key and n_val.lower() not in c_keys:
+            continue
+        n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
+        n_state = cv0, cv1, n_val, cv3, n_keys
+        if n_state in visited:
+            continue
+        pq.push(n_state, c_dist + n_delta)
+    for n_val, n_delta in g_adj[cv3]:
+        is_key = n_val.islower()
+        if not is_key and n_val.lower() not in c_keys:
+            continue
+        n_keys = frozenset(c_keys | {n_val}) if is_key else c_keys
+        n_state = cv0, cv1, cv2, n_val, n_keys
+        if n_state in visited:
+            continue
+        pq.push(n_state, c_dist + n_delta)
