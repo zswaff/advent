@@ -5,29 +5,34 @@
 import math
 
 
-bh = 55
+# psh = 50
+# psm = 500
+# bh = 55
+# bd = 8
+psh = 10
+psm = 250
+bh = 13
 bd = 8
 
 
 # part 1
 def rec(ch, cm, cbh, fx):
-    a = 0
-    for e, t in fx.items():
+    for f, t in fx.items():
         if t <= 0:
             continue
-        if e == 's':
-            a += 7
-        if e == 'p':
+        if f == 'p':
             cbh -= 3
-        if e == 'r':
+        if f == 'r':
             cm += 101
-        fx[e] -= 1
+        fx[f] -= 1
     if cbh <= 0:
-        return 0
-    m = math.inf
+        return 0, [' ']
+
+    m = math.inf, [' ']
     for e in ['m', 'd', 's', 'p', 'r']:
         if fx.get(e, 0) > 0:
             continue
+        nfx = dict(fx.items())
         cost = 0
         if e == 'm':
             cost = 53
@@ -38,24 +43,38 @@ def rec(ch, cm, cbh, fx):
             ch += 2
         if e == 's':
             cost = 113
-            fx[e] = 6
+            nfx[e] = 6
         if e == 'p':
             cost = 173
-            fx[e] = 6
+            nfx[e] = 6
         if e == 'r':
             cost = 229
-            fx[e] = 5
+            nfx[e] = 5
         if cm < cost:
             continue
-        if cbh <= 0:
-            m = min(m, cost)
 
-        ch -= max(bd - a, 1)
-        if ch > 0:
-            m = min(m, rec(ch, cm - cost, cbh, dict(fx.items())) + cost)
+        a = 0
+        for f, t in nfx.items():
+            if t <= 0:
+                continue
+            if f == 's':
+                a = 7
+            if f == 'p':
+                cbh -= 3
+            if f == 'r':
+                cm += 101
+            nfx[f] -= 1
+        if cbh <= 0:
+            m = min(m, (cost, [e]))
+
+        d = max(bd - a, 1)
+        if ch <= d:
+            continue
+        ncost, ne = rec(ch - d, cm - cost, cbh, nfx)
+        m = min(m, (cost + ncost, ne + [e]))
     return m
 
-print(rec(50, 500, 55, {}))
+print(rec(psh, psm, bh, {}))
 
 
 # part 2
