@@ -3,6 +3,7 @@
 
 
 import math
+from itertools import combinations
 
 
 with open('inp.txt') as fin:
@@ -42,36 +43,35 @@ print(best[1])
 # part 2
 fourth  = sum(weights) // 4
 
-best = math.inf, math.inf
-def rec(len_a, sum_a, prod_a, sum_b, sum_c, weights_a, weights_b, weights_other):
-    global best
 
-    if sum_a > fourth or sum_b > fourth or sum_c > fourth:
-        return
+def splittable(sum_b, sum_c, weights_b, weights_other_2):
+    if sum_b == sum_c == fourth:
+        return True
 
-    if len_a > best[0] or (len_a == best[0] and prod_a > best[1]):
-        return
+    if sum_b > fourth or sum_c > fourth:
+        return False
 
-    if sum_a == sum_b == sum_c == fourth:
-        best = len_a, prod_a
-
-    if sum_a < fourth:
-        for i, e in enumerate(weights_a):
-            rec(
-                len_a + 1, sum_a + e, prod_a * e, sum_b, sum_c,
-                weights_a[i + 1:], weights_b + weights_a[:i], [])
-        return
     if sum_b < fourth:
-        n_weights_b = weights_a + weights_b
-        for i, e in enumerate(n_weights_b):
-            rec(
-                len_a, sum_a, prod_a, sum_b + e, sum_c, [],
-                n_weights_b[i + 1:], weights_other + weights_other[:i])
-    n_weights_other = weights_b + weights_other
-    for i, e in enumerate(n_weights_other):
-        rec(
-            len_a, sum_a, prod_a, sum_b + e, sum_c, [], [],
-            n_weights_other[i + 1:])
+        for i, e in enumerate(weights_b):
+            if splittable(sum_b + e, sum_c, weights_b[i + 1:],
+                weights_other_2 + weights_b[:i]):
+                return True
+        return False
 
-rec(0, 0, 1, 0, 0, weights, [], [])
-print(best[1])
+    n_weights_other = weights_b + weights_other_2
+    for i, e in enumerate(n_weights_other):
+        if splittable(sum_b, sum_c + e, [], n_weights_other[i + 1:]):
+            return True
+    return False
+
+
+for i in range(1, len(weights)):
+    combs = [e for e in combinations(weights, i) if sum(e) == fourth]
+    best = math.inf
+    for comb in combs:
+        rem = sorted(list(set(weights) - set(comb)))
+        if splittable(0, 0, rem, []):
+            best = min(best, math.prod(comb))
+    if best != math.inf:
+        print(best)
+        break
