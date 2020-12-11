@@ -35,7 +35,7 @@ j = -1
 while len(q) != 0:
     j += 1
     e, c = q.pop()
-    if e == 'e':
+    if e == 'elvl':
         print(c)
         break
     for ti, to in tsns:

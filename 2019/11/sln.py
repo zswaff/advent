@@ -16,7 +16,7 @@ cmp = Comp(fin='inp.txt')
 cloc, cdr = (0, 0), 0
 while True:
     locs[cloc], turn = cmp.add_inputs([locs[cloc]]).last_outputs
-    if cmp.finished:
+    if cmp.is_finished:
         break
     cdr = (cdr + turn * 2 - 1) % 4
     cloc = cloc[0] + DRS[cdr][0], cloc[1] + DRS[cdr][1]
@@ -30,7 +30,7 @@ cloc, cdr = (0, 0), 0
 locs[cloc] = 1
 while True:
     locs[cloc], turn = cmp.add_inputs([locs[cloc]]).last_outputs
-    if cmp.finished:
+    if cmp.is_finished:
         break
     cdr = (cdr + turn * 2 - 1) % 4
     cloc = cloc[0] + DRS[cdr][0], cloc[1] + DRS[cdr][1]

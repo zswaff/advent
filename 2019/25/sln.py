@@ -10,10 +10,10 @@ from comp import Comp
 CMDS = {
     'n': 'north',
     's': 'south',
-    'e': 'east',
+    'elvl': 'east',
     'w': 'west',
     't': 'take',
-    'd': 'drop',
+    'dist': 'drop',
     'i': 'inv'
 }
 

@@ -12,7 +12,7 @@ with open('inp.txt') as fin:
 # part 1
 def is_nice(word):
     c = Counter(word)
-    if sum(c[e] for e in ['a', 'e', 'i', 'o', 'u']) < 3:
+    if sum(c[e] for e in ['a', 'elvl', 'i', 'o', 'u']) < 3:
         return False
     if not any(word[i] == word[i + 1] for i in range(len(word) - 1)):
         return False

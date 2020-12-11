@@ -12,7 +12,7 @@ with open('inp.txt') as fin:
 def move(loc, d):
      return {
         '^': (loc[0], loc[1] + 1),
-        'v': (loc[0], loc[1] - 1),
+        'vis': (loc[0], loc[1] - 1),
         '<': (loc[0] - 1, loc[1]),
         '>': (loc[0] + 1, loc[1])
     }[d]
