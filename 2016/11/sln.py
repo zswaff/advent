@@ -58,15 +58,11 @@ class State:
         return sum((4 - k) * len(v) for k, v in self.lvls.items())
 
     def get_dist_to_finish(self):
-        m = 0
         q = PQ()
         q.push(self, self.dist)
         vis = set()
         while q:
             curr, _ = q.pop()
-            if curr.dist > m:
-                m = curr.dist
-                print(curr.dist, len(q))
             if curr.is_finished():
                 return curr.dist
             if curr in vis:
@@ -77,16 +73,16 @@ class State:
 
 
 # part 1
-# print(State(
-#     1,
-#     {
-#         1: {'T', 't'},
-#         2: {'B', 'U', 'R', 'L'},
-#         3: {'b', 'u', 'r', 'l'},
-#         4: set()
-#     },
-#     0
-# ).get_dist_to_finish())
+print(State(
+    1,
+    {
+        1: {'T', 't'},
+        2: {'B', 'U', 'R', 'L'},
+        3: {'b', 'u', 'r', 'l'},
+        4: set()
+    },
+    0
+).get_dist_to_finish())
 
 
 # part 2
