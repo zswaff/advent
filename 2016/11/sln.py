@@ -4,10 +4,10 @@
 
 from itertools import combinations
 
-from util import PQ
+from util import BaseSearchState
 
 
-class State:
+class State(BaseSearchState):
     def __init__(self, elvl, lvls, dist):
         self.elvl = elvl
         self.lvls = lvls
@@ -22,9 +22,6 @@ class State:
     def __eq__(self, other):
         return self.elvl == other.elvl and self.lvls == other.lvls
 
-    def __repr__(self):
-        return f'<E:{self.elvl} LS:{self.lvls} D:{self.dist}>'
-
     def is_valid(self):
         for lvl in self.lvls.values():
             ls = {e for e in lvl if e.islower()}
@@ -36,7 +33,7 @@ class State:
     def is_finished(self):
         return all(k == 4 or not v for k, v in self.lvls.items())
 
-    def get_nbors(self):
+    def get_neighbors(self):
         res = []
         for delvl in [-1, 1]:
             nelvl = self.elvl + delvl
@@ -54,22 +51,11 @@ class State:
                     res.append(s)
         return res
 
-    def get_min_dist(self):
-        return sum((4 - k) * len(v) for k, v in self.lvls.items())
+    def get_dist_from_start(self):
+        return self.dist
 
-    def get_dist_to_finish(self):
-        q = PQ()
-        q.push(self, self.dist)
-        vis = set()
-        while q:
-            curr, _ = q.pop()
-            if curr.is_finished():
-                return curr.dist
-            if curr in vis:
-                continue
-            vis.add(curr)
-            for nbor in curr.get_nbors():
-                q.push(nbor, nbor.dist + nbor.get_min_dist())
+    def get_dist_to_finish_heuristic(self):
+        return sum((4 - k) * len(v) for k, v in self.lvls.items())
 
 
 # part 1
@@ -82,7 +68,7 @@ print(State(
         4: set()
     },
     0
-).get_dist_to_finish())
+).a_star())
 
 
 # part 2
@@ -95,4 +81,4 @@ print(State(
         4: set()
     },
     0
-).get_dist_to_finish())
+).a_star())
