@@ -78,11 +78,11 @@ class BaseSearchState(ABC):
             curr = q.pop(0)
             if not curr.is_valid():
                 continue
-            if curr.is_finished():
-                return curr.get_dist_from_start()
             if curr in vis:
                 continue
             vis.add(curr)
+            if curr.is_finished():
+                return curr.get_dist_from_start()
             for nbor in curr.get_neighbors():
                 q.append(nbor)
 
@@ -97,10 +97,10 @@ class BaseSearchState(ABC):
             curr, _ = q.pop()
             if not curr.is_valid():
                 continue
-            if curr.is_finished():
-                return curr.get_dist_from_start()
             if curr in vis:
                 continue
             vis.add(curr)
+            if curr.is_finished():
+                return curr.get_dist_from_start()
             for nbor in curr.get_neighbors():
                 q.push(nbor, nbor.get_dist_from_start() + nbor.get_dist_to_finish_heuristic())

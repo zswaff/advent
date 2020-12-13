@@ -15,7 +15,6 @@ INP = [
 ]
 
 
-# part 1
 def solve():
     for i in count():
         for j, (st, tps) in enumerate(INP, 1):
@@ -23,6 +22,9 @@ def solve():
                 break
         else:
             return i
+
+
+# part 1
 print(solve())
 
 

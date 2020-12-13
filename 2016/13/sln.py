@@ -32,7 +32,7 @@ class State(BaseSearchState):
         return self.x >= 0 and self.y >= 0 and is_open(self.x, self.y)
 
     def is_finished(self):
-        return self.x == 31 and self.y == 39
+        return (self.x, self.y) == (31, 39)
 
     def get_neighbors(self):
         return [
