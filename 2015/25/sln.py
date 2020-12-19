@@ -4,8 +4,6 @@
 
 row = 2978
 col = 3083
-# row = 1
-# col = 6
 
 
 start = 20151125
@@ -18,6 +16,4 @@ idx = 1 + sum(range(row)) + sum(range(row + 1, row + col))
 res = (start * pow(mult, idx - 1, mod)) % mod
 print(res)
 
-
-# part 2
 

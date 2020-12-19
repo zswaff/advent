@@ -89,7 +89,31 @@ class BaseSearchState(ABC):
     def get_dist_to_finish_heuristic(self):
         self.__raise_not_implemented_error()
 
-    def a_star(self):
+    def __a_star_verbose(self, verbosity):
+        q = PQ()
+        q.push(self, self.get_dist_from_start())
+        vis = set()
+        mx = -1
+        while q:
+            curr, _ = q.pop()
+            if curr.get_dist_from_start() > mx:
+                mx = curr.get_dist_from_start()
+                print(curr)
+            elif verbosity > 3:
+                print(curr)
+            if not curr.is_valid():
+                continue
+            if curr in vis:
+                continue
+            vis.add(curr)
+            if curr.is_finished():
+                return curr.get_dist_from_start()
+            for nbor in curr.get_neighbors():
+                q.push(nbor, nbor.get_dist_from_start() + nbor.get_dist_to_finish_heuristic())
+
+    def a_star(self, verbosity=0):
+        if verbosity > 0:
+            return self.__a_star_verbose(verbosity)
         q = PQ()
         q.push(self, self.get_dist_from_start())
         vis = set()
