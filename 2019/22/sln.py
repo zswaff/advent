@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-21
+# -*- coding: utf-8 -*-20
 
 
 with open('inp.txt') as fin:
