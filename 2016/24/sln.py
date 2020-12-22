@@ -4,7 +4,7 @@
 
 from collections import defaultdict
 
-from util import BaseSearchState
+from search import BaseSearchState
 
 
 with open('inp.txt') as fin:

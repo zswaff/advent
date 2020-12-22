@@ -89,9 +89,9 @@ class BaseSearchState(ABC):
             curr, _ = q.pop()
             if curr.get_dist_from_start() > mx:
                 mx = curr.get_dist_from_start()
-                print(curr)
-            elif verbosity > 3:
-                print(curr)
+                print(f'node={curr}, qlen={len(q)}')
+            elif verbosity >= 3:
+                print(f'node={curr}, qlen={len(q)}')
             if not curr.is_valid():
                 continue
             if curr in vis:

@@ -4,7 +4,7 @@
 
 from hashlib import md5
 
-from util import BaseSearchState
+from search import BaseSearchState
 
 
 INP = 'udskfozm'

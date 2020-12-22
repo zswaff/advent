@@ -4,7 +4,7 @@
 
 from itertools import combinations
 
-from util import BaseSearchState
+from search import BaseSearchState
 
 
 class State(BaseSearchState):

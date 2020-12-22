@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from util import PQ
+from search import PQ
 
 
 STRTS = [(1, 0), (0, 1), (-1, 0), (0, -1)]

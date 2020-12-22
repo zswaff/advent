@@ -5,7 +5,7 @@
 from functools import lru_cache
 from collections import Counter
 
-from util import BaseSearchState
+from search import BaseSearchState
 
 
 INP = 1352
