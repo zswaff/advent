@@ -54,6 +54,3 @@ def search():
 
 file()
 print(c.last_outputs_ascii[-45:-35])
-
-
-# part 2

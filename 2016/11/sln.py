@@ -68,7 +68,7 @@ print(State(
         4: set()
     },
     0
-).a_star())
+).search())
 
 
 # part 2
@@ -81,4 +81,4 @@ print(State(
         4: set()
     },
     0
-).a_star())
+).search())

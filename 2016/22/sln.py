@@ -81,4 +81,4 @@ class State(BaseSearchState):
         return self.goal[0] + self.goal[1]
 
 
-print(State((mxx, 0), {k: v[1] for k, v in ns.items()}, 0).a_star())
+print(State((mxx, 0), {k: v[1] for k, v in ns.items()}, 0).search())

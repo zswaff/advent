@@ -71,25 +71,16 @@ class BaseSearchState(ABC):
     def get_dist_from_start(self):
         pass
 
-    def bfs(self):
-        q = [self]
-        vis = set()
-        while q:
-            curr = q.pop(0)
-            if not curr.is_valid():
-                continue
-            if curr in vis:
-                continue
-            vis.add(curr)
-            if curr.is_finished():
-                return curr.get_dist_from_start()
-            for nbor in curr.get_neighbors():
-                q.append(nbor)
-
     def get_dist_to_finish_heuristic(self):
+        return 0
+
+    def get_summary(self):
         self.__raise_not_implemented_error()
 
-    def __a_star_verbose(self, verbosity):
+    def process(self):
+        pass
+
+    def __search_verbose(self, summarize=False, verbosity=0):
         q = PQ()
         q.push(self, self.get_dist_from_start())
         vis = set()
@@ -106,14 +97,18 @@ class BaseSearchState(ABC):
             if curr in vis:
                 continue
             vis.add(curr)
+            curr.process()
             if curr.is_finished():
-                return curr.get_dist_from_start()
+                if summarize:
+                    return curr.get_summary()
+                else:
+                    return curr.get_dist_from_start()
             for nbor in curr.get_neighbors():
                 q.push(nbor, nbor.get_dist_from_start() + nbor.get_dist_to_finish_heuristic())
 
-    def a_star(self, verbosity=0):
+    def search(self, summarize=False, verbosity=0):
         if verbosity > 0:
-            return self.__a_star_verbose(verbosity)
+            return self.__search_verbose(summarize=summarize, verbosity=verbosity)
         q = PQ()
         q.push(self, self.get_dist_from_start())
         vis = set()
@@ -124,7 +119,11 @@ class BaseSearchState(ABC):
             if curr in vis:
                 continue
             vis.add(curr)
+            curr.process()
             if curr.is_finished():
-                return curr.get_dist_from_start()
+                if summarize:
+                    return curr.get_summary()
+                else:
+                    return curr.get_dist_from_start()
             for nbor in curr.get_neighbors():
                 q.push(nbor, nbor.get_dist_from_start() + nbor.get_dist_to_finish_heuristic())

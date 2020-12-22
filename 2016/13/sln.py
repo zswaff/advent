@@ -45,7 +45,7 @@ class State(BaseSearchState):
 
 
 # part 1
-print(State(1, 1, 0).bfs())
+print(State(1, 1, 0).search())
 
 
 # part 2
