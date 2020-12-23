@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 
 
-# import autotimer
-
-
 INP = 284573961
 
 
