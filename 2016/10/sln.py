@@ -7,7 +7,7 @@ import re
 from collections import defaultdict
 
 
-VALUE_PAT = r'value (?P<val>\d*) goes to (?P<bot>bot \d*)'
+VALUE_PAT = r'value (?P<v>\d*) goes to (?P<bot>bot \d*)'
 GIVES_PAT = r'(?P<source>bot \d*) gives low to (?P<dest_lo>(bot|output) \d*) and high to (?P<dest_hi>(bot|output) \d*)'
 
 
@@ -19,7 +19,7 @@ dests = {}
 for line in lines:
     if (match := re.match(VALUE_PAT, line)) is not None:
         match_dict = match.groupdict()
-        bot, value = match_dict['bot'], int(match_dict['val'])
+        bot, value = match_dict['bot'], int(match_dict['v'])
         vals[bot].append(value)
         continue
     match_dict = re.match(GIVES_PAT, line).groupdict()
