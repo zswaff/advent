@@ -11,7 +11,7 @@ PATTERN = r'(?P<prefix>.*?)\((?P<count>\d*)x(?P<reps>\d*)\)(?P<rest>.*)'
 with open('inp.txt') as fin:
     line = fin.read().strip()
 
-# line = 'A(1x5)BC'
+# l = 'A(1x5)BC'
 
 
 # part 1
