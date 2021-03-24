@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 from operator import xor
 from functools import reduce
 
+
 SZ = 256
+
 
 with open('inp.txt') as fin:
     inp = fin.read().strip()
+
 
 # part 1
 lns = [int(e) for e in inp.split(',')]
@@ -19,6 +23,7 @@ for skip, ln in enumerate(lns):
     l = l[-pos:] + l[:-pos]
     pos = (pos + ln + skip) % SZ
 print(l[0] * l[1])
+
 
 # part 2
 lns = ([ord(e) for e in inp] + [17, 31, 73, 47, 23]) * 64

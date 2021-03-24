@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 DIRS = {
     'n': (0, 2),
     'ne': (1, 1),
@@ -10,8 +11,10 @@ DIRS = {
     'nw': (-1, 1),
 }
 
+
 with open('inp.txt') as fin:
     mvs = fin.read().strip().split(',')
+
 
 # part 1
 x, y = 0, 0
@@ -20,6 +23,7 @@ for mv in mvs:
     x += d[0]
     y += d[1]
 print(abs(x) + max(0, (abs(y) - abs(x)) // 2))
+
 
 # part 2
 x, y = 0, 0

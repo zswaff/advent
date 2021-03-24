@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 with open('inp.txt') as fin:
     inp = fin.read().strip()
+
 
 # part 1
 total = 0
@@ -31,6 +33,7 @@ for c in inp:
         level += 1
         continue
 print(total)
+
 
 # part 2
 total = 0
