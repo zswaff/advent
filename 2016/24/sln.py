@@ -19,17 +19,13 @@ mxx, mxy = max(e[0] for e in grid.keys()), max(e[1] for e in grid.keys())
 dists = defaultdict(dict)
 
 class GridState(BaseSearchState):
+    BaseSearchState.ignored_vars.add('ival')
+
     def __init__(self, x, y, ival, dist):
         self.x = x
         self.y = y
         self.ival = ival
         self.dist = dist
-
-    def __hash__(self):
-        return hash((self.x, self.y))
-
-    def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
 
     def is_valid(self):
         return 0 <= self.x <= mxx and 0 <= self.y <= mxy and grid[(self.x, self.y)] != '#'
@@ -64,12 +60,6 @@ class State(BaseSearchState):
         self.visited = visited
         self.dist = dist
 
-    def __hash__(self):
-        return hash((self.loc, self.visited))
-
-    def __eq__(self, other):
-        return self.loc == other.loc and self.visited == other.visited
-
     def is_valid(self):
         return True
 
@@ -86,7 +76,7 @@ class State(BaseSearchState):
     def get_dist_from_start(self):
         return self.dist
 
-print(State('0', frozenset({'0'}), 0).search())
+print(State('0', frozenset({'0'}), 0).search()[0])
 
 
 # part 2
@@ -94,14 +84,8 @@ class State(BaseSearchState):
     def __init__(self, loc, visited, dist):
         self.loc = loc
         self.visited = visited
-        self.dist = dist
         self.returned = len(self.visited) > 1 and loc == '0'
-
-    def __hash__(self):
-        return hash((self.loc, self.visited, self.returned))
-
-    def __eq__(self, other):
-        return self.loc == other.loc and self.visited == other.visited and self.returned == other.returned
+        self.dist = dist
 
     def is_valid(self):
         return not (self.returned and self.visited != goals)
@@ -119,4 +103,4 @@ class State(BaseSearchState):
     def get_dist_from_start(self):
         return self.dist
 
-print(State('0', frozenset({'0'}), 0).search())
+print(State('0', frozenset({'0'}), 0).search()[0])

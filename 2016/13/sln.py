@@ -22,12 +22,6 @@ class State(BaseSearchState):
         self.y = y
         self.dist = dist
 
-    def __hash__(self):
-        return hash((self.x, self.y))
-
-    def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
-
     def is_valid(self):
         return self.x >= 0 and self.y >= 0 and is_open(self.x, self.y)
 
@@ -45,7 +39,7 @@ class State(BaseSearchState):
 
 
 # part 1
-print(State(1, 1, 0).search())
+print(State(1, 1, 0).search()[0])
 
 
 # part 2

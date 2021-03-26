@@ -37,6 +37,8 @@ class PQ:
 
 
 class BaseSearchState(ABC):
+    ignored_vars = {'dist'}
+
     def __raise_not_implemented_error(self):
         import inspect
         stack = inspect.stack()
@@ -44,16 +46,20 @@ class BaseSearchState(ABC):
         cls = type(self).__name__.split('.')[-1]
         raise NotImplementedError(f'{fn} not implemented on {cls}')
 
-    @abstractmethod
-    def __hash__(self):
-        pass
+    def get_vars(self):
+        return {
+            k: v for k, v in vars(self).items()
+            if k not in BaseSearchState.ignored_vars
+        }
 
-    @abstractmethod
+    def __hash__(self):
+        return hash(tuple(v for _, v in sorted(self.get_vars().items())))
+
     def __eq__(self, other):
-        pass
+        return self.get_vars() == other.get_vars()
 
     def __repr__(self):
-        self.__raise_not_implemented_error()
+        return self.get_vars()
 
     @abstractmethod
     def is_valid(self):
@@ -74,41 +80,10 @@ class BaseSearchState(ABC):
     def get_dist_to_finish_heuristic(self):
         return 0
 
-    def get_summary(self):
-        self.__raise_not_implemented_error()
-
     def process(self):
         pass
 
-    def __search_verbose(self, summarize=False, verbosity=0):
-        q = PQ()
-        q.push(self, self.get_dist_from_start())
-        vis = set()
-        mx = -1
-        while q:
-            curr, _ = q.pop()
-            if curr.get_dist_from_start() > mx:
-                mx = curr.get_dist_from_start()
-                print(f'node={curr}, qlen={len(q)}')
-            elif verbosity >= 3:
-                print(f'node={curr}, qlen={len(q)}')
-            if not curr.is_valid():
-                continue
-            if curr in vis:
-                continue
-            vis.add(curr)
-            curr.process()
-            if curr.is_finished():
-                if summarize:
-                    return curr.get_summary()
-                else:
-                    return curr.get_dist_from_start()
-            for nbor in curr.get_neighbors():
-                q.push(nbor, nbor.get_dist_from_start() + nbor.get_dist_to_finish_heuristic())
-
-    def search(self, summarize=False, verbosity=0):
-        if verbosity > 0:
-            return self.__search_verbose(summarize=summarize, verbosity=verbosity)
+    def search(self):
         q = PQ()
         q.push(self, self.get_dist_from_start())
         vis = set()
@@ -121,9 +96,7 @@ class BaseSearchState(ABC):
             vis.add(curr)
             curr.process()
             if curr.is_finished():
-                if summarize:
-                    return curr.get_summary()
-                else:
-                    return curr.get_dist_from_start()
+                return curr.get_dist_from_start(), vis
             for nbor in curr.get_neighbors():
                 q.push(nbor, nbor.get_dist_from_start() + nbor.get_dist_to_finish_heuristic())
+        return None, vis

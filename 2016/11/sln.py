@@ -19,9 +19,6 @@ class State(BaseSearchState):
             tuple(tuple(sorted(v)) for _, v in sorted(self.lvls.items()))
         ))
 
-    def __eq__(self, other):
-        return self.elvl == other.elvl and self.lvls == other.lvls
-
     def is_valid(self):
         for lvl in self.lvls.values():
             ls = {e for e in lvl if e.islower()}
@@ -68,7 +65,7 @@ print(State(
         4: set()
     },
     0
-).search())
+).search()[0])
 
 
 # part 2
@@ -81,4 +78,4 @@ print(State(
         4: set()
     },
     0
-).search())
+).search()[0])

@@ -43,12 +43,6 @@ class State(BaseSearchState):
         self.goal = goal
         self.dist = dist
 
-    def __hash__(self):
-        return hash((self.empty, self.goal))
-
-    def __eq__(self, other):
-        return self.empty == other.empty and self.goal == other.goal
-
     def is_valid(self):
         return self.empty not in bigs
 
@@ -72,4 +66,4 @@ class State(BaseSearchState):
         return 0
 
 
-print(State(mover, (mxx, 0), 0).search())
+print(State(mover, (mxx, 0), 0).search()[0])
