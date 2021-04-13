@@ -26,14 +26,17 @@ print(l[0] * l[1])
 
 
 # part 2
-lns = ([ord(e) for e in inp] + [17, 31, 73, 47, 23]) * 64
-pos = 0
-l = list(range(SZ))
-for skip, ln in enumerate(lns):
-    l = l[pos:] + l[:pos]
-    l = l[:ln][::-1] + l[ln:]
-    l = l[-pos:] + l[:-pos]
-    pos = (pos + ln + skip) % SZ
-print(''.join(
-    f'{e:0>2x}'
-    for e in [reduce(xor, l[i * 16:(i + 1) * 16]) for i in range(16)]))
+def knot_hash(s):
+    lns = ([ord(e) for e in s] + [17, 31, 73, 47, 23]) * 64
+    pos = 0
+    l = list(range(SZ))
+    for skip, ln in enumerate(lns):
+        l = l[pos:] + l[:pos]
+        l = l[:ln][::-1] + l[ln:]
+        l = l[-pos:] + l[:-pos]
+        pos = (pos + ln + skip) % SZ
+    return ''.join(
+        f'{e:0>2x}'
+        for e in [reduce(xor, l[i * 16:(i + 1) * 16]) for i in range(16)]
+    )
+print(knot_hash(inp))
