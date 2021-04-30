@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
+# assembly
+
+
 with open('inp.txt') as fin:
     orig_instrs = [e.strip().split(' ') for e in fin.readlines()]
 

@@ -16,6 +16,7 @@ for line in lines:
 # part 1
 class State(BaseSearchState):
     def __init__(self, name, dist):
+        super().__init__()
         self.name = name
         self.dist = dist
 

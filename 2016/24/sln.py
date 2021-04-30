@@ -18,10 +18,10 @@ mxx, mxy = max(e[0] for e in grid.keys()), max(e[1] for e in grid.keys())
 
 dists = defaultdict(dict)
 
-class GridState(BaseSearchState):
-    BaseSearchState.ignored_vars.add('ival')
 
+class GridState(BaseSearchState):
     def __init__(self, x, y, ival, dist):
+        super().__init__({'ival'})
         self.x = x
         self.y = y
         self.ival = ival
@@ -56,6 +56,7 @@ for (x, y), v in grid.items():
 # part 1
 class State(BaseSearchState):
     def __init__(self, loc, visited, dist):
+        super().__init__()
         self.loc = loc
         self.visited = visited
         self.dist = dist
@@ -82,6 +83,7 @@ print(State('0', frozenset({'0'}), 0).search()[0])
 # part 2
 class State(BaseSearchState):
     def __init__(self, loc, visited, dist):
+        super().__init__()
         self.loc = loc
         self.visited = visited
         self.returned = len(self.visited) > 1 and loc == '0'

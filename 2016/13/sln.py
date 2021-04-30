@@ -18,6 +18,7 @@ def is_open(x, y):
 
 class State(BaseSearchState):
     def __init__(self, x, y, dist):
+        super().__init__()
         self.x = x
         self.y = y
         self.dist = dist

@@ -39,6 +39,7 @@ mover = next(k for k, v in ns.items() if v[1] == 0)
 bigs = {k for k, v in ns.items() if v[1] > ns[mover][0]}
 class State(BaseSearchState):
     def __init__(self, empty, goal, dist):
+        super().__init__()
         self.empty = empty
         self.goal = goal
         self.dist = dist

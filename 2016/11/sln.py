@@ -9,6 +9,7 @@ from search import BaseSearchState
 
 class State(BaseSearchState):
     def __init__(self, elvl, lvls, dist):
+        super().__init__()
         self.elvl = elvl
         self.lvls = lvls
         self.dist = dist

@@ -5,6 +5,9 @@ from heapq import heappush, heappop
 from abc import ABC, abstractmethod
 
 
+DEFAULT_IGNORED_VARS = {'dist'}
+
+
 class PQ:
     def __init__(self):
         self.__heap = []
@@ -37,19 +40,15 @@ class PQ:
 
 
 class BaseSearchState(ABC):
-    ignored_vars = {'dist'}
-
-    def __raise_not_implemented_error(self):
-        import inspect
-        stack = inspect.stack()
-        fn = stack[1].function
-        cls = type(self).__name__.split('.')[-1]
-        raise NotImplementedError(f'{fn} not implemented on {cls}')
+    def __init__(self, ignored_vars=None):
+        if ignored_vars is None:
+            ignored_vars = set()
+        self.ignored_vars = ignored_vars | DEFAULT_IGNORED_VARS
 
     def get_vars(self):
         return {
             k: v for k, v in vars(self).items()
-            if k not in BaseSearchState.ignored_vars
+            if k not in self.ignored_vars
         }
 
     def __hash__(self):
