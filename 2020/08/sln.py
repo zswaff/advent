@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-# assembly
+# todo convert to use assembly class
 
 
 with open('inp.txt') as fin:
