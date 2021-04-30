@@ -47,7 +47,7 @@ class Assembler(BaseAssembler):
         if self.eval(a) > 0:
             self.jump = self.eval(b)
 
-# print(Assembler(lines).run()[1])
+print(Assembler(lines).run()[1])
 
 
 # part 2
@@ -58,10 +58,11 @@ class Assembler(BaseAssembler):
         self.inp = []
         self.inp_idx = 0
         self.out = []
+        self.finished = False
         self.paused = False
 
     def is_finished(self):
-        return not 0 <= self.idx < len(self.instrs)
+        return self.finished or not 0 <= self.idx < len(self.instrs)
 
     def is_paused(self):
         return self.paused
@@ -98,12 +99,17 @@ class Assembler(BaseAssembler):
                 self.jump = 0
                 return
 
+            self.other.paused = False
             self.other.run()
             self.inp = self.other.out
+
+        if self.inp_idx >= len(self.inp):
+            self.finished = True
+            return
 
         self.registers[a] = self.inp[self.inp_idx]
         self.inp_idx += 1
 
 
-p0 = Assembler(lines, {'p': 0})
-print(Assembler(lines, {'p': 1}, p0).run()[1])
+p0 = Assembler(lines, {'p': 0, 'x': 1})
+print(Assembler(lines, {'p': 1, 'x': 0}, p0).run()[1])

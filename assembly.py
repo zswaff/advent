@@ -45,6 +45,7 @@ class BaseAssembler(ABC):
                 return False, self.get_result()
 
             instr = self.instrs[self.idx]
+            # print(' ' * self.registers['x'] + str(self.steps) + ' ' + str(instr))
             cmd, args = instr[0], instr[1:]
 
             fn = self.__getattribute__(f'i__{cmd}')
