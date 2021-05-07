@@ -66,7 +66,7 @@ print(State(
         4: set()
     },
     0
-).search()[0])
+).search().result)
 
 
 # part 2
@@ -79,4 +79,4 @@ print(State(
         4: set()
     },
     0
-).search()[0])
+).search().result)

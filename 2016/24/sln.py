@@ -77,7 +77,7 @@ class State(BaseSearchState):
     def get_dist_from_start(self):
         return self.dist
 
-print(State('0', frozenset({'0'}), 0).search()[0])
+print(State('0', frozenset({'0'}), 0).search().result)
 
 
 # part 2
@@ -105,4 +105,4 @@ class State(BaseSearchState):
     def get_dist_from_start(self):
         return self.dist
 
-print(State('0', frozenset({'0'}), 0).search()[0])
+print(State('0', frozenset({'0'}), 0).search().result)

@@ -40,7 +40,7 @@ class State(BaseSearchState):
 
 
 # part 1
-print(State(1, 1, 0).search()[0])
+print(State(1, 1, 0).search().result)
 
 
 # part 2

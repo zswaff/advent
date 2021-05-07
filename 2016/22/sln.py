@@ -67,4 +67,4 @@ class State(BaseSearchState):
         return 0
 
 
-print(State(mover, (mxx, 0), 0).search()[0])
+print(State(mover, (mxx, 0), 0).search().result)

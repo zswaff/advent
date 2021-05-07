@@ -1,15 +1,29 @@
 from itertools import count
+from collections import namedtuple
 from abc import ABC, abstractmethod
 
 
 class BaseAssembler(ABC):
-    def __init__(self, lines, registers):
+    Result = namedtuple('Result', ['result', 'finished'])
+
+    def __init__(self, lines, registers, print_idxs=None):
+        self.print_idxs = set() if print_idxs is None else print_idxs
         self.instrs = self.process_lines(lines)
         self.registers = registers
 
-        self.steps = -1
-        self.idx = 0
+        self.step = -1
+        self.instr_idx = 0
         self.jump = None
+
+    def print_state(self):
+        print(
+            f'{self.step:10} | {self.instr_idx:3} '
+            + str(' '.join(str(e) for e in self.instrs[self.instr_idx])).ljust(20)
+            + ' | ' + ' '.join(
+                f'{k}: {v:<10}'
+                for k, v in sorted(self.registers.items())
+            )
+        )
 
     def process_line(self, line):
         return [
@@ -37,22 +51,24 @@ class BaseAssembler(ABC):
         return val if isinstance(val, int) else self.registers[val]
 
     def run(self):
-        for self.steps in count(self.steps + 1):
+        for self.step in count(self.step + 1):
+            if self.instr_idx in self.print_idxs:
+                self.print_state()
+
             if self.is_finished():
-                return True, self.get_result()
+                return BaseAssembler.Result(self.get_result(), True)
 
             if self.is_paused():
-                return False, self.get_result()
+                return BaseAssembler.Result(self.get_result(), False)
 
-            instr = self.instrs[self.idx]
-            # print(' ' * self.registers['x'] + str(self.steps) + ' ' + str(instr))
+            instr = self.instrs[self.instr_idx]
             cmd, args = instr[0], instr[1:]
 
             fn = self.__getattribute__(f'i__{cmd}')
             fn(*args)
 
             if self.jump is not None:
-                self.idx += self.jump
+                self.instr_idx += self.jump
                 self.jump = None
                 continue
-            self.idx += 1
+            self.instr_idx += 1

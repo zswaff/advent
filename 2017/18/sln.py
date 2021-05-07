@@ -19,7 +19,7 @@ class Assembler(BaseAssembler):
         self.out = []
 
     def is_finished(self):
-        return self.finished or not 0 <= self.idx < len(self.instrs)
+        return self.finished or not 0 <= self.instr_idx < len(self.instrs)
 
     def get_result(self):
         return self.out[-1]
@@ -47,7 +47,7 @@ class Assembler(BaseAssembler):
         if self.eval(a) > 0:
             self.jump = self.eval(b)
 
-print(Assembler(lines).run()[1])
+print(Assembler(lines).run().result)
 
 
 # part 2
@@ -62,7 +62,7 @@ class Assembler(BaseAssembler):
         self.paused = False
 
     def is_finished(self):
-        return self.finished or not 0 <= self.idx < len(self.instrs)
+        return self.finished or not 0 <= self.instr_idx < len(self.instrs)
 
     def is_paused(self):
         return self.paused
@@ -112,4 +112,4 @@ class Assembler(BaseAssembler):
 
 
 p0 = Assembler(lines, {'p': 0, 'x': 1})
-print(Assembler(lines, {'p': 1, 'x': 0}, p0).run()[1])
+print(Assembler(lines, {'p': 1, 'x': 0}, p0).run().result)

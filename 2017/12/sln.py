@@ -32,7 +32,7 @@ class State(BaseSearchState):
     def get_dist_from_start(self):
         return self.dist
 
-print(len(State('0', 0).search()[1]))
+print(len(State('0', 0).search().visited))
 
 
 # part 2
@@ -41,6 +41,6 @@ grouped = set()
 for prog in g.keys():
     if prog in grouped:
         continue
-    grouped |= {e.name for e in State(prog, 0).search()[1]}
+    grouped |= {e.name for e in State(prog, 0).search().visited}
     count += 1
 print(count)
