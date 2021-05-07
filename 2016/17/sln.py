@@ -21,12 +21,6 @@ class State(BaseSearchState):
         self.path = path
         self.dist = dist
 
-    def __hash__(self):
-        return hash((self.x, self.y, self.path))
-
-    def __eq__(self, other):
-        return (self.x, self.y, self.path) == (other.x, other.y, other.path)
-
     def is_valid(self):
         return 0 <= self.x <= 3 and 0 <=self.y <= 3
 

@@ -6,7 +6,7 @@ from collections import namedtuple
 from abc import ABC, abstractmethod
 
 
-ALWAYS_IGNORED_VARS = {'dist'}
+ALWAYS_IGNORED_VARS = {'dist', 'ignored_vars'}
 
 
 class PQ:

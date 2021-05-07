@@ -41,8 +41,12 @@ print(Assembler(lines).run().result)
 
 
 # part 2
+f = lambda x: int(lines[x].split(' ')[-1])
 h = 0
-for b in range(108400, 125401, 17):
+start = f(0) * f(4) - f(5)
+stop = start - f(7) + 1
+step = -f(-2)
+for b in range(start, stop, step):
     for d in range(2, int(b ** .5) + 1):
         if b % d == 0:
             h += 1
