@@ -4,9 +4,9 @@
 
 import numpy as np
 
+from aoc import *
 
-with open('inp.txt') as fin:
-    lines = [e.strip() for e in fin.readlines()]
+
 claims = []
 for e in lines:
     s = e.split()

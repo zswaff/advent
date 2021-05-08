@@ -1,5 +1,6 @@
 # Advent of Code Solutions
 ## Next Steps
+0. chmod 755 sln.py
 0. Update requirements.txt
 0. Finish 2018 problems
 0. Fix TODOs
@@ -20,4 +21,26 @@ of excellence stylistically.
 
 
 ## Project Structure
+- `assembly.py` utility for assembly problems
+- `search.py` utility for search problems
+- `timer.py` utility for timing a process
+- `prototype` a directory to copy and rename for a new problem
+- `[year]` a year
+  - `[day]` a day of december
+    - `sln.py` the solution file
+    - `inp.txt` the input from the specific problem; optional if the input data is in solution file
 
+
+## Setup
+Set the `AOC_SESSION` environment variable by following the followint steps
+0. Login to [AOC online](https://adventofcode.com/)
+0. Right click > Inspect > Application > Cookies > https://adventofcode.com/
+0. Copy the value of the session cookie to your environment variable
+
+
+## Execution
+Run a given solution with
+```bash
+cd ./[year]/[day]
+python3 sln.py
+```

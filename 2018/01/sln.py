@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
-    nums = [int(e.strip()) for e in fin.readlines()]
+from aoc import *
+
+
+nums = [int(e) for e in lines]
 
 
 # part 1

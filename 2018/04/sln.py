@@ -6,9 +6,7 @@ from collections import defaultdict
 
 import numpy as np
 
-
-with open('inp.txt') as fin:
-    lines = [e.strip() for e in sorted(fin.readlines())]
+from aoc import *
 
 
 # part 1
@@ -26,9 +24,9 @@ for l in lines:
     d[c][s:int(spl[1][3:5])] += 1
 g = max(d.keys(), key=lambda x: d[x].sum())
 m = d[g].argmax()
-print(g * m)
+sm(g * m)
 
 
 # part 2
 m = max((d[k].max(), d[k].argmax(), k) for k in d.keys())
-print(m[1] * m[2])
+sm(m[1] * m[2])
