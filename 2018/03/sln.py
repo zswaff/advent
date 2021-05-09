@@ -20,11 +20,11 @@ for e in ls:
 d = np.zeros((1000, 1000), int)
 for (x, y), (w, h) in claims:
     d[x:x+w,y:y+h] += 1
-sa((d >= 2).sum())
+sm((d >= 2).sum())
 
 
 # part 2
 for i, ((x, y), (w, h)) in enumerate(claims):
     if (d[x:x+w,y:y+h] == 1).all():
         break
-sb(i + 1)
+sm(i + 1)

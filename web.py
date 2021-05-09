@@ -18,24 +18,22 @@ if __puzzle.answered_a and __puzzle.answered_b:
     __sys.exit(0)
 
 
-def sa(answer):
-    if __puzzle.answered_a:
-        print(f'a: {__puzzle.answer_a}')
+__sub_count = 0
+def sm(answer):
+    global __sub_count
+    if __sub_count > 1:
         return
-    if input(f'Sumbit answer a: {answer}? ').lower().startswith('n'):
-        return
-    print(f'a: {answer}')
-    __puzzle.answer_a = answer
+    dest = 'a' if __sub_count == 0 else 'b'
+    __sub_count += 1
 
-
-def sb(answer):
-    if __puzzle.answered_b:
-        print(f'b: {__puzzle.answer_b}')
+    if getattr(__puzzle, f'answered_{dest}'):
+        submitted = getattr(__puzzle, f'answer_{dest}')
+        print(f'{dest}: {submitted}')
         return
-    if input(f'Sumbit answer b: {answer}? ').lower().startswith('n'):
+    if input(f'Sumbit answer {dest}: {answer}? ').lower().startswith('n'):
         return
-    print(f'b: {answer}')
-    __puzzle.answer_b = answer
+    print(f'{dest}: {answer}')
+    setattr(__puzzle, f'answer_{dest}', answer)
 
 
 if __os.path.exists(__inp_fname):

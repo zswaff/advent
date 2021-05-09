@@ -20,7 +20,7 @@ def rec(inp):
         tcm += cm
     return l + ms, tcm + sum(inp[l:l+ms])
 
-sa(rec(ns)[1])
+sm(rec(ns)[1])
 
 
 # part 2
@@ -38,4 +38,4 @@ def rec(inp):
         v = sum(cvs[e-1] for e in inp[l:l+ms] if 1 <= e <= cs)
     return l + ms, v
 
-sb(rec(ns)[1])
+sm(rec(ns)[1])

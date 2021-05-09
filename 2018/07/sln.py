@@ -21,7 +21,7 @@ while par:
     res.append(n)
     for s in par.values():
         s -= {n}
-sa(''.join(res))
+sm(''.join(res))
 
 
 # part 2
@@ -54,4 +54,4 @@ for i in count():
     if not running:
         print()
         break
-sb(i)
+sm(i)

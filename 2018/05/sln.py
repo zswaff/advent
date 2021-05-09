@@ -22,9 +22,9 @@ def fn(ld):
             break
         l = nl
     return l
-sa(fn(list(dt)))
+sm(fn(list(dt)))
 
 
 # part 2
 cs = set(e.lower() for e in dt)
-sb(min(fn([f for f in dt if f.lower() != e]) for e in cs))
+sm(min(fn([f for f in dt if f.lower() != e]) for e in cs))

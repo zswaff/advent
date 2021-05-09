@@ -31,7 +31,7 @@ for x in range(mnx - 11, mxx + 12):
         )
         if ds[0][0] != ds[1][0]:
             d2[ds[0][1]] += 1
-sa(max(e for e, f in zip(d, d2) if e == f))
+sm(max(e for e, f in zip(d, d2) if e == f))
 
 
 
@@ -43,4 +43,4 @@ for x in range(mnx - 200, mxx + 201):
         tot = sum(abs(x - px) + abs(y - py) for i, (px, py) in enumerate(ps))
         if tot < 10000:
             c += 1
-sb(c)
+sm(c)

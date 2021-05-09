@@ -9,7 +9,7 @@ nums = [int(e) for e in ls]
 
 
 # part 1
-sa(sum(nums))
+sm(sum(nums))
 
 
 # part 2
@@ -22,4 +22,4 @@ def fn():
             if c in s:
                 return c
             s.add(c)
-sb(fn())
+sm(fn())

@@ -8,8 +8,8 @@ from web import *
 
 
 # part 1
-sa(sum(1 for e in ls if 2 in set(Counter(e).values())) *
-      sum(1 for e in ls if 3 in set(Counter(e).values())))
+sm(sum(1 for e in ls if 2 in set(Counter(e).values())) *
+   sum(1 for e in ls if 3 in set(Counter(e).values())))
 
 
 # part 2
@@ -19,4 +19,4 @@ def fn():
             for j in range(len(e)):
                 if e[:j] + e[j+1:] == f[:j] + f[j+1:]:
                     return e[:j] + e[j+1:]
-sb(fn())
+sm(fn())

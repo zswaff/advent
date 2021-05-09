@@ -24,9 +24,9 @@ for l in ls:
     d[c][s:int(spl[1][3:5])] += 1
 g = max(d.keys(), key=lambda x: d[x].sum())
 m = d[g].argmax()
-sa(g * m)
+sm(g * m)
 
 
 # part 2
 m = max((d[k].max(), d[k].argmax(), k) for k in d.keys())
-sb(m[1] * m[2])
+sm(m[1] * m[2])
