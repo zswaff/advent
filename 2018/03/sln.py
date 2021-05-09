@@ -4,11 +4,11 @@
 
 import numpy as np
 
-from aoc import *
+from web import *
 
 
 claims = []
-for e in lines:
+for e in ls:
     s = e.split()
     claims.append((
         tuple(int(e) for e in s[2][:-1].split(',')),
@@ -20,10 +20,11 @@ for e in lines:
 d = np.zeros((1000, 1000), int)
 for (x, y), (w, h) in claims:
     d[x:x+w,y:y+h] += 1
-print((d >= 2).sum())
+sa((d >= 2).sum())
 
 
 # part 2
 for i, ((x, y), (w, h)) in enumerate(claims):
     if (d[x:x+w,y:y+h] == 1).all():
-        print(i + 1)
+        break
+sb(i + 1)

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from aoc import *
+from web import *
 
 
 # part 1

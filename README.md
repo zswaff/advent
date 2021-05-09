@@ -24,6 +24,7 @@ of excellence stylistically.
 - `assembly.py` utility for assembly problems
 - `search.py` utility for search problems
 - `timer.py` utility for timing a process
+- `web.py` utility for interacting with the website
 - `prototype` a directory to copy and rename for a new problem
 - `[year]` a year
   - `[day]` a day of december
@@ -42,5 +43,5 @@ Set the `AOC_SESSION` environment variable by following the followint steps
 Run a given solution with
 ```bash
 cd ./[year]/[day]
-python3 sln.py
+./sln.py
 ```

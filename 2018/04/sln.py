@@ -6,14 +6,14 @@ from collections import defaultdict
 
 import numpy as np
 
-from aoc import *
+from web import *
 
 
 # part 1
 d = defaultdict(lambda: np.zeros((60,), int))
 c = 0
 s = 0
-for l in lines:
+for l in ls:
     spl = l.split()
     if spl[2] == 'Guard':
         c = int(spl[3][1:])
@@ -24,9 +24,9 @@ for l in lines:
     d[c][s:int(spl[1][3:5])] += 1
 g = max(d.keys(), key=lambda x: d[x].sum())
 m = d[g].argmax()
-sm(g * m)
+sa(g * m)
 
 
 # part 2
 m = max((d[k].max(), d[k].argmax(), k) for k in d.keys())
-sm(m[1] * m[2])
+sb(m[1] * m[2])

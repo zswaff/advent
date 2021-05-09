@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 
-from aoc import *
+from web import *
 
 
-nums = [int(e) for e in lines]
+nums = [int(e) for e in ls]
 
 
 # part 1
-print(sum(nums))
+sa(sum(nums))
 
 
 # part 2
@@ -22,4 +22,4 @@ def fn():
             if c in s:
                 return c
             s.add(c)
-print(fn())
+sb(fn())

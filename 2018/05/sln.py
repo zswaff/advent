@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from aoc import *
+from web import *
 
 
 # part 1
@@ -22,9 +22,9 @@ def fn(ld):
             break
         l = nl
     return l
-sm(fn(list(dt)))
+sa(fn(list(dt)))
 
 
 # part 2
 cs = set(e.lower() for e in dt)
-sm(min(fn([f for f in dt if f.lower() != e]) for e in cs))
+sb(min(fn([f for f in dt if f.lower() != e]) for e in cs))
