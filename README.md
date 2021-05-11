@@ -1,8 +1,7 @@
 # Advent of Code Solutions
 ## Next Steps
-0. chmod 755 sln.py
-0. Update requirements.txt
 0. Finish 2018 problems
+0. Update requirements.txt and centralize imports
 0. Fix TODOs
 0. Migrate all problems to use [aocd](https://github.com/wimglenn/advent-of-code-data)
 0. Migrate all search problems to use search.py
@@ -22,6 +21,7 @@ of excellence stylistically.
 
 ## Project Structure
 - `assembly.py` utility for assembly problems
+- `common.py` utility for standard imports
 - `search.py` utility for search problems
 - `timer.py` utility for timing a process
 - `web.py` utility for interacting with the website
