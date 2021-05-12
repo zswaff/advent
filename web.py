@@ -1,5 +1,4 @@
 import os as __os
-import sys as __sys
 
 import aocd as __aocd
 
@@ -13,11 +12,6 @@ __puzzle = __aocd.models.Puzzle(**__date)
 __inp_fname = f'{__caller}/inp.txt'
 
 
-if __puzzle.answered_a and __puzzle.answered_b:
-    print(f'a: {__puzzle.answer_a}\nb: {__puzzle.answer_b}')
-    __sys.exit(0)
-
-
 __sub_count = 0
 def sm(answer):
     global __sub_count
@@ -26,10 +20,14 @@ def sm(answer):
     dest = 'a' if __sub_count == 0 else 'b'
     __sub_count += 1
 
+    answer = str(answer)
     if getattr(__puzzle, f'answered_{dest}'):
         submitted = getattr(__puzzle, f'answer_{dest}')
+        if answer != submitted:
+            print(f'Regression! {dest} was {submitted} and is now {answer}')
         print(f'{dest}: {submitted}')
         return
+
     if input(f'Sumbit answer {dest}: {answer}? ').lower().startswith('n'):
         return
     print(f'{dest}: {answer}')
