@@ -2,14 +2,13 @@ import itertools
 from heapq import heappush, heappop
 from collections import namedtuple
 
-
 from abc import ABC, abstractmethod
-
 
 ALWAYS_IGNORED_VARS = {'dist', 'ignored_vars'}
 
 
 class PQ:
+
     def __init__(self):
         self.__heap = []
         self.__dict = {}
@@ -41,7 +40,7 @@ class PQ:
 
 
 class BaseSearchState(ABC):
-    Result = namedtuple('Result', ['distance', 'visited'])
+    Result = namedtuple('Result', ['distance', 'visited', 'end_state'])
 
     def __init__(self, ignored_vars=None):
         if ignored_vars is None:
@@ -50,8 +49,7 @@ class BaseSearchState(ABC):
 
     def get_vars(self):
         return {
-            k: v for k, v in vars(self).items()
-            if k not in self.ignored_vars
+            k: v for k, v in vars(self).items() if k not in self.ignored_vars
         }
 
     def __hash__(self):
@@ -98,7 +96,11 @@ class BaseSearchState(ABC):
             vis.add(curr)
             curr.process()
             if curr.is_finished():
-                return BaseSearchState.Result(curr.get_dist_from_start(), vis)
+                return BaseSearchState.Result(curr.get_dist_from_start(), vis,
+                                              curr)
             for nbor in curr.get_neighbors():
-                q.push(nbor, nbor.get_dist_from_start() + nbor.get_dist_to_finish_heuristic())
-        return BaseSearchState.Result(None, vis)
+                q.push(
+                    nbor,
+                    nbor.get_dist_from_start() +
+                    nbor.get_dist_to_finish_heuristic())
+        return BaseSearchState.Result(None, vis, None)

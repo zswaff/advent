@@ -33,7 +33,7 @@ of excellence stylistically.
 
 
 ## Setup
-Set the `AOC_SESSION` environment variable by following the followint steps
+Set the `AOC_SESSION` environment variable by following the following steps
 0. Login to [AOC online](https://adventofcode.com/)
 0. Right click > Inspect > Application > Cookies > https://adventofcode.com/
 0. Copy the value of the session cookie to your environment variable
