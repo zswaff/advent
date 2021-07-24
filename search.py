@@ -47,11 +47,6 @@ class BaseSearchState(ABC):
             ignored_vars = set()
         self.ignored_vars = ignored_vars | ALWAYS_IGNORED_VARS
 
-    def get_vars(self):
-        return {
-            k: v for k, v in vars(self).items() if k not in self.ignored_vars
-        }
-
     def __hash__(self):
         return hash(tuple(v for _, v in sorted(self.get_vars().items())))
 
@@ -76,6 +71,11 @@ class BaseSearchState(ABC):
     @abstractmethod
     def get_dist_from_start(self):
         pass
+
+    def get_vars(self):
+        return {
+            k: v for k, v in vars(self).items() if k not in self.ignored_vars
+        }
 
     def get_dist_to_finish_heuristic(self):
         return 0

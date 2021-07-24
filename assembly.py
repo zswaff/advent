@@ -15,6 +15,18 @@ class BaseAssembler(ABC):
         self.instr_idx = 0
         self.jump = None
 
+    @abstractmethod
+    def is_finished(self):
+        pass
+
+    @abstractmethod
+    def get_result(self):
+        pass
+
+    @classmethod
+    def get_possible_instrs(cls):
+        return [e[3:] for e in dir(cls) if e.startswith('i__')]
+
     def print_state(self):
         print(
             f'{self.step:10} | {self.instr_idx:3} '
@@ -36,16 +48,8 @@ class BaseAssembler(ABC):
     def process_lines(self, lines):
         return [self.process_line(e) for e in lines]
 
-    @abstractmethod
-    def is_finished(self):
-        pass
-
     def is_paused(self):
         return False
-
-    @abstractmethod
-    def get_result(self):
-        pass
 
     def eval(self, val):
         return val if isinstance(val, int) else self.registers[val]
