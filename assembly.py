@@ -7,9 +7,10 @@ class BaseAssembler(ABC):
     Result = namedtuple('Result', ['result', 'finished'])
 
     def __init__(self, lines, registers, print_idxs=None):
-        self.print_idxs = set() if print_idxs is None else print_idxs
+        self.lines = lines
         self.instrs = self.process_lines(lines)
         self.registers = registers
+        self.print_idxs = set() if print_idxs is None else print_idxs
 
         self.step = -1
         self.instr_idx = 0
@@ -54,6 +55,13 @@ class BaseAssembler(ABC):
     def eval(self, val):
         return val if isinstance(val, int) else self.registers[val]
 
+    def update_instr_idx(self):
+        if self.jump is not None:
+            self.instr_idx += self.jump
+            self.jump = None
+            return
+        self.instr_idx += 1
+
     def run(self):
         for self.step in count(self.step + 1):
             if self.instr_idx in self.print_idxs:
@@ -71,8 +79,4 @@ class BaseAssembler(ABC):
             fn = self.__getattribute__(f'i__{cmd}')
             fn(*args)
 
-            if self.jump is not None:
-                self.instr_idx += self.jump
-                self.jump = None
-                continue
-            self.instr_idx += 1
+            self.update_instr_idx()
