@@ -55,7 +55,7 @@ print(mx)
 
 
 # part 2
-mx = (0, 0)
+mx = 0, 0
 
 class State(BaseSearchState):
     def __init__(self, length, last, tot, visited):
