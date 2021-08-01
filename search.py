@@ -8,7 +8,6 @@ ALWAYS_IGNORED_VARS = {'dist', 'ignored_vars'}
 
 
 class PQ:
-
     def __init__(self):
         self.__heap = []
         self.__dict = {}

@@ -30,7 +30,3 @@ for i in range(steps):
     tape[head] = write
     head += move
 print(sum(tape.values()))
-
-
-# part 2
-

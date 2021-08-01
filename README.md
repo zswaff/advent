@@ -1,10 +1,11 @@
 # Advent of Code Solutions
 ## Next Steps
-0. Finish 2018 problems
-0. Update requirements.txt and centralize imports
+0. Update `requirements.txt`
+0. Centralize 100% of imports into `common.py` and replace all imports
 0. Fix TODOs
-0. Migrate all problems to use [aocd](https://github.com/wimglenn/advent-of-code-data)
-0. Migrate all search problems to use search.py
+0. Migrate all problems to use `web.py`
+0. Migrate all search problems to use `search.py`
+0. Auto-remove unused imports when importing `common.py` by detecting what will be used 
 0. Identify and improve other common patterns
 
 
@@ -33,7 +34,7 @@ of excellence stylistically.
 
 
 ## Setup
-Set the `AOC_SESSION` environment variable by following the following steps
+Set the `AOC_SESSION` environment variable by following the following steps in Chrome
 0. Login to [AOC online](https://adventofcode.com/)
 0. Right click > Inspect > Application > Cookies > https://adventofcode.com/
 0. Copy the value of the session cookie to your environment variable
