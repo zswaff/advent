@@ -15,6 +15,7 @@ with open('inp.txt') as fin:
 # part 1
 mx = 0
 
+
 class State(BaseSearchState):
     def __init__(self, last, tot, visited):
         super().__init__()
@@ -50,12 +51,14 @@ class State(BaseSearchState):
         global mx
         mx = max(mx, self.tot)
 
+
 State(0, 0, ()).search()
 print(mx)
 
 
 # part 2
 mx = 0, 0
+
 
 class State(BaseSearchState):
     def __init__(self, length, last, tot, visited):
@@ -94,6 +97,7 @@ class State(BaseSearchState):
     def process(self):
         global mx
         mx = max(mx, (self.length, self.tot))
+
 
 State(0, 0, 0, ()).search()
 print(mx[1])
