@@ -1,12 +1,13 @@
 # Advent of Code Solutions
 ## Next Steps
-0. Update `requirements.txt`
-0. Centralize 100% of imports into `common.py` and replace all imports
-0. Fix TODOs
-0. Migrate all problems to use `web.py`
-0. Migrate all search problems to use `search.py`
-0. Auto-remove unused imports when importing `common.py` by detecting what will be used 
-0. Identify and improve other common patterns
+1. Update `requirements.txt`
+2. Centralize 100% of imports into `common.py` and replace all imports
+3. Fix TODOs
+4. Migrate all problems to use `web.py`
+5. Migrate all search problems to use `search.py`
+6. Auto-remove unused imports when importing `common.py` by detecting what will be used 
+7. Identify and improve other common patterns
+8. Translate text like in 21-13 and elsewhere to a submission
 
 
 ## Introduction
