@@ -3,7 +3,6 @@
 
 
 from common import *
-from web import *
 
 
 # part 1

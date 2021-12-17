@@ -3,13 +3,8 @@
 
 
 from common import *
-from web import *
 
-
-_, xs, ys = dt.split('=')
-tx1, tx2 = [int(e) for e in xs[:-3].split('..')]
-ty2, ty1 = [int(e) for e in ys.split('..')]
-
+tx1, tx2, ty2, ty1 = pa(dt, 'target area: x={i}..{i}, y={i}..{i}')
 gxs = []
 c = 0
 for i in range(50):
