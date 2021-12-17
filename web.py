@@ -1,12 +1,6 @@
-import re as __re
 import os as __os
 
 import aocd as __aocd
-
-
-__PATTERN_VARIABLE_FNS = {
-    'i': int
-}
 
 
 __caller = __os.getcwd()
@@ -16,30 +10,6 @@ __date = {
 }
 __puzzle = __aocd.models.Puzzle(**__date)
 __inp_fname = f'{__caller}/inp.txt'
-
-
-def pa(line, pattern):
-    segs = [e.split('}') for e in pattern.split('{')]
-    if not len(segs[0]) == 1 and all(len(e) == 2 for e in segs[1:]):
-        print(f'Malformed pattern! {pattern}')
-        return
-    keys = []
-    pat = '^' + __re.escape(segs[0][0])
-    for key, literal in segs[1:]:
-        keys.append(__PATTERN_VARIABLE_FNS[key] if key else lambda x: x)
-        pat += f'(.*?)' + __re.escape(literal)
-    pat += '$'
-    mat = __re.match(pat, line)
-    if mat is None:
-        print(f'No match! {pattern} does not match {line}')
-        return
-    return [e(mat.group(i)) for i, e in enumerate(keys, 1)]
-
-
-def gr(lines, fn=None):
-    if fn is None:
-        fn = lambda x: x
-    return {(x, y): fn(e) for y, l in enumerate(lines.split('\n')) for x, e in enumerate(l)}
 
 
 __sub_count = 0
