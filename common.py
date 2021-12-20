@@ -52,4 +52,4 @@ def pa(line, pattern):
 def gr(lines, fn=None):
     if fn is None:
         fn = lambda x: x
-    return {(x, y): fn(e) for y, l in enumerate(lines.split('\n')) for x, e in enumerate(l)}
+    return {(x, y): fn(e) for y, l in enumerate(lines) for x, e in enumerate(l)}
