@@ -22,7 +22,7 @@ class State(BaseSearchState):
         self.dist = dist
 
     def is_valid(self):
-        return 0 <= self.x <= 3 and 0 <=self.y <= 3
+        return 0 <= self.x <= 3 and 0 <= self.y <= 3
 
     def is_finished(self):
         return (self.x, self.y) == (3, 3)
