@@ -65,6 +65,7 @@ class Region:
             in product(xs, ys, zs)
         ]
 
+
 sr = Region(
     min(e[0] - e[3] for e in ns),
     min(e[1] - e[3] for e in ns),
