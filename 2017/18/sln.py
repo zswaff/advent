@@ -47,6 +47,7 @@ class Assembler(BaseAssembler):
         if self.eval(a) > 0:
             self.jump = self.eval(b)
 
+
 print(Assembler(lines).run().result)
 
 

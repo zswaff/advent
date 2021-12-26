@@ -68,7 +68,9 @@ class Assembler(BaseAssembler):
     def i__eqrr(self, a, b, c):
         self.registers[c] = int(self.registers[a] == self.registers[b])
 
+
 exs, lines = dt.split('\n\n\n\n')
+
 
 # part 1
 exs = exs.split('\n\n')

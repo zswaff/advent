@@ -54,6 +54,8 @@ def bfs(self):
             return curr.path
         for nbor in curr.get_neighbors():
             q.append(nbor)
+
+
 print(bfs(State(0, 0, '', 0)))
 
 

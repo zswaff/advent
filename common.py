@@ -11,6 +11,7 @@ from operator import xor
 import numpy as np
 from tqdm import tqdm
 
+from assembly import *
 from search import *
 from web import *
 
