@@ -13,6 +13,7 @@ of excellence stylistically.
 
 
 ## Project Structure
+
 - `assembly.py` utility for assembly problems
 - `common.py` utility for standard imports
 - `search.py` utility for search problems
@@ -26,13 +27,16 @@ of excellence stylistically.
 
 
 ## Setup
+
 Set the `AOC_SESSION` environment variable by following the following steps in Chrome
-0. Login to [AOC online](https://adventofcode.com/)
-0. Right click > Inspect > Application > Cookies > https://adventofcode.com/
-0. Copy the value of the session cookie to your environment variable
+
+1. Login to [AOC online](https://adventofcode.com/)
+1. Right click > Inspect > Application > Cookies > https://adventofcode.com/
+1. Copy the value of the session cookie to your environment variable
 
 
 ## Execution
+
 Run a given solution with
 ```bash
 cd ./[year]/[day]
@@ -41,11 +45,12 @@ cd ./[year]/[day]
 
 
 ## Next Steps
-0. Update `requirements.txt`
-0. Centralize 100% of imports into `common.py` and replace all imports
-0. Fix TODOs
-0. Migrate all problems to use `web.py`
-0. Migrate all search problems to use `search.py`
-0. Auto-remove unused imports when importing `common.py` by detecting what will be used 
-0. Identify and improve other common patterns
-0. Translate text like in 21-13 and elsewhere to a submission
+
+1. Update `requirements.txt`
+1. Centralize 100% of imports into `common.py` and replace all imports
+1. Fix TODOs
+1. Migrate all problems to use `web.py`
+1. Migrate all search problems to use `search.py`
+1. Auto-remove unused imports when importing `common.py` by detecting what will be used 
+1. Identify and improve other common patterns
+1. Translate text like in 21-13 and elsewhere to a submission
