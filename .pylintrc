@@ -1,0 +1,5 @@
+[MASTER]
+init-hook='import sys; sys.path.append("/Users/zack/Desktop/Workspace/advent")'
+
+[MESSAGES CONTROL]
+disable=invalid-name, missing-class-docstring, missing-function-docstring, missing-module-docstring, redefined-builtin, unused-import, unused-wildcard-import, wildcard-import

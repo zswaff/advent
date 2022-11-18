@@ -5,7 +5,7 @@ from collections import namedtuple
 from abc import ABC, abstractmethod
 
 
-ALWAYS_IGNORED_VARS = {'dist', 'ignored_vars'}
+ALWAYS_IGNORED_VARS = {"dist", "ignored_vars"}
 
 
 class PQ:
@@ -36,11 +36,11 @@ class PQ:
             if item is not None:
                 del self.__dict[item]
                 return item, priority
-        raise KeyError('PQ Empty')
+        raise KeyError("PQ Empty")
 
 
 class BaseSearchState(ABC):
-    Result = namedtuple('Result', ['distance', 'visited', 'end_state'])
+    Result = namedtuple("Result", ["distance", "visited", "end_state"])
 
     def __init__(self, ignored_vars=None):
         if ignored_vars is None:
@@ -73,9 +73,7 @@ class BaseSearchState(ABC):
         pass
 
     def get_vars(self):
-        return {
-            k: v for k, v in vars(self).items() if k not in self.ignored_vars
-        }
+        return {k: v for k, v in vars(self).items() if k not in self.ignored_vars}
 
     def get_dist_to_finish_heuristic(self):
         return 0
@@ -96,11 +94,10 @@ class BaseSearchState(ABC):
             vis.add(curr)
             curr.process()
             if curr.is_finished():
-                return BaseSearchState.Result(curr.get_dist_from_start(), vis,
-                                              curr)
+                return BaseSearchState.Result(curr.get_dist_from_start(), vis, curr)
             for nbor in curr.get_neighbors():
                 q.push(
                     nbor,
-                    nbor.get_dist_from_start() +
-                    nbor.get_dist_to_finish_heuristic())
+                    nbor.get_dist_from_start() + nbor.get_dist_to_finish_heuristic(),
+                )
         return BaseSearchState.Result(None, vis, None)

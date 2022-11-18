@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 
 class BaseAssembler(ABC):
-    Result = namedtuple('Result', ['result', 'finished'])
+    Result = namedtuple("Result", ["result", "finished"])
 
     def __init__(self, lines, registers, print_idxs=None):
         self.lines = lines
@@ -26,23 +26,19 @@ class BaseAssembler(ABC):
 
     @classmethod
     def get_possible_instrs(cls):
-        return [e[3:] for e in dir(cls) if e.startswith('i__')]
+        return [e[3:] for e in dir(cls) if e.startswith("i__")]
 
     def print_state(self):
         print(
-            f'{self.step:10} | {self.instr_idx:3} '
-            + str(' '.join(str(e) for e in self.instrs[self.instr_idx])).ljust(20)
-            + ' | ' + ' '.join(
-                f'{k}: {v:<10}'
-                for k, v in sorted(self.registers.items())
-            )
+            f"{self.step:10} | {self.instr_idx:3} "
+            + str(" ".join(str(e) for e in self.instrs[self.instr_idx])).ljust(20)
+            + " | "
+            + " ".join(f"{k}: {v:<10}" for k, v in sorted(self.registers.items()))
         )
 
     def process_line(self, line):
         return [
-            int(e)
-            if e.isdigit() or (e.startswith('-') and e[1:].isdigit())
-            else e
+            int(e) if e.isdigit() or (e.startswith("-") and e[1:].isdigit()) else e
             for e in line.split()
         ]
 
@@ -76,7 +72,7 @@ class BaseAssembler(ABC):
             instr = self.instrs[self.instr_idx]
             cmd, args = instr[0], instr[1:]
 
-            fn = self.__getattribute__(f'i__{cmd}')
+            fn = getattr(self, f"i__{cmd}")
             fn(*args)
 
             self.update_instr_idx()
