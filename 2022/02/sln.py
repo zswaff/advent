@@ -24,7 +24,7 @@ for l in ls:
     o, s = l.split(" ")
     ox, sx = O[o], S[s]
     c += sx + X[(ox, sx)]
-sm(9241)
+sm(c)
 
 
 # part 2
