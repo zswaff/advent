@@ -1,12 +1,16 @@
+import inspect as __inspect
 import os as __os
 
 import aocd as __aocd
 
 
-__caller = __os.getcwd()
-__date = {"day": int(__caller.split("/")[-1]), "year": int(__caller.split("/")[-2])}
+__caller = __os.path.abspath(
+    next(e.filename for e in __inspect.stack() if e.filename.endswith("sln.py"))
+)
+__spl = __caller.split("/")
+__date = {"day": int(__spl[-2]), "year": int(__spl[-3])}
 __puzzle = __aocd.models.Puzzle(**__date)
-__inp_fname = f"{__caller}/inp.txt"
+__inp_fname = "/".join(__spl[:-1] + ["inp.txt"])
 
 
 __sub_count = 0
@@ -34,11 +38,11 @@ def sm(answer):
 
 
 if __os.path.exists(__inp_fname):
-    with open(f"{__caller}/inp.txt", encoding="UTF-8") as __fin:
+    with open(__inp_fname, encoding="UTF-8") as __fin:
         dt = __fin.read()
 else:
     dt = __puzzle.input_data
-    with open(f"{__caller}/inp.txt", "w+", encoding="UTF-8") as __fout:
+    with open(__inp_fname, "w+", encoding="UTF-8") as __fout:
         __fout.write(dt)
 ls = dt.split("\n")
 ss = [e.split("\n") for e in dt.split("\n\n")]
