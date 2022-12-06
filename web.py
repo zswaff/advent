@@ -45,4 +45,5 @@ else:
     with open(__inp_fname, "w+", encoding="UTF-8") as __fout:
         __fout.write(dt)
 ls = dt.split("\n")
+l = ls[0]
 ss = [e.split("\n") for e in dt.split("\n\n")]
