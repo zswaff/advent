@@ -53,3 +53,36 @@ def gr(lines, fn=None):
     if fn is None:
         fn = lambda x: x  # pylint: disable=unnecessary-lambda-assignment
     return {(x, y): fn(e) for y, l in enumerate(lines) for x, e in enumerate(l)}
+
+
+def cngr(edge_map, targets):
+    class State(BaseSearchState):
+        def __init__(self, loc, dist):  # pylint: disable=redefined-outer-name
+            super().__init__()
+            self.loc = loc
+            self.dist = dist
+
+        def is_valid(self):
+            return True
+
+        def is_finished(self):
+            return False
+
+        def get_neighbors(self):
+            return [State(k, self.dist + v) for k, v in edge_map[self.loc].items()]
+
+        def get_dist_from_start(self):
+            return self.dist
+
+        def process(self):
+            if self.loc == target or self.loc not in targets:
+                return
+            tres[self.loc] = min(tres.get(self.loc, inf), self.dist)
+
+    res = {}
+    for target in targets:
+        tres = {}
+        State(target, 0).search()
+        res[target] = tres
+
+    return res
