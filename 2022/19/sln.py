@@ -93,4 +93,4 @@ sm(sum(i * calc(e, 24) for i, e in bs))
 
 
 # part 2
-sm(prod(calc(e[1], 34) for e in bs[:3]))
+sm(prod(calc(e[1], 32) for e in bs[:3]))
