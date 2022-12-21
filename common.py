@@ -44,8 +44,8 @@ def pa(line, pattern):
         mat = re.match(reg, line)
         if mat:
             if many_pats:
-                return idx, (e(mat.group(i)) for i, e in enumerate(keys, 1))
-            return (e(mat.group(i)) for i, e in enumerate(keys, 1))
+                return idx, tuple(e(mat.group(i)) for i, e in enumerate(keys, 1))
+            return tuple(e(mat.group(i)) for i, e in enumerate(keys, 1))
     assert False, "No matches"
 
 
