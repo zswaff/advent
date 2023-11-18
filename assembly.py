@@ -76,3 +76,5 @@ class BaseAssembler(ABC):
             fn(*args)
 
             self.update_instr_idx()
+
+            return None

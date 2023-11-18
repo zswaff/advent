@@ -8,7 +8,7 @@ __caller = __os.path.abspath(
     next(e.filename for e in __inspect.stack() if e.filename.endswith("sln.py"))
 )
 __spl = __caller.split("/")
-__date = {"day": int(__spl[-2]), "year": int(__spl[-3])}
+__date = {"year": int(__spl[-3]), "day": int(__spl[-2])}
 __puzzle = __aocd.models.Puzzle(**__date)
 __inp_fname = "/".join(__spl[:-1] + ["inp.txt"])
 
