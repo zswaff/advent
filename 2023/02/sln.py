@@ -28,6 +28,4 @@ from common import *
 # part 1
 
 
-
 # part 2
-

@@ -10,7 +10,7 @@ from web import *
 class Assembler(BaseAssembler):
     def __init__(self, lines, regs, stop_idx=None):
         super().__init__(lines[1:], defaultdict(int, regs))
-        self.instr_idx_remap = int(lines[0].split(' ')[-1])
+        self.instr_idx_remap = int(lines[0].split(" ")[-1])
         self.stop_idx = stop_idx
         self.pause_next = True
 

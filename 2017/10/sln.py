@@ -9,12 +9,12 @@ from functools import reduce
 SZ = 256
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     inp = fin.read().strip()
 
 
 # part 1
-lns = [int(e) for e in inp.split(',')]
+lns = [int(e) for e in inp.split(",")]
 pos = 0
 l = list(range(SZ))
 for skip, ln in enumerate(lns):
@@ -35,8 +35,7 @@ def knot_hash(s):
         l = l[:ln][::-1] + l[ln:]
         l = l[-pos:] + l[:-pos]
         pos = (pos + ln + skip) % SZ
-    return ''.join(
-        f'{e:0>2x}'
-        for e in [reduce(xor, l[i * 16:(i + 1) * 16]) for i in range(16)]
-    )
+    return "".join(f"{e:0>2x}" for e in [reduce(xor, l[i * 16 : (i + 1) * 16]) for i in range(16)])
+
+
 print(knot_hash(inp))

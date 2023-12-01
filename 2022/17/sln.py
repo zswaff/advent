@@ -23,9 +23,7 @@ for i in range(2022):
     while True:
         dx = bs[c % len(bs)]
         c += 1
-        if all(
-            (px + ox + dx, py + oy) not in g and 0 <= px + ox + dx < 7 for px, py in p
-        ):
+        if all((px + ox + dx, py + oy) not in g and 0 <= px + ox + dx < 7 for px, py in p):
             ox += dx
         if oy == 1 or any((px + ox, py + oy - 1) in g for px, py in p):
             break
@@ -51,9 +49,7 @@ for i in range(1000000000000):
     while True:
         dx = bs[c % len(bs)]
         c += 1
-        if all(
-            (px + ox + dx, py + oy) not in g and 0 <= px + ox + dx < 7 for px, py in p
-        ):
+        if all((px + ox + dx, py + oy) not in g and 0 <= px + ox + dx < 7 for px, py in p):
             ox += dx
         if oy == 1 or any((px + ox, py + oy - 1) in g for px, py in p):
             break
@@ -67,10 +63,7 @@ for i in range(1000000000000):
     key = (
         i % len(ps),
         c % len(bs),
-        tuple(
-            cmy - next((y for y in range(cmy, -1, -1) if (x, y) in g), 0)
-            for x in range(7)
-        ),
+        tuple(cmy - next((y for y in range(cmy, -1, -1) if (x, y) in g), 0) for x in range(7)),
     )
     if key in cach:
         break

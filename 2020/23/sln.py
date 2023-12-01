@@ -15,10 +15,10 @@ for i in range(10):
         t = str((c - j - 1) % 9 + 1)
         if t in l:
             ti = l.index(t)
-            l = l[:ti+1] + p + l[ti+1:]
+            l = l[: ti + 1] + p + l[ti + 1 :]
             break
     l = l[1:] + l[0]
-print(''.join(l + l).split('1')[1])
+print("".join(l + l).split("1")[1])
 
 
 # part 2
@@ -26,6 +26,7 @@ class Node:
     def __init__(self, v, n):
         self.v = v
         self.n = n
+
 
 cv = int(str(INP)[0])
 curr = Node(cv, None)

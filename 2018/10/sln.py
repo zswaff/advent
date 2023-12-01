@@ -8,13 +8,7 @@ from itertools import count
 from web import *
 
 
-ps = [
-    [
-        tuple(int(f) for f in e.split('<')[1].split(','))
-        for e in l[:-1].split('> ')
-    ]
-    for l in ls
-]
+ps = [[tuple(int(f) for f in e.split("<")[1].split(",")) for e in l[:-1].split("> ")] for l in ls]
 
 
 # part 1
@@ -34,11 +28,11 @@ for i in count():
 s = {tuple(e[0]) for e in ps}
 mnx, mxx = min(e[0] for e in s), max(e[0] for e in s)
 mny, mxy = min(e[1] for e in s), max(e[1] for e in s)
-for y in range(mny, mxy+1):
-    for x in range(mnx, mxx+1):
-        print('#' if (x, y) in s else '.', end='')
+for y in range(mny, mxy + 1):
+    for x in range(mnx, mxx + 1):
+        print("#" if (x, y) in s else ".", end="")
     print()
-sm('GPJLLLLH')
+sm("GPJLLLLH")
 
 # part 2
 sm(i)

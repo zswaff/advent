@@ -6,16 +6,16 @@ from collections import defaultdict
 
 
 DIRS = {
-    'e': (2, 0),
-    'se': (1, -1),
-    'sw': (-1, -1),
-    'w': (-2, 0),
-    'nw': (-1, 1),
-    'ne': (1, 1),
+    "e": (2, 0),
+    "se": (1, -1),
+    "sw": (-1, -1),
+    "w": (-2, 0),
+    "nw": (-1, 1),
+    "ne": (1, 1),
 }
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
@@ -26,14 +26,14 @@ for l in lines:
     i = 0
     while i < len(l):
         c = l[i]
-        if c == 's' or c == 'n':
+        if c == "s" or c == "n":
             i += 1
             c += l[i]
         i += 1
         dx, dy = DIRS[c]
         x += dx
         y += dy
-    grid[(x,y)] = not grid[(x,y)]
+    grid[(x, y)] = not grid[(x, y)]
 print(sum(grid.values()))
 
 

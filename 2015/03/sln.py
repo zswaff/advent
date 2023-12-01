@@ -5,17 +5,18 @@
 from collections import Counter
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     dirs = [e for e in fin.read().strip()]
 
 
 def move(loc, d):
-     return {
-        '^': (loc[0], loc[1] + 1),
-        'vis': (loc[0], loc[1] - 1),
-        '<': (loc[0] - 1, loc[1]),
-        '>': (loc[0] + 1, loc[1])
+    return {
+        "^": (loc[0], loc[1] + 1),
+        "vis": (loc[0], loc[1] - 1),
+        "<": (loc[0] - 1, loc[1]),
+        ">": (loc[0] + 1, loc[1]),
     }[d]
+
 
 # part 1
 santa = (0, 0)

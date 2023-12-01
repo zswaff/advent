@@ -5,19 +5,13 @@
 from collections import defaultdict
 
 
-with open('inp.txt') as fin:
-    seats = [
-        [f == 'L' for f in e.strip()]
-        for e in fin.readlines()
-    ]
+with open("inp.txt") as fin:
+    seats = [[f == "L" for f in e.strip()] for e in fin.readlines()]
 
 
 # part 1
 def round1(occs):
-    res = [
-        [False for _ in e]
-        for e in seats
-    ]
+    res = [[False for _ in e] for e in seats]
     for y, row in enumerate(seats):
         for x, is_seat in enumerate(row):
             if not is_seat:
@@ -44,10 +38,7 @@ def round1(occs):
     return res
 
 
-state = [
-    [False for _ in e]
-    for e in seats
-]
+state = [[False for _ in e] for e in seats]
 while True:
     new = round1(state)
     if new == state:
@@ -80,12 +71,8 @@ for y, row in enumerate(seats):
                         break
 
 
-
 def round2(occs):
-    res = [
-        [False for _ in e]
-        for e in seats
-    ]
+    res = [[False for _ in e] for e in seats]
     for y, row in enumerate(seats):
         for x, is_seat in enumerate(row):
             if not is_seat:
@@ -100,10 +87,7 @@ def round2(occs):
     return res
 
 
-state = [
-    [False for _ in e]
-    for e in seats
-]
+state = [[False for _ in e] for e in seats]
 while True:
     new = round2(state)
     if new == state:

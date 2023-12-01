@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-20
 
 
-with open('inp.txt') as fin:
-    lines = [e.strip().rsplit(' ', 1) for e in fin.readlines()]
+with open("inp.txt") as fin:
+    lines = [e.strip().rsplit(" ", 1) for e in fin.readlines()]
 
 
 # part 1
 t = 10007
 l = list(range(t))
 for op, e in lines:
-    if op == 'deal into new':
+    if op == "deal into new":
         l = list(reversed(l))
         continue
-    if op == 'cut':
-        l = l[int(e):] + l[:int(e)]
+    if op == "cut":
+        l = l[int(e) :] + l[: int(e)]
         continue
-    if op == 'deal with increment':
+    if op == "deal with increment":
         nd = {}
         for i in range(t):
             nd[(i * int(e)) % t] = l[i]
@@ -28,6 +28,7 @@ print(l.index(2019))
 # part 2
 t = 119315717514047
 n = 101741582076661
+
 
 def mod_inv(num, modulus):
     num %= modulus
@@ -41,7 +42,7 @@ def mod_inv(num, modulus):
 
     g, x, y = egcd(num, modulus)
     if g != 1:
-        raise Exception('modular inverse does not exist')
+        raise Exception("modular inverse does not exist")
     else:
         return x % modulus
 
@@ -49,16 +50,17 @@ def mod_inv(num, modulus):
 def shuff_inv(idx):
     r = idx
     for op, e in reversed(lines):
-        if op == 'deal into new':
+        if op == "deal into new":
             r = t - r - 1
             continue
-        if op == 'cut':
+        if op == "cut":
             r = (r + int(e)) % t
             continue
-        if op == 'deal with increment':
+        if op == "deal with increment":
             r = (mod_inv(int(e), t)) * r % t
             continue
     return r
+
 
 # y = ax + b
 x1 = 1

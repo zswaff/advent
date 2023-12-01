@@ -5,7 +5,7 @@
 # todo convert to use assembly class
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
@@ -22,27 +22,29 @@ def run(instrs):
             finished = True
             break
         visited.add(idx)
-        cmd, amt = instrs[idx].split(' ')
-        if cmd == 'nop':
+        cmd, amt = instrs[idx].split(" ")
+        if cmd == "nop":
             idx += 1
             continue
-        if cmd == 'acc':
+        if cmd == "acc":
             acc += int(amt)
             idx += 1
             continue
         idx += int(amt)
     return acc, finished
+
+
 print(run(lines)[0])
 
 
 # part 2
 for i, l in enumerate(lines):
-    if l.startswith('acc'):
+    if l.startswith("acc"):
         continue
-    if l.startswith('nop'):
-        nl = 'jmp' + l[3:]
+    if l.startswith("nop"):
+        nl = "jmp" + l[3:]
     else:
-        nl = 'nop' + l[3:]
-    a, f = run(lines[:i] + [nl] + lines[i+1:])
+        nl = "nop" + l[3:]
+    a, f = run(lines[:i] + [nl] + lines[i + 1 :])
     if f:
         print(a)

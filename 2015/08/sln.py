@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
@@ -13,6 +13,6 @@ print(sum(len(e) - len(eval(e)) for e in lines))
 tot = 0
 for line in lines:
     tot += 2
-    tot += line.count('\\')
+    tot += line.count("\\")
     tot += line.count('"')
 print(tot)

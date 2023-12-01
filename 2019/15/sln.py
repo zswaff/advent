@@ -5,18 +5,14 @@
 from comp import Comp
 
 
-DRS = {
-    1: (0, 1),
-    2: (0, -1),
-    3: (-1, 0),
-    4: (1, 0)
-}
+DRS = {1: (0, 1), 2: (0, -1), 3: (-1, 0), 4: (1, 0)}
 
 
 # part 1
 loc = 0, 0
-cmp = Comp(fin='inp.txt')
+cmp = Comp(fin="inp.txt")
 walls = {(0, 0): False}
+
 
 def route(s, e):
     srd = {s}
@@ -32,6 +28,7 @@ def route(s, e):
             srd.add(n)
             q.append((n, [dr] + rt))
     return None
+
 
 def search():
     global loc
@@ -55,6 +52,7 @@ def search():
             loc = n
             break
     return unit
+
 
 unit = search()
 print(len(route((0, 0), unit)))

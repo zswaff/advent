@@ -7,7 +7,7 @@ from itertools import count, groupby
 from hashlib import md5
 
 
-INP = 'yjdafjpo'
+INP = "yjdafjpo"
 
 
 # part 1

@@ -1,5 +1,5 @@
-with open('inp.txt') as fin:
-    ops = [int(e) for e in fin.read().strip().split(',')]
+with open("inp.txt") as fin:
+    ops = [int(e) for e in fin.read().strip().split(",")]
 
 ops[1] = 12
 ops[2] = 2
@@ -11,15 +11,16 @@ def run_computer(ops):
         op = ops[i * 4]
         if op == 99:
             return ops
-        a, b, idx = ops[i * 4 + 1:(i + 1) * 4]
+        a, b, idx = ops[i * 4 + 1 : (i + 1) * 4]
         if op == 1:
             ops[idx] = ops[a] + ops[b]
             continue
         if op == 2:
             ops[idx] = ops[a] * ops[b]
             continue
-        raise RuntimeError('Invalid opcode')
-    raise RuntimeError('Exited without finishing')
+        raise RuntimeError("Invalid opcode")
+    raise RuntimeError("Exited without finishing")
+
 
 print(run_computer(list(ops))[0])
 
@@ -34,6 +35,7 @@ def find_args(ops, target):
             res = run_computer(t_ops)[0]
             if res == target:
                 return i, j
+
 
 n, v = find_args(ops, 19690720)
 print(100 * n + v)

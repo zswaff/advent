@@ -7,7 +7,7 @@ import re
 from itertools import count
 
 
-FMT = r'<x=(?P<x>-?\d+), y=(?P<y>-?\d+), z=(?P<z>-?\d+)>'
+FMT = r"<x=(?P<x>-?\d+), y=(?P<y>-?\d+), z=(?P<z>-?\d+)>"
 
 
 def sign(a):
@@ -23,7 +23,7 @@ def lcm(a, b):
 class Moon:
     def __init__(self, s):
         match = re.match(FMT, s).groupdict()
-        self.x, self.y, self.z = [int(match[e]) for e in ['x', 'y', 'z']]
+        self.x, self.y, self.z = [int(match[e]) for e in ["x", "y", "z"]]
         self.nx, self.ny, self.nz = 0, 0, 0
         self.dx, self.dy, self.dz = 0, 0, 0
 
@@ -56,7 +56,7 @@ class Moon:
 
 
 # part 1
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     moons = [Moon(e.strip()) for e in fin.readlines()]
 
 for _ in range(1000):
@@ -66,7 +66,7 @@ print(sum(e.pe * e.ke for e in moons))
 
 
 # part 2
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     moons = [Moon(e.strip()) for e in fin.readlines()]
 
 xs, ys, zs = set(), set(), set()

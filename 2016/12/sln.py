@@ -5,7 +5,7 @@
 # todo convert to use assembly class
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     instrs = [e.strip() for e in fin.readlines()]
 
 
@@ -22,21 +22,21 @@ def run(regs):
         if instr_ptr >= len(instrs):
             break
         instr = instrs[instr_ptr]
-        spl = instr.split(' ')
+        spl = instr.split(" ")
         cmd = spl[0]
-        if cmd == 'cpy':
+        if cmd == "cpy":
             regs[spl[2]] = eval_arg(spl[1])
             instr_ptr += 1
             continue
-        if cmd == 'inc':
+        if cmd == "inc":
             regs[spl[1]] += 1
             instr_ptr += 1
             continue
-        if cmd == 'dec':
+        if cmd == "dec":
             regs[spl[1]] -= 1
             instr_ptr += 1
             continue
-        if cmd == 'jnz':
+        if cmd == "jnz":
             if eval_arg(spl[1]) != 0:
                 instr_ptr += eval_arg(spl[2])
             else:
@@ -46,8 +46,8 @@ def run(regs):
 
 
 # part 1
-print(run({'a': 0, 'b': 0, 'c': 0, 'd': 0})['a'])
+print(run({"a": 0, "b": 0, "c": 0, "d": 0})["a"])
 
 
 # part 2
-print(run({'a': 0, 'b': 0, 'c': 1, 'd': 0})['a'])
+print(run({"a": 0, "b": 0, "c": 1, "d": 0})["a"])

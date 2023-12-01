@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     inp = fin.read().strip()
 
 
@@ -15,21 +15,21 @@ for c in inp:
     if skip:
         skip = False
         continue
-    if c == '!':
+    if c == "!":
         skip = True
         continue
     if garbage:
-        if c == '>':
+        if c == ">":
             garbage = False
         continue
-    if c == '<':
+    if c == "<":
         garbage = True
         continue
-    if c == '}':
+    if c == "}":
         total += level
         level -= 1
         continue
-    if c == '{':
+    if c == "{":
         level += 1
         continue
 print(total)
@@ -43,16 +43,16 @@ for c in inp:
     if skip:
         skip = False
         continue
-    if c == '!':
+    if c == "!":
         skip = True
         continue
     if garbage:
-        if c == '>':
+        if c == ">":
             garbage = False
         else:
             total += 1
         continue
-    if c == '<':
+    if c == "<":
         garbage = True
         continue
 print(total)

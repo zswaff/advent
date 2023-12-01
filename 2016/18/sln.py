@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
-    traps = [[e == '^' for e in fin.read().strip()]]
+with open("inp.txt") as fin:
+    traps = [[e == "^" for e in fin.read().strip()]]
 l = len(traps[0])
 
 
@@ -15,10 +15,10 @@ def run(adtl):
             cent = traps[-1][j]
             rght = traps[-1][j + 1] if j < l - 1 else False
             n.append(
-                (left and cent and (not rght)) or
-                ((not left) and cent and rght) or
-                (left and (not cent) and (not rght)) or
-                ((not left) and (not cent) and rght)
+                (left and cent and (not rght))
+                or ((not left) and cent and rght)
+                or (left and (not cent) and (not rght))
+                or ((not left) and (not cent) and rght)
             )
         traps.append(n)
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     ns = [int(e) for e in fin.read().strip()]
 
 

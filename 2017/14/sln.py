@@ -12,7 +12,7 @@ SZ = 256
 DIRS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
 
-INP = 'jzgqcdpd'
+INP = "jzgqcdpd"
 
 
 def knot_hash(s):
@@ -24,25 +24,20 @@ def knot_hash(s):
         l = l[:ln][::-1] + l[ln:]
         l = l[-pos:] + l[:-pos]
         pos = (pos + ln + skip) % SZ
-    return ''.join(
-        f'{e:0>2x}'
-        for e in [reduce(xor, l[i * 16:(i + 1) * 16]) for i in range(16)]
-    )
+    return "".join(f"{e:0>2x}" for e in [reduce(xor, l[i * 16 : (i + 1) * 16]) for i in range(16)])
+
 
 def bin_knot_hash(s):
-    return bin(int(knot_hash(s), 16))[2:].rjust(128, '0')
+    return bin(int(knot_hash(s), 16))[2:].rjust(128, "0")
 
 
 # part 1
-print(sum(sum(int(c) for c in bin_knot_hash(f'{INP}-{e}')) for e in range(128)))
+print(sum(sum(int(c) for c in bin_knot_hash(f"{INP}-{e}")) for e in range(128)))
 
 
 # part 2
-g = {
-    (x, y): c == '1'
-    for y in range(128)
-    for x, c in enumerate(bin_knot_hash(f'{INP}-{y}'))
-}
+g = {(x, y): c == "1" for y in range(128) for x, c in enumerate(bin_knot_hash(f"{INP}-{y}"))}
+
 
 class State(BaseSearchState):
     def __init__(self, x, y):
@@ -64,6 +59,7 @@ class State(BaseSearchState):
 
     def process(self):
         g[(self.x, self.y)] = False
+
 
 rs = 0
 for x in range(128):

@@ -11,10 +11,10 @@ from web import *
 ns = []
 mrn = (0, -1)
 for i, l in enumerate(ls):
-    p, r = l[5:].split('>, r=')
+    p, r = l[5:].split(">, r=")
     r = int(r)
     mrn = max(mrn, (r, i))
-    ns.append((*(int(e) for e in p.split(',')), r))
+    ns.append((*(int(e) for e in p.split(",")), r))
 mx, my, mz, mr = ns[mrn[1]]
 sm(sum(abs(mx - x) + abs(my - y) + abs(mz - z) <= mr for x, y, z, _ in ns))
 
@@ -61,8 +61,7 @@ class Region:
             zs = [(self.mnz, hz), (hz + 1, self.mxz)]
         return [
             Region(nmnx, nmny, nmnz, nmxx, nmxy, nmxz)
-            for (nmnx, nmxx), (nmny, nmxy), (nmnz, nmxz)
-            in product(xs, ys, zs)
+            for (nmnx, nmxx), (nmny, nmxy), (nmnz, nmxz) in product(xs, ys, zs)
         ]
 
 
@@ -72,7 +71,7 @@ sr = Region(
     min(e[2] - e[3] for e in ns),
     max(e[0] + e[3] for e in ns),
     max(e[1] + e[3] for e in ns),
-    max(e[2] + e[3] for e in ns)
+    max(e[2] + e[3] for e in ns),
 )
 q = PQ()
 q.push(sr, (-sr.cnt, sr.dist))

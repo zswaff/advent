@@ -5,12 +5,10 @@
 from collections import defaultdict
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
-ps = [
-    [tuple(int(g) for g in f[3:].split(',')) for f in e[:-1].split('>, ')]
-    for e in lines
-]
+ps = [[tuple(int(g) for g in f[3:].split(",")) for f in e[:-1].split(">, ")] for e in lines]
+
 
 def add(a, b):
     return tuple(e + f for e, f in zip(a, b))
@@ -21,10 +19,7 @@ for _ in range(100000):
     for e in ps:
         e[1] = add(e[1], e[2])
         e[0] = add(e[0], e[1])
-print(min(
-    range(len(ps)),
-    key=lambda x: sum(abs(e) for e in ps[x][0])
-))
+print(min(range(len(ps)), key=lambda x: sum(abs(e) for e in ps[x][0])))
 
 
 # part 2

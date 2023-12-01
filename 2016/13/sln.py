@@ -13,7 +13,7 @@ INP = 1352
 
 @lru_cache
 def is_open(x, y):
-    return Counter(bin(x*x + 3*x + 2*x*y + y + y*y + INP)[2:])['1'] % 2 == 0
+    return Counter(bin(x * x + 3 * x + 2 * x * y + y + y * y + INP)[2:])["1"] % 2 == 0
 
 
 class State(BaseSearchState):

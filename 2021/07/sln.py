@@ -6,7 +6,7 @@ from common import *
 from web import *
 
 
-ns = [int(e) for e in dt.split(',')]
+ns = [int(e) for e in dt.split(",")]
 mx = max(ns)
 
 

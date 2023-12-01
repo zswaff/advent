@@ -10,8 +10,8 @@ class Assembler(BaseAssembler):
     def __init__(self, lines, mapping, regs):
         mlns = []
         for l in lines:
-            spl = l.split(' ')
-            mlns.append(' '.join([mapping[spl[0]]] + spl[1:]))
+            spl = l.split(" ")
+            mlns.append(" ".join([mapping[spl[0]]] + spl[1:]))
         super().__init__(mlns, dict(enumerate(regs)))
 
     def is_finished(self):
@@ -69,20 +69,21 @@ class Assembler(BaseAssembler):
         self.registers[c] = int(self.registers[a] == self.registers[b])
 
 
-exs, lines = dt.split('\n\n\n\n')
+exs, lines = dt.split("\n\n\n\n")
 
 
 # part 1
-exs = exs.split('\n\n')
+exs = exs.split("\n\n")
 c = 0
 mp = defaultdict(list)
 for ex in exs:
-    bef, instr, aft = ex.split('\n')
-    bef = [int(e) for e in bef[9:-1].split(', ')]
-    aft = [int(e) for e in aft[9:-1].split(', ')]
-    innum = instr.split(' ')[0]
+    bef, instr, aft = ex.split("\n")
+    bef = [int(e) for e in bef[9:-1].split(", ")]
+    aft = [int(e) for e in aft[9:-1].split(", ")]
+    innum = instr.split(" ")[0]
     pmp = {
-        pin for pin in Assembler.get_possible_instrs()
+        pin
+        for pin in Assembler.get_possible_instrs()
         if Assembler([instr], {innum: pin}, bef).run().result == aft
     }
     mp[innum].append(pmp)
@@ -101,8 +102,8 @@ while any(len(e) != 1 for e in imp.values()):
             if k2 == k1:
                 continue
             v2 -= v1
-sm(Assembler(
-    lines.split('\n'),
-    {k: list(v)[0] for k, v in imp.items()},
-    [0, 0, 0, 0]
-).run().result[0])
+sm(
+    Assembler(lines.split("\n"), {k: list(v)[0] for k, v in imp.items()}, [0, 0, 0, 0])
+    .run()
+    .result[0]
+)

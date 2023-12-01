@@ -6,14 +6,14 @@ from itertools import count
 from hashlib import md5
 
 
-door_id = 'abbhdwsy'
+door_id = "abbhdwsy"
 
 
 # part 1
-pw = ''
+pw = ""
 for i in count():
     hsh = md5((door_id + str(i)).encode()).hexdigest()
-    if hsh[:5] != '00000':
+    if hsh[:5] != "00000":
         continue
     pw += hsh[5]
     if len(pw) == 8:
@@ -25,7 +25,7 @@ print(pw)
 pw = {}
 for i in count():
     hsh = md5((door_id + str(i)).encode()).hexdigest()
-    if hsh[:5] != '00000':
+    if hsh[:5] != "00000":
         continue
     idx, ch = hsh[5:7]
     if int(idx, 16) >= 8:
@@ -35,4 +35,4 @@ for i in count():
     pw[idx] = ch
     if len(pw) == 8:
         break
-print(''.join(e[1] for e in sorted(pw.items())))
+print("".join(e[1] for e in sorted(pw.items())))

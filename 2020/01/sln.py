@@ -4,7 +4,7 @@
 from itertools import combinations
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     ls = [int(e.strip()) for e in fin.readlines()]
 
 

@@ -15,5 +15,3 @@ mod = 33554393
 idx = 1 + sum(range(row)) + sum(range(row + 1, row + col))
 res = (start * pow(mult, idx - 1, mod)) % mod
 print(res)
-
-

@@ -7,12 +7,8 @@ from collections import defaultdict
 from search import BaseSearchState
 
 
-with open('inp.txt') as fin:
-    grid = {
-        (x, y): c
-        for y, e in enumerate(fin.readlines())
-        for x, c in enumerate(e.strip())
-    }
+with open("inp.txt") as fin:
+    grid = {(x, y): c for y, e in enumerate(fin.readlines()) for x, c in enumerate(e.strip())}
 goals = {e for e in grid.values() if e.isnumeric()}
 mxx, mxy = max(e[0] for e in grid.keys()), max(e[1] for e in grid.keys())
 
@@ -21,14 +17,14 @@ dists = defaultdict(dict)
 
 class GridState(BaseSearchState):
     def __init__(self, x, y, ival, dist):
-        super().__init__({'ival'})
+        super().__init__({"ival"})
         self.x = x
         self.y = y
         self.ival = ival
         self.dist = dist
 
     def is_valid(self):
-        return 0 <= self.x <= mxx and 0 <= self.y <= mxy and grid[(self.x, self.y)] != '#'
+        return 0 <= self.x <= mxx and 0 <= self.y <= mxy and grid[(self.x, self.y)] != "#"
 
     def is_finished(self):
         return set(dists[self.ival].keys()) == goals
@@ -47,6 +43,7 @@ class GridState(BaseSearchState):
 
     def get_dist_from_start(self):
         return self.dist
+
 
 for (x, y), v in grid.items():
     if v.isnumeric():
@@ -77,7 +74,8 @@ class State(BaseSearchState):
     def get_dist_from_start(self):
         return self.dist
 
-print(State('0', frozenset({'0'}), 0).search().result)
+
+print(State("0", frozenset({"0"}), 0).search().result)
 
 
 # part 2
@@ -86,7 +84,7 @@ class State(BaseSearchState):
         super().__init__()
         self.loc = loc
         self.visited = visited
-        self.returned = len(self.visited) > 1 and loc == '0'
+        self.returned = len(self.visited) > 1 and loc == "0"
         self.dist = dist
 
     def is_valid(self):
@@ -105,4 +103,5 @@ class State(BaseSearchState):
     def get_dist_from_start(self):
         return self.dist
 
-print(State('0', frozenset({'0'}), 0).search().result)
+
+print(State("0", frozenset({"0"}), 0).search().result)

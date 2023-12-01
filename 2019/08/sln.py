@@ -7,10 +7,10 @@ from collections import Counter
 
 x, y = 25, 6
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     digs = [int(e) for e in fin.read().strip()]
-rows = [digs[i * x:(i + 1) * x] for i in range(len(digs) // x)]
-img = [rows[i * y:(i + 1) * y] for i in range(len(rows) // y)]
+rows = [digs[i * x : (i + 1) * x] for i in range(len(digs) // x)]
+img = [rows[i * y : (i + 1) * y] for i in range(len(rows) // y)]
 
 
 # part 1
@@ -28,4 +28,4 @@ for layer in img:
         for j, dig in enumerate(row):
             if res[i][j] == 2:
                 res[i][j] = dig
-print('\n'.join(' '.join(str(f) for f in e) for e in res).replace('0', ' '))
+print("\n".join(" ".join(str(f) for f in e) for e in res).replace("0", " "))

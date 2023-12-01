@@ -13,7 +13,7 @@ FNS = {
     3: max,
     5: lambda y: int(y[0] > y[1]),
     6: lambda y: int(y[0] < y[1]),
-    7: lambda y: int(y[0] == y[1])
+    7: lambda y: int(y[0] == y[1]),
 }
 
 
@@ -24,14 +24,14 @@ def p(s):
     v = int(s[:3], 2)
     t = int(s[3:6], 2)
     if t == 4:
-        c = ''
+        c = ""
         x = 6
-        while s[x] == '1':
-            c += s[x + 1:x + 5]
+        while s[x] == "1":
+            c += s[x + 1 : x + 5]
             x += 5
-        return v, int(c + s[x + 1:x + 5], 2), x + 5
+        return v, int(c + s[x + 1 : x + 5], 2), x + 5
     i = s[6]
-    if i == '0':
+    if i == "0":
         l = int(s[7:22], 2)
         tv = v
         rs = []

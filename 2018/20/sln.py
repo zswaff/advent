@@ -7,7 +7,7 @@ from search import *
 from web import *
 
 
-DIRS = {'N': (0, 1), 'S': (0, -1), 'W': (-1, 0), 'E': (1, 0)}
+DIRS = {"N": (0, 1), "S": (0, -1), "W": (-1, 0), "E": (1, 0)}
 
 
 g = defaultdict(set)
@@ -21,19 +21,21 @@ for c in dt[1:-1]:
         g[(nx, ny)].add((x, y))
         x, y = nx, ny
         continue
-    if c == '(':
+    if c == "(":
         s.append((x, y))
         continue
-    if c == '|':
+    if c == "|":
         x, y = s[-1]
         continue
-    if c == ')':
+    if c == ")":
         x, y = s.pop()
         continue
     print(c)
 
 mx = 0
 far = set()
+
+
 class State(BaseSearchState):
     def __init__(self, loc, dist):
         super().__init__()
@@ -57,6 +59,7 @@ class State(BaseSearchState):
         mx = max(mx, self.dist)
         if self.dist >= 1000:
             far.add(self.loc)
+
 
 State((0, 0), 0).search()
 

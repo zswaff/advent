@@ -7,10 +7,10 @@ from hashlib import md5
 
 
 # part 1
-key = 'bgvyzdsv'
+key = "bgvyzdsv"
 for i in count():
     h = md5(str.encode(key + str(i))).hexdigest()
-    if h.startswith('00000'):
+    if h.startswith("00000"):
         print(i)
         break
 
@@ -18,6 +18,6 @@ for i in count():
 # part 2
 for i in count():
     h = md5(str.encode(key + str(i))).hexdigest()
-    if h.startswith('000000'):
+    if h.startswith("000000"):
         print(i)
         break

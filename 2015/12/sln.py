@@ -5,7 +5,7 @@
 import json
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     data = json.loads(fin.read().strip())
 
 
@@ -20,6 +20,7 @@ def sum_recursive(d):
     if isinstance(d, dict):
         return sum(sum_recursive(e) for e in d.values())
 
+
 print(sum_recursive(data))
 
 
@@ -33,6 +34,7 @@ def sum_recursive(d):
         return sum(sum_recursive(e) for e in d)
     if isinstance(d, dict):
         vals = d.values()
-        return 0 if 'red' in vals else sum(sum_recursive(e) for e in vals)
+        return 0 if "red" in vals else sum(sum_recursive(e) for e in vals)
+
 
 print(sum_recursive(data))

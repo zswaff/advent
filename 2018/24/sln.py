@@ -9,13 +9,13 @@ from web import *
 class Group:
     def __init__(self, good, line, bst):
         self.gd = good
-        spl = line.split(' ')
+        spl = line.split(" ")
         self.uc = int(spl[0])
         self.hp = int(spl[4])
         pr = spl[7:-11]
-        pm = {e[0]: e for e in ' '.join(pr)[1:-1].split('; ')} if pr else {}
-        self.im = set(pm['i'].replace(',', '').split(' ')[2:]) if 'i' in pm else set()
-        self.wk = set(pm['w'].replace(',', '').split(' ')[2:]) if 'w' in pm else set()
+        pm = {e[0]: e for e in " ".join(pr)[1:-1].split("; ")} if pr else {}
+        self.im = set(pm["i"].replace(",", "").split(" ")[2:]) if "i" in pm else set()
+        self.wk = set(pm["w"].replace(",", "").split(" ")[2:]) if "w" in pm else set()
         self.dp = int(spl[-6]) + bst
         self.dt = spl[-5]
         self.iv = int(spl[-1])
@@ -40,7 +40,8 @@ class Group:
             self.al = False
 
 
-gls, bls = [e.split('\n')[1:] for e in dt.split('\n\n')]
+gls, bls = [e.split("\n")[1:] for e in dt.split("\n\n")]
+
 
 def run(bst):
     gs = [Group(True, e, bst) for e in gls] + [Group(False, e, 0) for e in bls]

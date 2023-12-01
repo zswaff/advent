@@ -13,7 +13,11 @@ g = {(x, y): int(e) for y, l in enumerate(ls) for x, e in enumerate(l)}
 
 
 # part 1
-sm(sum(1 + e for (x, y), e in g.items() if all(e < g.get((x + dx, y + dy), inf) for dx, dy in DIRS)))
+sm(
+    sum(
+        1 + e for (x, y), e in g.items() if all(e < g.get((x + dx, y + dy), inf) for dx, dy in DIRS)
+    )
+)
 
 
 # part 2

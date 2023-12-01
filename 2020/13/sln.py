@@ -5,11 +5,11 @@
 from itertools import count
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 t0 = int(lines[0])
-bs = lines[1].split(',')
-bsi = [int(e) for e in bs if e != 'x']
+bs = lines[1].split(",")
+bsi = [int(e) for e in bs if e != "x"]
 
 
 # part 1
@@ -18,6 +18,8 @@ def bus():
         for b in bsi:
             if i % b == 0:
                 return (i - t0) * b
+
+
 print(bus())
 
 
@@ -26,7 +28,7 @@ curr = -1
 skip = 1
 for i, b in enumerate(bs):
     curr += 1
-    if b == 'x':
+    if b == "x":
         continue
     b = int(b)
     for j in range(b):

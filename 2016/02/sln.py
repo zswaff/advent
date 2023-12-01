@@ -2,21 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
-DIRS = {
-    'U': (0, -1),
-    'R': (1, 0),
-    'D': (0, 1),
-    'L': (-1, 0)
-}
+DIRS = {"U": (0, -1), "R": (1, 0), "D": (0, 1), "L": (-1, 0)}
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
 # part 1
 x = y = 1
-res = ''
+res = ""
 for l in lines:
     for c in l:
         dx, dy = DIRS[c]
@@ -35,14 +30,14 @@ keypad = """  1
  ABC 
   D  """
 locs = {}
-for y, row in enumerate(keypad.split('\n')):
+for y, row in enumerate(keypad.split("\n")):
     for x, c in enumerate(row):
-        if c == ' ':
+        if c == " ":
             continue
         locs[(x, y)] = c
 
 x, y = 0, 2
-res = ''
+res = ""
 for l in lines:
     for c in l:
         dx, dy = DIRS[c]

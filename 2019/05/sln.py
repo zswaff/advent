@@ -2,20 +2,21 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
-    ops = [int(e) for e in fin.read().strip().split(',')]
+with open("inp.txt") as fin:
+    ops = [int(e) for e in fin.read().strip().split(",")]
 
 CODE_ARG_COUNTS_AND_MODE_OVERRIDES = {
-    1: (3, {2:1}),
-    2: (3, {2:1}),
-    3: (1, {0:1}),
-    4: (1, {0:1}),
+    1: (3, {2: 1}),
+    2: (3, {2: 1}),
+    3: (1, {0: 1}),
+    4: (1, {0: 1}),
     5: (2, {}),
     6: (2, {}),
-    7: (3, {2:1}),
-    8: (3, {2:1}),
-    99: (0, {})
+    7: (3, {2: 1}),
+    8: (3, {2: 1}),
+    99: (0, {}),
 }
+
 
 def run_computer(ops, inputs):
     outputs = []
@@ -25,7 +26,7 @@ def run_computer(ops, inputs):
         full_op = ops[instr_ptr]
         op = int(str(full_op)[-2:])
         arg_count, mode_overrides = CODE_ARG_COUNTS_AND_MODE_OVERRIDES[op]
-        raw_args = ops[instr_ptr + 1:instr_ptr + arg_count + 1]
+        raw_args = ops[instr_ptr + 1 : instr_ptr + arg_count + 1]
         arg_modes = [int(e) for e in list(reversed(str(full_op)[:-2]))]
         arg_modes += [0] * (arg_count - len(arg_modes))
         for k, v in mode_overrides.items():
@@ -33,8 +34,7 @@ def run_computer(ops, inputs):
 
         tot_instr_size = arg_count + 1
         args = [
-            raw_arg if arg_mode else ops[raw_arg]
-            for raw_arg, arg_mode in zip(raw_args, arg_modes)
+            raw_arg if arg_mode else ops[raw_arg] for raw_arg, arg_mode in zip(raw_args, arg_modes)
         ]
 
         if op == 1:
@@ -48,12 +48,12 @@ def run_computer(ops, inputs):
             instr_ptr += tot_instr_size
             continue
         if op == 3:
-            idx, = args
+            (idx,) = args
             ops[idx] = inputs.pop(0)
             instr_ptr += tot_instr_size
             continue
         if op == 4:
-            idx, = args
+            (idx,) = args
             outputs.append(ops[idx])
             instr_ptr += tot_instr_size
             continue
@@ -83,7 +83,7 @@ def run_computer(ops, inputs):
             continue
         if op == 99:
             return outputs
-        raise RuntimeError('Invalid opcode')
+        raise RuntimeError("Invalid opcode")
 
 
 # part 1

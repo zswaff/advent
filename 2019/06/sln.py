@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
-    lines = [e.strip().split(')') for e in fin.readlines()]
+with open("inp.txt") as fin:
+    lines = [e.strip().split(")") for e in fin.readlines()]
 sat_cent = {e[1]: e[0] for e in lines}
 
 
 # part 1
 o_counts = {}
+
+
 def get_count(sat):
     if sat in o_counts:
         return o_counts[sat]
@@ -18,6 +20,8 @@ def get_count(sat):
         o_count = 1 + get_count(sat_cent[sat])
     o_counts[sat] = o_count
     return o_count
+
+
 for sat in sat_cent.keys():
     get_count(sat)
 print(sum(o_counts.values()))
@@ -41,4 +45,5 @@ def count_path(s1, s2):
             s2_pars[s2p] = s2_pars[s2] + 1
             s2 = s2p
 
-print(count_path('YOU', 'SAN') - 2)
+
+print(count_path("YOU", "SAN") - 2)

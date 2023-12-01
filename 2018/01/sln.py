@@ -22,4 +22,6 @@ def fn():
             if c in s:
                 return c
             s.add(c)
+
+
 sm(fn())

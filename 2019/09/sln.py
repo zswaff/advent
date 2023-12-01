@@ -5,8 +5,9 @@
 from collections import defaultdict
 
 
-with open('inp.txt') as fin:
-    ops = [int(e) for e in fin.read().strip().split(',')]
+with open("inp.txt") as fin:
+    ops = [int(e) for e in fin.read().strip().split(",")]
+
 
 def run_computer(ops, inputs, verbose=False):
     code_args = {
@@ -19,7 +20,7 @@ def run_computer(ops, inputs, verbose=False):
         7: (3, {2}),
         8: (3, {2}),
         9: (1, {}),
-        99: (0, {})
+        99: (0, {}),
     }
 
     ops = defaultdict(int, enumerate(ops))
@@ -29,12 +30,12 @@ def run_computer(ops, inputs, verbose=False):
     rel_base = 0
 
     if verbose:
-        print('ops ', [ops.get(i) for i in range(0, max(ops.keys()) + 1)])
+        print("ops ", [ops.get(i) for i in range(0, max(ops.keys()) + 1)])
 
     while True:
         if verbose:
-            print('out ', outputs)
-            print('-' * 100)
+            print("out ", outputs)
+            print("-" * 100)
 
         full_op = ops[instr_ptr]
         op = int(str(full_op)[-2:])
@@ -45,27 +46,29 @@ def run_computer(ops, inputs, verbose=False):
             arg_modes[i] = int(e)
 
         if verbose:
-            print('-' * 100)
-            print('ops ', [ops.get(i) for i in range(0, max(ops.keys()) + 1)])
-            print('op  ', op)
-            print('args', list(zip(raw_args, arg_modes)))
-            print('base', rel_base)
+            print("-" * 100)
+            print("ops ", [ops.get(i) for i in range(0, max(ops.keys()) + 1)])
+            print("op  ", op)
+            print("args", list(zip(raw_args, arg_modes)))
+            print("base", rel_base)
 
         tot_instr_size = arg_count + 1
         args = []
         for i, (raw_arg, arg_mode) in enumerate(zip(raw_args, arg_modes)):
             if i in idx_args:
-                args.append({
-                    0: lambda: raw_arg,
-                    1: lambda: raw_arg,
-                    2: lambda: raw_arg + rel_base
-                }[arg_mode]())
+                args.append(
+                    {0: lambda: raw_arg, 1: lambda: raw_arg, 2: lambda: raw_arg + rel_base}[
+                        arg_mode
+                    ]()
+                )
             else:
-                args.append({
-                    0: lambda: ops[raw_arg],
-                    1: lambda: raw_arg,
-                    2: lambda: ops[raw_arg + rel_base]
-                }[arg_mode]())
+                args.append(
+                    {
+                        0: lambda: ops[raw_arg],
+                        1: lambda: raw_arg,
+                        2: lambda: ops[raw_arg + rel_base],
+                    }[arg_mode]()
+                )
 
         if op == 1:
             a, b, idx = args
@@ -78,14 +81,14 @@ def run_computer(ops, inputs, verbose=False):
             instr_ptr += tot_instr_size
             continue
         if op == 3:
-            idx, = args
+            (idx,) = args
             if len(inputs) == 0:
                 return outputs, False
             ops[idx] = inputs.pop(0)
             instr_ptr += tot_instr_size
             continue
         if op == 4:
-            a, = args
+            (a,) = args
             outputs.append(a)
             instr_ptr += tot_instr_size
             continue
@@ -114,13 +117,13 @@ def run_computer(ops, inputs, verbose=False):
             instr_ptr += tot_instr_size
             continue
         if op == 9:
-            a, = args
+            (a,) = args
             rel_base += a
             instr_ptr += tot_instr_size
             continue
         if op == 99:
             return outputs, True
-        raise RuntimeError('Invalid opcode')
+        raise RuntimeError("Invalid opcode")
 
 
 # part 1

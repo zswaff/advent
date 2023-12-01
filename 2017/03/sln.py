@@ -28,10 +28,11 @@ def solve():
             for _ in range(i):
                 x, y = x + dx, y + dy
                 g[(x, y)] = sum(
-                    g.get((x + ax, y + ay), 0)
-                    for ax in range(-1, 2) for ay in range(-1, 2)
+                    g.get((x + ax, y + ay), 0) for ax in range(-1, 2) for ay in range(-1, 2)
                 )
                 if g[(x, y)] > INP:
                     return g[(x, y)]
         x, y = x + 1, y - 1
+
+
 print(solve())

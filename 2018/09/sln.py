@@ -30,6 +30,7 @@ class Node:
         self.n = n
         self.p = p
 
+
 mx *= 100
 d = [0] * ps
 c = Node(0, None, None)

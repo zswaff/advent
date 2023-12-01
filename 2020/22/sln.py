@@ -5,11 +5,8 @@
 from collections import deque
 
 
-with open('inp.txt') as fin:
-    od1, od2 = [
-        [int(f) for f in e.split('\n')[1:]]
-        for e in fin.read().strip().split('\n\n')
-    ]
+with open("inp.txt") as fin:
+    od1, od2 = [[int(f) for f in e.split("\n")[1:]] for e in fin.read().strip().split("\n\n")]
 
 
 # part 1
@@ -36,10 +33,7 @@ def rec(d1, d2):
         states.add(state)
         c1, c2 = d1.popleft(), d2.popleft()
         if c1 <= len(d1) and c2 <= len(d2):
-            won = rec(
-                deque(d1[e] for e in range(c1)),
-                deque(d2[e] for e in range(c2))
-            )[0]
+            won = rec(deque(d1[e] for e in range(c1)), deque(d2[e] for e in range(c2)))[0]
         else:
             won = c1 > c2
         if won:
@@ -50,6 +44,7 @@ def rec(d1, d2):
             d2.append(c1)
     won = len(d2) == 0
     return won, d1 if won else d2
+
 
 _, d = rec(deque(od1), deque(od2))
 print(sum(i * e for i, e in enumerate(reversed(d), 1)))

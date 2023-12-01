@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
@@ -13,11 +13,11 @@ for line in lines:
     invalid = False
     bracket_level = 0
     for i in range(len(line) - 3):
-        c1, c2, c3, c4 = line[i:i + 4]
-        if c1 == '[':
+        c1, c2, c3, c4 = line[i : i + 4]
+        if c1 == "[":
             bracket_level += 1
             continue
-        if c1 == ']':
+        if c1 == "]":
             bracket_level -= 1
             continue
         if c1 != c2 and c1 == c4 and c2 == c3:
@@ -37,11 +37,11 @@ for line in lines:
     inner_pairs = set()
     bracket_level = 0
     for i in range(len(line) - 2):
-        c1, c2, c3 = line[i:i + 3]
-        if c1 == '[':
+        c1, c2, c3 = line[i : i + 3]
+        if c1 == "[":
             bracket_level += 1
             continue
-        if c1 == ']':
+        if c1 == "]":
             bracket_level -= 1
             continue
         if c1 != c2 and c1 == c3:

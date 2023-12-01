@@ -6,19 +6,20 @@ from common import *
 from web import *
 
 
-st = {i for i, e in enumerate(ls[0].split()[-1]) if e == '#'}
+st = {i for i, e in enumerate(ls[0].split()[-1]) if e == "#"}
 lst = len(st)
 rs = {}
 for l in ls[2:]:
-    k, v = l.split(' => ')
-    rs[tuple(e == '#' for e in k)] = v == '#'
+    k, v = l.split(" => ")
+    rs[tuple(e == "#" for e in k)] = v == "#"
 
 
 # part 1
 d = {e for e in st}
 for i in range(20):
     d = {
-        j for j in range(min(d) - 2, max(d) + 3)
+        j
+        for j in range(min(d) - 2, max(d) + 3)
         if rs.get(tuple((j + k) in d for k in range(-2, 3)))
     }
 sm(sum(d))
@@ -30,7 +31,8 @@ ls = 0
 ds = 0
 for i in count():
     d = {
-        j for j in range(min(d) - 2, max(d) + 3)
+        j
+        for j in range(min(d) - 2, max(d) + 3)
         if rs.get(tuple((j + k) in d for k in range(-2, 3)))
     }
     nls = sum(d)

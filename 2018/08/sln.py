@@ -18,7 +18,8 @@ def rec(inp):
         cl, cm = rec(inp[l:])
         l += cl
         tcm += cm
-    return l + ms, tcm + sum(inp[l:l+ms])
+    return l + ms, tcm + sum(inp[l : l + ms])
+
 
 sm(rec(ns)[1])
 
@@ -33,9 +34,10 @@ def rec(inp):
         cl, cv = rec(inp[l:])
         l += cl
         cvs.append(cv)
-    v = sum(inp[l:l+ms])
+    v = sum(inp[l : l + ms])
     if cs != 0:
-        v = sum(cvs[e-1] for e in inp[l:l+ms] if 1 <= e <= cs)
+        v = sum(cvs[e - 1] for e in inp[l : l + ms] if 1 <= e <= cs)
     return l + ms, v
+
 
 sm(rec(ns)[1])

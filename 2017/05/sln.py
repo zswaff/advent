@@ -5,7 +5,7 @@
 from itertools import count
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [int(e.strip()) for e in fin.readlines()]
 
 

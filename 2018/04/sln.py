@@ -15,13 +15,13 @@ c = 0
 s = 0
 for l in ls:
     spl = l.split()
-    if spl[2] == 'Guard':
+    if spl[2] == "Guard":
         c = int(spl[3][1:])
         continue
-    if spl[2] == 'falls':
+    if spl[2] == "falls":
         s = int(spl[1][3:5])
         continue
-    d[c][s:int(spl[1][3:5])] += 1
+    d[c][s : int(spl[1][3:5])] += 1
 g = max(d.keys(), key=lambda x: d[x].sum())
 m = d[g].argmax()
 sm(g * m)

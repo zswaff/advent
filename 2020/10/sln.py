@@ -5,7 +5,7 @@
 import math
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     ads = sorted([int(e.strip()) for e in fin.readlines()])
 
 
@@ -30,11 +30,9 @@ def count_combs(t, v):
         s = t[i] + t[i + 1]
         if s > 3:
             continue
-        c += count_combs(t[:i] + (s,) + t[i + 2:], v)
+        c += count_combs(t[:i] + (s,) + t[i + 2 :], v)
     return c
 
-seqs = [
-    tuple(int(g) for g in f)
-    for f in ''.join(str(e) for e in diffs).split('3')
-]
+
+seqs = [tuple(int(g) for g in f) for f in "".join(str(e) for e in diffs).split("3")]
 print(math.prod(count_combs(e, set()) for e in seqs))

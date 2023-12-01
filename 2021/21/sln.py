@@ -5,8 +5,8 @@
 from common import *
 
 
-oo = int(ls[0].split(' ')[-1])
-ot = int(ls[1].split(' ')[-1])
+oo = int(ls[0].split(" ")[-1])
+ot = int(ls[1].split(" ")[-1])
 
 
 # part 1

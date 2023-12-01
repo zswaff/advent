@@ -5,7 +5,7 @@
 from collections import Counter
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
@@ -14,15 +14,15 @@ parents = {}
 children = {}
 weights = {}
 for line in lines:
-    spl = line.split(' ')
+    spl = line.split(" ")
     program = spl[0]
     programs.append(program)
     weight = int(spl[1][1:-1])
     weights[program] = weight
-    arspl = line.split(' -> ')
+    arspl = line.split(" -> ")
     if len(arspl) == 1:
         continue
-    kids = arspl[1].split(', ')
+    kids = arspl[1].split(", ")
     children[program] = kids
     for kid in kids:
         parents[kid] = program
@@ -43,5 +43,6 @@ def balance_rcsv(node):
         print(gw - bw + weights[bad])
         cws[bad] = gw
     return weights[node] + sum(cws.values())
+
 
 balance_rcsv(root)

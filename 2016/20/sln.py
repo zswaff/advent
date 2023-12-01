@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
 # part 1
 ranges = []
 for line in lines:
-    splt = line.split('-')
+    splt = line.split("-")
     mn, mx = int(splt[0]), int(splt[1]) + 1
     while True:
         for i, (omn, omx) in enumerate(ranges):

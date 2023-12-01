@@ -10,12 +10,13 @@ from web import *
 class Assembler(BaseAssembler):
     def __init__(self, lines, regs, stop=None):
         super().__init__(lines[1:], defaultdict(int, regs))
-        self.instr_idx_remap = int(lines[0].split(' ')[-1])
+        self.instr_idx_remap = int(lines[0].split(" ")[-1])
         self.stop = stop
 
     def is_finished(self):
-        return not 0 <= self.instr_idx < len(self.instrs) or \
-            (self.stop is not None and self.step >= self.stop)
+        return not 0 <= self.instr_idx < len(self.instrs) or (
+            self.stop is not None and self.step >= self.stop
+        )
 
     def get_result(self):
         return [e[1] for e in sorted(self.registers.items())]

@@ -7,7 +7,7 @@ from collections import defaultdict
 from assembly import BaseAssembler
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
@@ -37,17 +37,18 @@ class Assembler(BaseAssembler):
         if self.eval(a) != 0:
             self.jump = self.eval(b)
 
+
 print(Assembler(lines).run().result)
 
 
 # part 2
-f = lambda x: int(lines[x].split(' ')[-1])
+f = lambda x: int(lines[x].split(" ")[-1])
 h = 0
 start = f(0) * f(4) - f(5)
 stop = start - f(7) + 1
 step = -f(-2)
 for b in range(start, stop, step):
-    for d in range(2, int(b ** .5) + 1):
+    for d in range(2, int(b**0.5) + 1):
         if b % d == 0:
             h += 1
             break

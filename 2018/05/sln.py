@@ -13,7 +13,7 @@ def fn(ld):
         for i, e in enumerate(ld[:-1]):
             if i in rm:
                 continue
-            f = ld[i+1]
+            f = ld[i + 1]
             if e != f and e.lower() == f.lower():
                 rm |= {i, i + 1}
         ld = [c for i, c in enumerate(ld) if i not in rm]
@@ -22,6 +22,8 @@ def fn(ld):
             break
         l = nl
     return l
+
+
 sm(fn(list(dt)))
 
 

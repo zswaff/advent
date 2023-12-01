@@ -7,12 +7,13 @@ from web import *
 
 
 dpth, trg = ls
-dpth = int(dpth.split(' ')[1])
-tx, ty = (int(e) for e in trg.split(' ')[1].split(','))
+dpth = int(dpth.split(" ")[1])
+tx, ty = (int(e) for e in trg.split(" ")[1].split(","))
 
 
 g = {(0, 0): 0, (tx, ty): 0}
 t = {}
+
 
 def gnt(x, y):
     l = x, y
@@ -39,7 +40,8 @@ sm(sum(t.values()))
 
 # part 2
 DIRS = ((0, -1), (1, 0), (0, 1), (-1, 0))
-VALID_EQUIP = {'n': {1, 2}, 't': {0, 2}, 'c': {0, 1}}
+VALID_EQUIP = {"n": {1, 2}, "t": {0, 2}, "c": {0, 1}}
+
 
 class State(BaseSearchState):
     def __init__(self, x, y, equip, dist):
@@ -50,19 +52,14 @@ class State(BaseSearchState):
         self.dist = dist
 
     def is_valid(self):
-        return self.x >= 0 and self.y >= 0 and \
-               gnt(self.x, self.y)[1] in VALID_EQUIP[self.equip]
+        return self.x >= 0 and self.y >= 0 and gnt(self.x, self.y)[1] in VALID_EQUIP[self.equip]
 
     def is_finished(self):
-        return self.x == tx and self.y == ty and self.equip == 't'
+        return self.x == tx and self.y == ty and self.equip == "t"
 
     def get_neighbors(self):
-        return [
-            State(self.x + dx, self.y + dy, self.equip, self.dist + 1)
-            for dx, dy in DIRS
-        ] + [
-            State(self.x, self.y, e, self.dist + 7)
-            for e in VALID_EQUIP.keys() if e != self.equip
+        return [State(self.x + dx, self.y + dy, self.equip, self.dist + 1) for dx, dy in DIRS] + [
+            State(self.x, self.y, e, self.dist + 7) for e in VALID_EQUIP.keys() if e != self.equip
         ]
 
     def get_dist_from_start(self):
@@ -71,4 +68,5 @@ class State(BaseSearchState):
     def get_dist_to_finish_heuristic(self):
         return abs(tx - self.x) + abs(ty - self.y)
 
-sm(State(0, 0, 't', 0).search().distance)
+
+sm(State(0, 0, "t", 0).search().distance)

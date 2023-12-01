@@ -7,7 +7,7 @@ from collections import defaultdict
 from assembly import BaseAssembler
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
@@ -112,5 +112,5 @@ class Assembler(BaseAssembler):
         self.inp_idx += 1
 
 
-p0 = Assembler(lines, {'p': 0, 'x': 1})
-print(Assembler(lines, {'p': 1, 'x': 0}, p0).run().result)
+p0 = Assembler(lines, {"p": 0, "x": 1})
+print(Assembler(lines, {"p": 1, "x": 0}, p0).run().result)

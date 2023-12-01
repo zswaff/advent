@@ -9,7 +9,7 @@ from comp import Comp
 
 # part 1
 def run():
-    cs = [Comp(fname='inp.txt').add_inputs([i]) for i in range(50)]
+    cs = [Comp(fname="inp.txt").add_inputs([i]) for i in range(50)]
     ms = defaultdict(list)
     while True:
         for i in range(50):
@@ -22,12 +22,14 @@ def run():
                 if a == 255:
                     return y
                 ms[a].append([x, y])
+
+
 print(run())
 
 
 # part 2
 def run():
-    cs = [Comp(fname='inp.txt').add_inputs([i]) for i in range(50)]
+    cs = [Comp(fname="inp.txt").add_inputs([i]) for i in range(50)]
     ms = defaultdict(list)
     n = []
     ns = set()
@@ -53,4 +55,6 @@ def run():
                 return y
             ns.add(y)
             ms[0].append(n)
+
+
 print(run())

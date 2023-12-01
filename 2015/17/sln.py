@@ -5,7 +5,7 @@
 from functools import lru_cache
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     cntrs = tuple([int(e.strip()) for e in fin.readlines()])
 
 
@@ -16,7 +16,8 @@ def rec(amt, rem):
         return 1
     if amt < 0 or len(rem) == 0:
         return 0
-    return sum(rec(amt - e, rem[i + 1:]) for i, e in enumerate(rem))
+    return sum(rec(amt - e, rem[i + 1 :]) for i, e in enumerate(rem))
+
 
 print(rec(150, cntrs))
 
@@ -29,10 +30,11 @@ def rec2(amt, rem):
         return []
     res = []
     for i, e in enumerate(rem):
-        rres = rec2(amt - e, rem[i + 1:])
+        rres = rec2(amt - e, rem[i + 1 :])
         for f in rres:
             res.append([e] + list(f))
     return res
+
 
 r = rec2(150, cntrs)
 m = min(len(e) for e in r)

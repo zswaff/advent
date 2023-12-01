@@ -21,7 +21,7 @@ while par:
     res.append(n)
     for s in par.values():
         s -= {n}
-sm(''.join(res))
+sm("".join(res))
 
 
 # part 2
@@ -49,8 +49,8 @@ for i in count():
         k = ready.pop(0)
         if not par[k] <= done:
             continue
-        print(k,end='')
-        running[k] = 61 + ord(k) - ord('A')
+        print(k, end="")
+        running[k] = 61 + ord(k) - ord("A")
     if not running:
         print()
         break

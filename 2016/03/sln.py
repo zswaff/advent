@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     groups = [[int(f) for f in e.strip().split()] for e in fin.readlines()]
 
 

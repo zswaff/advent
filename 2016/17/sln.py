@@ -7,10 +7,10 @@ from hashlib import md5
 from search import BaseSearchState
 
 
-INP = 'udskfozm'
+INP = "udskfozm"
 
 
-DIRS = [('U', 0, -1), ('D', 0, 1), ('L', -1, 0), ('R', 1, 0)]
+DIRS = [("U", 0, -1), ("D", 0, 1), ("L", -1, 0), ("R", 1, 0)]
 
 
 class State(BaseSearchState):
@@ -56,7 +56,7 @@ def bfs(self):
             q.append(nbor)
 
 
-print(bfs(State(0, 0, '', 0)))
+print(bfs(State(0, 0, "", 0)))
 
 
 # part 2
@@ -77,4 +77,6 @@ def bfs(self):
         for nbor in curr.get_neighbors():
             q.append(nbor)
     return m
-print(bfs(State(0, 0, '', 0)))
+
+
+print(bfs(State(0, 0, "", 0)))

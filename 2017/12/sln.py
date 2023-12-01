@@ -5,12 +5,12 @@
 from search import BaseSearchState
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 g = {}
 for line in lines:
-    k, v = line.split(' <-> ')
-    g[k] = v.split(', ')
+    k, v = line.split(" <-> ")
+    g[k] = v.split(", ")
 
 
 # part 1
@@ -32,7 +32,8 @@ class State(BaseSearchState):
     def get_dist_from_start(self):
         return self.dist
 
-print(len(State('0', 0).search().visited))
+
+print(len(State("0", 0).search().visited))
 
 
 # part 2

@@ -9,7 +9,7 @@ CARD = 3248366
 DOOR = 4738476
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 

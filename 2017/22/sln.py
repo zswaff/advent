@@ -8,15 +8,12 @@ from collections import defaultdict
 DIRS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
 # part 1
-g = defaultdict(bool, {
-    (x, y): c == '#'
-    for y, e in enumerate(lines) for x, c in enumerate(e)
-})
+g = defaultdict(bool, {(x, y): c == "#" for y, e in enumerate(lines) for x, c in enumerate(e)})
 x = y = len(lines) // 2
 d = 0
 c = 0
@@ -33,10 +30,9 @@ print(c)
 
 
 # part 2
-g = defaultdict(int, {
-    (x, y): 2 if c == '#' else 0
-    for y, e in enumerate(lines) for x, c in enumerate(e)
-})
+g = defaultdict(
+    int, {(x, y): 2 if c == "#" else 0 for y, e in enumerate(lines) for x, c in enumerate(e)}
+)
 x = y = len(lines) // 2
 d = 0
 c = 0

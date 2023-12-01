@@ -9,10 +9,10 @@ from web import *
 # part 1
 g = set()
 for l in ls:
-    cns, rng = l.split(', ')
+    cns, rng = l.split(", ")
     cns = int(cns[2:])
-    rngmn, rngmx = (int(e) for e in rng[2:].split('..'))
-    if l[0] == 'x':
+    rngmn, rngmx = (int(e) for e in rng[2:].split(".."))
+    if l[0] == "x":
         g |= {(cns, y) for y in range(rngmn, rngmx + 1)}
     else:
         g |= {(x, cns) for x in range(rngmn, rngmx + 1)}
@@ -30,14 +30,15 @@ def p():
     for y in range(ymx + 2):
         for x in range(xmn - 2, xmx + 3):
             if (x, y) in g:
-                print('#', end='')
+                print("#", end="")
                 continue
             if (x, y) in vis:
-                print('~', end='')
+                print("~", end="")
                 continue
-            print('.', end='')
+            print(".", end="")
         print()
-    print('-' * 50)
+    print("-" * 50)
+
 
 sq = [(500, 0)]
 while sq:
@@ -109,5 +110,6 @@ def check(vx, vy):
                 return False
             break
     return True
+
 
 sm(sum(check(*e) for e in vis))

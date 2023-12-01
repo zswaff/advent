@@ -9,9 +9,9 @@ from web import *
 # part 1
 c = Counter()
 for l in ls:
-    spl = l.split(' -> ')
-    x1, y1 = (int(e) for e in spl[0].split(','))
-    x2, y2 = (int(e) for e in spl[1].split(','))
+    spl = l.split(" -> ")
+    x1, y1 = (int(e) for e in spl[0].split(","))
+    x2, y2 = (int(e) for e in spl[1].split(","))
     if x1 == x2:
         ymn, ymx = min(y1, y2), max(y1, y2)
         for y in range(ymn, ymx + 1):
@@ -26,9 +26,9 @@ sm(sum(1 for e in c.values() if e > 1))
 # part 2
 c = Counter()
 for l in ls:
-    spl = l.split(' -> ')
-    x1, y1 = (int(e) for e in spl[0].split(','))
-    x2, y2 = (int(e) for e in spl[1].split(','))
+    spl = l.split(" -> ")
+    x1, y1 = (int(e) for e in spl[0].split(","))
+    x2, y2 = (int(e) for e in spl[1].split(","))
     if x1 == x2:
         ymn, ymx = min(y1, y2), max(y1, y2)
         for y in range(ymn, ymx + 1):

@@ -7,19 +7,19 @@ from search import PQ
 
 STRTS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 DIAGS = [(1, 1), (1, -1), (-1, -1), (-1, 1)]
-NOT_KEYS = {'#', '.'}
+NOT_KEYS = {"#", "."}
 
 
 def get_adj(g_orig, starts):
     g_pos = {}
     for pos, val in g_orig.items():
-        if val == '#':
+        if val == "#":
             continue
         x, y = pos
         g_pos[pos] = []
         for dx, dy in STRTS:
             n_pos = x + dx, y + dy
-            if n_pos not in g_orig or g_orig[n_pos] == '#':
+            if n_pos not in g_orig or g_orig[n_pos] == "#":
                 continue
             g_pos[pos].append(n_pos)
 
@@ -50,11 +50,11 @@ def get_adj(g_orig, starts):
     return g_adj
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 g_orig = {(x, y): e for y, row in enumerate(lines) for x, e in enumerate(row)}
-start = [k for k, v in g_orig.items() if v == '@'][0]
-g_orig[start] = '.'
+start = [k for k, v in g_orig.items() if v == "@"][0]
+g_orig[start] = "."
 goal = frozenset(e for e in g_orig.values() if e.islower())
 
 
@@ -84,8 +84,8 @@ while True:
 
 # part 2
 g_new = {k: v for k, v in g_orig.items()}
-g_new[start] = '#'
-g_new.update({(start[0] + dx, start[1] + dy): '#' for dx, dy in STRTS})
+g_new[start] = "#"
+g_new.update({(start[0] + dx, start[1] + dy): "#" for dx, dy in STRTS})
 starts = [(start[0] + dx, start[1] + dy) for dx, dy in DIAGS]
 
 g_adj = get_adj(g_new, starts)

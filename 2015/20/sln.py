@@ -8,10 +8,8 @@ from itertools import count
 
 # part 1
 def factors(n):
-    return set(
-        factor for i in range(1, int(n**0.5) + 1) if n % i == 0
-        for factor in (i, n//i)
-    )
+    return set(factor for i in range(1, int(n**0.5) + 1) if n % i == 0 for factor in (i, n // i))
+
 
 for i in count(1):
     if sum(factors(i)) >= 2900000:

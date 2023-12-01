@@ -5,7 +5,7 @@
 from collections import defaultdict
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 
 
@@ -14,7 +14,7 @@ my, mx = len(lines), len(lines[0])
 d = defaultdict(bool)
 for y, line in enumerate(lines):
     for x, c in enumerate(line):
-        d[(x, y, 0)] = c == '#'
+        d[(x, y, 0)] = c == "#"
 for i in range(6):
     nd = defaultdict(bool)
     for x, y, z in [
@@ -39,7 +39,7 @@ print(sum(d.values()))
 d = defaultdict(bool)
 for y, line in enumerate(lines):
     for x, c in enumerate(line):
-        d[(x, y, 0, 0)] = c == '#'
+        d[(x, y, 0, 0)] = c == "#"
 for i in range(6):
     nd = defaultdict(bool)
     for x, y, z, w in [

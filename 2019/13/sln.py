@@ -6,7 +6,7 @@ from comp import Comp
 
 
 # part 1
-cmp = Comp(fin='inp.txt')
+cmp = Comp(fin="inp.txt")
 out = cmp.outputs
 print(sum(out[i * 3 + 2] == 2 for i in range(len(out) // 3)))
 
@@ -18,8 +18,8 @@ def sign(a):
     return 1 if a > 0 else -1
 
 
-with open('inp.txt') as fin:
-    ops = [int(e) for e in fin.read().strip().split(',')]
+with open("inp.txt") as fin:
+    ops = [int(e) for e in fin.read().strip().split(",")]
 ops[0] = 2
 
 

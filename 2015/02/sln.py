@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
-    dims = [[int(f) for f in e.strip().split('x')] for e in fin.readlines()]
+with open("inp.txt") as fin:
+    dims = [[int(f) for f in e.strip().split("x")] for e in fin.readlines()]
 
 
 # part 1

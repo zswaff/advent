@@ -4,7 +4,7 @@
 
 from common import *
 
-tx1, tx2, ty2, ty1 = pa(dt, 'target area: x={i}..{i}, y={i}..{i}')
+tx1, tx2, ty2, ty1 = pa(dt, "target area: x={i}..{i}, y={i}..{i}")
 gxs = []
 c = 0
 for i in range(50):

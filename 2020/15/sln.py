@@ -5,7 +5,7 @@
 from collections import defaultdict
 
 
-INP = [15,12,0,14,3,1]
+INP = [15, 12, 0, 14, 3, 1]
 
 
 # part 1

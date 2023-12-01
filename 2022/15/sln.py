@@ -37,9 +37,7 @@ sm(sum(en - st + 1 for st, en in g) - len(b))
 for y in range(4000001):
     g = []
     for l in ls:
-        sx, sy, bx, by = pa(
-            l, "Sensor at x={i}, y={i}: closest beacon is at x={i}, y={i}"
-        )
+        sx, sy, bx, by = pa(l, "Sensor at x={i}, y={i}: closest beacon is at x={i}, y={i}")
         if by == y:
             b.add(bx)
         md = abs(sx - bx) + abs(sy - by)

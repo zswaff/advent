@@ -15,10 +15,7 @@ class State(BaseSearchState):
         self.dist = dist
 
     def __hash__(self):
-        return hash((
-            self.elvl,
-            tuple(tuple(sorted(v)) for _, v in sorted(self.lvls.items()))
-        ))
+        return hash((self.elvl, tuple(tuple(sorted(v)) for _, v in sorted(self.lvls.items()))))
 
     def is_valid(self):
         for lvl in self.lvls.values():
@@ -57,26 +54,25 @@ class State(BaseSearchState):
 
 
 # part 1
-print(State(
-    1,
-    {
-        1: {'T', 't'},
-        2: {'B', 'U', 'R', 'L'},
-        3: {'b', 'u', 'r', 'l'},
-        4: set()
-    },
-    0
-).search().result)
+print(
+    State(1, {1: {"T", "t"}, 2: {"B", "U", "R", "L"}, 3: {"b", "u", "r", "l"}, 4: set()}, 0)
+    .search()
+    .result
+)
 
 
 # part 2
-print(State(
-    1,
-    {
-        1: {'T', 't', 'E', 'e', 'D', 'd'},
-        2: {'B', 'U', 'R', 'L'},
-        3: {'b', 'u', 'r', 'l'},
-        4: set()
-    },
-    0
-).search().result)
+print(
+    State(
+        1,
+        {
+            1: {"T", "t", "E", "e", "D", "d"},
+            2: {"B", "U", "R", "L"},
+            3: {"b", "u", "r", "l"},
+            4: set(),
+        },
+        0,
+    )
+    .search()
+    .result
+)

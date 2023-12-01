@@ -2,11 +2,8 @@
 # -*- coding: utf-8 -*-
 
 
-with open('inp.txt') as fin:
-    groups = [
-        [set(f) for f in e.split('\n')]
-        for e in fin.read().strip().split('\n\n')
-    ]
+with open("inp.txt") as fin:
+    groups = [[set(f) for f in e.split("\n")] for e in fin.read().strip().split("\n\n")]
 
 
 # part 1

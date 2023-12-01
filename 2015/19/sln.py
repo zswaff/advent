@@ -5,15 +5,15 @@
 import re
 
 
-FMT = r'(?P<in>[A-Za-z]+) => (?P<out>[A-Za-z]+)'
+FMT = r"(?P<in>[A-Za-z]+) => (?P<out>[A-Za-z]+)"
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 tsns = []
 for line in lines[:-2]:
     match = re.match(FMT, line).groupdict()
-    tsns.append((match['in'], match['out']))
+    tsns.append((match["in"], match["out"]))
 
 
 # part 1
@@ -22,7 +22,7 @@ chem = lines[-1]
 for ti, to in tsns:
     spl = chem.split(ti)
     for i in range(len(spl) - 1):
-        r.add(ti.join(spl[:i + 1]) + to + ti.join(spl[i + 1:]))
+        r.add(ti.join(spl[: i + 1]) + to + ti.join(spl[i + 1 :]))
 print(len(r))
 
 
@@ -35,13 +35,13 @@ j = -1
 while len(q) != 0:
     j += 1
     e, c = q.pop()
-    if e == 'elvl':
+    if e == "elvl":
         print(c)
         break
     for ti, to in tsns:
         spl = e.split(to)
         for i in range(len(spl) - 1):
-            pot = to.join(spl[:i + 1]) + ti + to.join(spl[i + 1:])
+            pot = to.join(spl[: i + 1]) + ti + to.join(spl[i + 1 :])
             if pot in r:
                 continue
             r.add(pot)

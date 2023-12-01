@@ -12,7 +12,7 @@ class Comp:
         7: (3, {2}),
         8: (3, {2}),
         9: (1, {}),
-        99: (0, {})
+        99: (0, {}),
     }
 
     cache = {}
@@ -24,7 +24,7 @@ class Comp:
                 ops = Comp.cache[fname]
             else:
                 with open(fname) as fin:
-                    ops = [int(e) for e in fin.read().strip().split(',')]
+                    ops = [int(e) for e in fin.read().strip().split(",")]
                 Comp.cache[fname] = ops
         self._input_ops = list(ops)
 
@@ -57,7 +57,7 @@ class Comp:
 
     @property
     def last_outputs(self):
-        return self._outputs[self._last_pause_out_idx:]
+        return self._outputs[self._last_pause_out_idx :]
 
     @property
     def paused(self):
@@ -77,43 +77,49 @@ class Comp:
         self._last_pause_out_idx = len(self._outputs)
 
         if self._verbose:
-            print('ops ', [self._ops.get(i) for i in range(0, max(self._ops.keys()) + 1)])
+            print("ops ", [self._ops.get(i) for i in range(0, max(self._ops.keys()) + 1)])
 
         while True:
             if self._verbose:
-                print('out ', self._outputs)
-                print('-' * 100)
+                print("out ", self._outputs)
+                print("-" * 100)
 
             full_op = self._ops[self._instr_ptr]
             op = int(str(full_op)[-2:])
             arg_count, idx_args = Comp.CODE_ARGS[op]
             arg_modes = [0] * arg_count
-            raw_args = [self._ops[i] for i in range(self._instr_ptr + 1, self._instr_ptr + arg_count + 1)]
+            raw_args = [
+                self._ops[i] for i in range(self._instr_ptr + 1, self._instr_ptr + arg_count + 1)
+            ]
             for i, e in enumerate(list(reversed(str(full_op)[:-2]))):
                 arg_modes[i] = int(e)
 
             if self._verbose:
-                print('-' * 100)
-                print('ops ', [self._ops.get(i) for i in range(0, max(self._ops.keys()) + 1)])
-                print('op  ', op)
-                print('args', list(zip(raw_args, arg_modes)))
-                print('base', self._rel_base)
+                print("-" * 100)
+                print("ops ", [self._ops.get(i) for i in range(0, max(self._ops.keys()) + 1)])
+                print("op  ", op)
+                print("args", list(zip(raw_args, arg_modes)))
+                print("base", self._rel_base)
 
             tot_instr_size = arg_count + 1
             args = []
             for i, (raw_arg, arg_mode) in enumerate(zip(raw_args, arg_modes)):
                 if i in idx_args:
-                    args.append({
-                        0: lambda: raw_arg,
-                        1: lambda: raw_arg,
-                        2: lambda: raw_arg + self._rel_base
-                    }[arg_mode]())
+                    args.append(
+                        {
+                            0: lambda: raw_arg,
+                            1: lambda: raw_arg,
+                            2: lambda: raw_arg + self._rel_base,
+                        }[arg_mode]()
+                    )
                 else:
-                    args.append({
-                        0: lambda: self._ops[raw_arg],
-                        1: lambda: raw_arg,
-                        2: lambda: self._ops[raw_arg + self._rel_base]
-                    }[arg_mode]())
+                    args.append(
+                        {
+                            0: lambda: self._ops[raw_arg],
+                            1: lambda: raw_arg,
+                            2: lambda: self._ops[raw_arg + self._rel_base],
+                        }[arg_mode]()
+                    )
 
             if op == 1:
                 a, b, idx = args
@@ -126,7 +132,7 @@ class Comp:
                 self._instr_ptr += tot_instr_size
                 continue
             if op == 3:
-                idx, = args
+                (idx,) = args
                 if self._input_idx >= len(self._inputs):
                     self._paused = True
                     return self
@@ -135,7 +141,7 @@ class Comp:
                 self._instr_ptr += tot_instr_size
                 continue
             if op == 4:
-                a, = args
+                (a,) = args
                 self._outputs.append(a)
                 self._instr_ptr += tot_instr_size
                 continue
@@ -164,11 +170,11 @@ class Comp:
                 self._instr_ptr += tot_instr_size
                 continue
             if op == 9:
-                a, = args
+                (a,) = args
                 self._rel_base += a
                 self._instr_ptr += tot_instr_size
                 continue
             if op == 99:
                 self._finished = True
                 return self
-            raise RuntimeError('Invalid opcode')
+            raise RuntimeError("Invalid opcode")

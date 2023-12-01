@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 
-INP = '10010000000110000'
+INP = "10010000000110000"
 
 
 def solve(n):
     t = INP
     while len(t) < n:
         m = reversed(t)
-        t += '0'
+        t += "0"
         for c in m:
-            t += '0' if c == '1' else '1'
+            t += "0" if c == "1" else "1"
     t = t[:n]
     while len(t) % 2 == 0:
-        m = ''
+        m = ""
         for i in range(0, len(t), 2):
-            m += '1' if t[i] == t[i + 1] else '0'
+            m += "1" if t[i] == t[i + 1] else "0"
         t = m
     return t
 

@@ -1,4 +1,4 @@
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     w1s, w2s = [e.strip() for e in fin.readlines()]
 
 o = (0, 0, 0)
@@ -8,22 +8,25 @@ o = (0, 0, 0)
 def m_dist(c1, c2):
     return abs(c1[0] - c2[0]) + abs(c1[1] - c2[1])
 
-d_dict = {
-    'U': (0, 1),
-    'R': (1, 0),
-    'D': (0, -1),
-    'L': (-1, 0)
-}
+
+d_dict = {"U": (0, 1), "R": (1, 0), "D": (0, -1), "L": (-1, 0)}
+
+
 def to_coords(s):
     res = [o]
-    for e in s.split(','):
+    for e in s.split(","):
         d, m = e[0], int(e[1:])
-        xm, ym, = d_dict[d]
+        (
+            xm,
+            ym,
+        ) = d_dict[d]
         res.append((res[-1][0] + m * xm, res[-1][1] + m * ym, res[-1][2] + m))
     return res
 
+
 w1c = to_coords(w1s)
 w2c = to_coords(w2s)
+
 
 def segs_cross(s1, e1, s2, e2):
     dx1, dy1 = s1[0] - e1[0], s1[1] - e1[1]
@@ -46,6 +49,7 @@ def segs_cross(s1, e1, s2, e2):
         return vx, hy, s1[2] + s2[2] + m_dist(s1, res) + m_dist(s2, res)
     return None
 
+
 def list_crosses(w1c, w2c):
     res = []
     for i in range(1, len(w1c)):
@@ -54,6 +58,7 @@ def list_crosses(w1c, w2c):
             if cross is not None:
                 res.append(cross)
     return res
+
 
 crosses = list_crosses(w1c, w2c)
 

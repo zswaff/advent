@@ -5,11 +5,11 @@
 from itertools import count
 
 
-with open('inp.txt') as fin:
+with open("inp.txt") as fin:
     lines = [e.strip() for e in fin.readlines()]
 scns = {}
 for l in lines:
-    k, v = [int(e) for e in l.split(': ')]
+    k, v = [int(e) for e in l.split(": ")]
     scns[k] = v, v * 2 - 2
 
 

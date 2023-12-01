@@ -11,16 +11,14 @@ tg = set()
 cs = {}
 for y, l in enumerate(ls):
     for x, e in enumerate(l):
-        if e == '#':
+        if e == "#":
             continue
-        if e != '.':
-            cs[y, x] = [e == 'E', 200]
+        if e != ".":
+            cs[y, x] = [e == "E", 200]
         tg.add((y, x))
 g = {}
 for y, x in tg:
-    g[(y, x)] = [(d, y + dy, x + dx)
-                 for d, (dy, dx) in enumerate(DIRS)
-                 if (y + dy, x + dx) in tg]
+    g[(y, x)] = [(d, y + dy, x + dx) for d, (dy, dx) in enumerate(DIRS) if (y + dy, x + dx) in tg]
 
 
 def run(cs, atk):
@@ -32,7 +30,6 @@ def run(cs, atk):
         cands = []
 
         class State(BaseSearchState):
-
             def __init__(self, loc, o_type, o_dir, dist):
                 super().__init__()
                 self.loc = loc
@@ -55,9 +52,12 @@ def run(cs, atk):
 
             def get_neighbors(self):
                 return [
-                    State((ny, nx), self.o_type,
-                          d if self.o_dir is None else self.o_dir,
-                          self.dist + 1)
+                    State(
+                        (ny, nx),
+                        self.o_type,
+                        d if self.o_dir is None else self.o_dir,
+                        self.dist + 1,
+                    )
                     for d, ny, nx in g[self.loc]
                     if (ny, nx) not in cs or cs[(ny, nx)][0] != self.o_type
                 ]
@@ -87,11 +87,14 @@ def run(cs, atk):
 
             targ = next(
                 iter(
-                    sorted((cs[(cy + dy, cx + dx)][1], j, (cy + dy, cx + dx))
-                           for j, (dy, dx) in enumerate(DIRS)
-                           if (cy + dy, cx +
-                               dx) in cs and cs[(cy + dy, cx + dx)][0] != ct)),
-                None)
+                    sorted(
+                        (cs[(cy + dy, cx + dx)][1], j, (cy + dy, cx + dx))
+                        for j, (dy, dx) in enumerate(DIRS)
+                        if (cy + dy, cx + dx) in cs and cs[(cy + dy, cx + dx)][0] != ct
+                    )
+                ),
+                None,
+            )
             if targ is not None:
                 tl = targ[2]
                 cs[tl][1] -= atk if ct else 3

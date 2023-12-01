@@ -5,13 +5,9 @@
 from collections import defaultdict
 
 
-with open('inp.txt') as fin:
-    arr = [[f == '#' for f in e.strip()] for e in fin.readlines()]
-sparse = {(x, y)
-    for y, row in enumerate(arr)
-    for x, e in enumerate(row)
-    if e
-}
+with open("inp.txt") as fin:
+    arr = [[f == "#" for f in e.strip()] for e in fin.readlines()]
+sparse = {(x, y) for y, row in enumerate(arr) for x, e in enumerate(row) if e}
 
 
 # part 1
@@ -44,9 +40,14 @@ print(m[0])
 
 # part 2
 _, (sx, sy), (lslps, rslps, abv, bel) = m
-dirs = [abv] + [e[1] for e in sorted(rslps.items(), reverse=True)] + [bel] + [e[1] for e in sorted(lslps.items(), reverse=True)]
+dirs = (
+    [abv]
+    + [e[1] for e in sorted(rslps.items(), reverse=True)]
+    + [bel]
+    + [e[1] for e in sorted(lslps.items(), reverse=True)]
+)
 for e in dirs:
-    e.sort(key=lambda x: ((sx - x[0]) ** 2 + (sy - x[1]) ** 2) ** .5)
+    e.sort(key=lambda x: ((sx - x[0]) ** 2 + (sy - x[1]) ** 2) ** 0.5)
 
 idx = 0
 last = None

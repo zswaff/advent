@@ -8,12 +8,12 @@ from common import *
 from web import *
 
 
-s, rs = dt.split('\n\n')
-rs = dict([e.split(' -> ') for e in rs.split('\n')])
+s, rs = dt.split("\n\n")
+rs = dict([e.split(" -> ") for e in rs.split("\n")])
 
 
 # part 1
-st = Counter([s[i:i + 2] for i in range(len(s) - 1)])
+st = Counter([s[i : i + 2] for i in range(len(s) - 1)])
 for _ in range(10):
     nst = Counter()
     for k, v in st.items():
@@ -29,7 +29,7 @@ sm((c[0][1] - c[-1][1]) // 2)
 
 
 # part 2
-st = Counter([s[i:i + 2] for i in range(len(s) - 1)])
+st = Counter([s[i : i + 2] for i in range(len(s) - 1)])
 for _ in range(40):
     nst = Counter()
     for k, v in st.items():
