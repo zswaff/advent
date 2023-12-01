@@ -52,6 +52,5 @@ cd ./[year]/[day]
 1. Fix TODOs
 1. Migrate all problems to use `web.py`
 1. Migrate all search problems to use `search.py`
-1. Auto-remove unused imports when importing `common.py` by detecting what will be used 
 1. Identify and improve other common patterns
-1. Translate text like in 21-13 and elsewhere to a submission
+1. Translate text like in 2021-13 and elsewhere to a submission
