@@ -26,7 +26,7 @@ def recurve(s, gs):
 
 
 c = 0
-for l in tqdm(ls):
+for l in ls:
     spl = l.split(" ")
     c += recurve(spl[0], tuple(int(e) for e in spl[1].split(",")))
 sm(c)
@@ -34,7 +34,7 @@ sm(c)
 
 # part 2
 c = 0
-for l in tqdm(ls):
+for l in ls:
     spl = l.split(" ")
     c += recurve("?".join([spl[0]] * 5), tuple(int(e) for e in spl[1].split(",") * 5))
 sm(c)
