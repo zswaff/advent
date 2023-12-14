@@ -31,8 +31,8 @@ def works_y(g, y):
 c = 0
 for s in ss:
     g = gr(s)
-    mx = max(e[0] for e in g.keys()) + 1
-    my = max(e[1] for e in g.keys()) + 1
+    mx = max(e[0] for e in g) + 1
+    my = max(e[1] for e in g) + 1
     for x in range(1, mx):
         if works_x(g, x):
             c += x
@@ -60,8 +60,8 @@ def fold(g, mx, my, ignore=0):
 c = 0
 for s in ss:
     g = gr(s)
-    mx = max(e[0] for e in g.keys()) + 1
-    my = max(e[1] for e in g.keys()) + 1
+    mx = max(e[0] for e in g) + 1
+    my = max(e[1] for e in g) + 1
     old = fold(g, mx, my)
     for k, v in g.items():
         new = fold(g | {k: "." if v == "#" else "#"}, mx, my, old)
