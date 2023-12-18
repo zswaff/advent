@@ -10,6 +10,8 @@ from operator import xor
 from typing import Any, Callable, TypeVar
 
 import numpy as np
+from shapely.geometry import Point
+from shapely.geometry.polygon import Polygon
 from tqdm import tqdm
 
 from assembly import *
@@ -28,12 +30,16 @@ true = T = True
 null = N = None
 
 
-def pa(line: str, pattern: str | list[str]) -> tuple[Any, ...] | tuple[int, tuple[Any, ...]]:
+def pa(
+    line: str, pattern: str | list[str]
+) -> tuple[Any, ...] | tuple[int, tuple[Any, ...]]:
     many_pats = isinstance(pattern, list)
     patterns = pattern if many_pats else [pattern]
     for idx, pat in enumerate(patterns):
         segs = [e.split("}") for e in pat.split("{")]
-        assert len(segs[0]) == 1 and all(len(e) == 2 for e in segs[1:]), f"Malformed pattern {pat}"
+        assert len(segs[0]) == 1 and all(
+            len(e) == 2 for e in segs[1:]
+        ), f"Malformed pattern {pat}"
         keys = []
         reg = f"^{re.escape(segs[0][0])}"
         for key, literal in segs[1:]:
@@ -51,7 +57,9 @@ def pa(line: str, pattern: str | list[str]) -> tuple[Any, ...] | tuple[int, tupl
 _T = TypeVar("_T")
 
 
-def gr(lines: list[str], fn: Callable[[str], _T] | None = None) -> dict[tuple[int, int], _T]:
+def gr(
+    lines: list[str], fn: Callable[[str], _T] | None = None
+) -> dict[tuple[int, int], _T]:
     if fn is None:
         fn = lambda x: x  # pylint: disable=unnecessary-lambda-assignment
     return {(x, y): fn(e) for y, l in enumerate(lines) for x, e in enumerate(l)}
@@ -60,7 +68,9 @@ def gr(lines: list[str], fn: Callable[[str], _T] | None = None) -> dict[tuple[in
 _T = TypeVar("_T")
 
 
-def cngr(edge_map: dict[_T, dict[_T, int]], targets: list[_T]) -> dict[_T, dict[_T, int]]:
+def cngr(
+    edge_map: dict[_T, dict[_T, int]], targets: list[_T]
+) -> dict[_T, dict[_T, int]]:
     class State(BaseSearchState):
         def __init__(self, loc, dist):  # pylint: disable=redefined-outer-name
             super().__init__()
