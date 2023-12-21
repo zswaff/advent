@@ -42,3 +42,26 @@ sm(c)
 
 
 # part 2
+sd = max(e[0] for e in g) + 1
+hsd = sd // 2
+
+q = [s]
+res = []
+for i in count(1):
+    nq = set()
+    for x, y in q:
+        for dx, dy in DS:
+            nx, ny = x + dx, y + dy
+            if g[(nx % sd, ny % sd)] != "#":
+                nq.add((nx, ny))
+    q = nq
+    if i % sd == hsd:
+        res.append(len(q))
+        if len(res) == 3:
+            break
+
+b0, a1, a2 = res
+b1 = a1 - b0
+b2 = a2 - a1
+n = 26501365 // sd
+sm(b0 + b1 * n + (n * (n - 1) // 2) * (b2 - b1))
