@@ -56,21 +56,18 @@ class BaseSearchState(ABC):
     def __repr__(self):
         return self.get_vars()
 
-    @abstractmethod
     def is_valid(self):
-        pass
+        return True
 
-    @abstractmethod
     def is_finished(self):
-        pass
+        return False
 
     @abstractmethod
     def get_neighbors(self):
         pass
 
-    @abstractmethod
     def get_dist_from_start(self):
-        pass
+        return getattr(self, "dist")
 
     def get_vars(self):
         return {k: v for k, v in vars(self).items() if k not in self.ignored_vars}
