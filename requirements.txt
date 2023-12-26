@@ -2,3 +2,4 @@ aocd
 numpy
 shapely
 tqdm
+z3-solver

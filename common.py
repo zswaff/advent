@@ -13,6 +13,7 @@ import numpy as np
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
 from tqdm import tqdm
+import z3
 
 from assembly import *
 from search import *
