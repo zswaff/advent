@@ -54,13 +54,13 @@ of excellence stylistically.
     - `inp.txt` the input from the specific problem; optional if the input data is in solution file
 
 
-## Setup
+## Yearly Setup
 
 Set the `AOC_SESSION` environment variable by following the following steps in Chrome
 
 1. Login to [AOC online](https://adventofcode.com/)
-1. Right click > Inspect > Application > Cookies > https://adventofcode.com/
-1. Copy the value of the session cookie to your environment variable
+2. Right click > Inspect > Application > Cookies > https://adventofcode.com/
+3. Copy the value of the session cookie to the `AOC_SESSION` environment variable
 
 
 ## Execution
@@ -74,10 +74,11 @@ cd ./[year]/[day]
 
 ## Next Steps
 
-1. Update `requirements.txt`
-1. Centralize 100% of imports into `common.py` and replace all imports
-1. Fix TODOs
-1. Migrate all problems to use `web.py`
-1. Migrate all search problems to use `search.py`
-1. Identify and improve other common patterns
-1. Translate text like in 2021-13 and elsewhere to a submission
+- [ ] Simplify imports so root doesn't have to be in PYTHONPATH
+- [ ] Centralize 100% of imports into `common.py` and replace all imports
+- [ ] Fix TODOs
+- [ ] Migrate all problems to use `web.py`
+- [ ] Migrate all search problems to use `search.py`
+- [ ] Identify and improve other common patterns
+- [ ] Translate text like in 2021-13 and elsewhere to a submission
+- [ ] Improve types and naming of common stuff
