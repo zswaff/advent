@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 
 rawbs = [
@@ -13,7 +13,8 @@ rawbs = [
     for l in ls
 ]
 bs = [
-    (a, ((b, 0, 0, 0), (c, 0, 0, 0), (d, e, 0, 0), (f, 0, g, 0))) for a, b, c, d, e, f, g in rawbs
+    (a, ((b, 0, 0, 0), (c, 0, 0, 0), (d, e, 0, 0), (f, 0, g, 0)))
+    for a, b, c, d, e, f, g in rawbs
 ]
 
 
@@ -33,7 +34,11 @@ def calc(cs, rnds):
             rem = rnds - self.dist
             mxp = self.rss[3] + ((rem * (rem + 1)) // 2)
             nonlocal mx
-            return self.dist <= rnds and mxp > mx and all(e <= f for e, f in zip(self.rbs, mxrbs))
+            return (
+                self.dist <= rnds
+                and mxp > mx
+                and all(e <= f for e, f in zip(self.rbs, mxrbs))
+            )
 
         def is_finished(self):
             return False

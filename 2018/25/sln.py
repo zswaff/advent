@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 from web import *
 
 
@@ -14,7 +14,9 @@ while len(cs) != lc:
     ncs = [cs[0]]
     for nc in cs[1:]:
         for oc in ncs:
-            if any(sum(abs(v1 - v2) for v1, v2 in zip(*e)) <= 3 for e in product(nc, oc)):
+            if any(
+                sum(abs(v1 - v2) for v1, v2 in zip(*e)) <= 3 for e in product(nc, oc)
+            ):
                 oc += nc
                 break
         else:

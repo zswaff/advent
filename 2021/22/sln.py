@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 
 # part 1
@@ -104,7 +104,17 @@ class R:
                     min(f.mxz, e.mxz) + 1 == max(f.mnz, e.mnz),
                 ]
             ):
-                nr.append(R(f.mnx, f.mxx, f.mny, f.mxy, min(f.mnz, e.mnz), max(f.mxz, e.mxz), True))
+                nr.append(
+                    R(
+                        f.mnx,
+                        f.mxx,
+                        f.mny,
+                        f.mxy,
+                        min(f.mnz, e.mnz),
+                        max(f.mxz, e.mxz),
+                        True,
+                    )
+                )
             else:
                 nr.append(f)
                 nr.append(e)
@@ -121,7 +131,17 @@ class R:
                     min(f.mxy, e.mxy) + 1 == max(f.mny, e.mny),
                 ]
             ):
-                nr.append(R(f.mnx, f.mxx, min(f.mny, e.mny), max(f.mxy, e.mxy), f.mnz, f.mxz, True))
+                nr.append(
+                    R(
+                        f.mnx,
+                        f.mxx,
+                        min(f.mny, e.mny),
+                        max(f.mxy, e.mxy),
+                        f.mnz,
+                        f.mxz,
+                        True,
+                    )
+                )
             else:
                 nr.append(f)
                 nr.append(e)

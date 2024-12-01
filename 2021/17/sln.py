@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 tx1, tx2, ty2, ty1 = pa(dt, "target area: x={i}..{i}, y={i}..{i}")
 gxs = []

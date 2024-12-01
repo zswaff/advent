@@ -4,7 +4,7 @@
 
 from functools import cmp_to_key
 
-from common import *
+from aoc import *
 
 
 def rec(p1, p2):

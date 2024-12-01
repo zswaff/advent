@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 from search import BaseSearchState
 from web import *
 
@@ -15,7 +15,9 @@ g = {(x, y): int(e) for y, l in enumerate(ls) for x, e in enumerate(l)}
 # part 1
 sm(
     sum(
-        1 + e for (x, y), e in g.items() if all(e < g.get((x + dx, y + dy), inf) for dx, dy in DIRS)
+        1 + e
+        for (x, y), e in g.items()
+        if all(e < g.get((x + dx, y + dy), inf) for dx, dy in DIRS)
     )
 )
 
@@ -34,7 +36,10 @@ class State(BaseSearchState):
         return True
 
     def is_finished(self):
-        return all(g[(self.x, self.y)] < g.get((self.x + dx, self.y + dy), inf) for dx, dy in DIRS)
+        return all(
+            g[(self.x, self.y)] < g.get((self.x + dx, self.y + dy), inf)
+            for dx, dy in DIRS
+        )
 
     def get_neighbors(self):
         return [

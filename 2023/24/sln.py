@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 
 vs = [[[int(f) for f in e.split(", ")] for e in l.split(" @ ")] for l in ls]

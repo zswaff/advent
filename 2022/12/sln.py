@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 
 DIRS = [(0, 1), (1, 0), (0, -1), (-1, 0)]

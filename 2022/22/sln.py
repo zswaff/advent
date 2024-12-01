@@ -2,14 +2,18 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 
 DIRS = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 WRAPS = [(1, min), (0, min), (1, max), (0, max)]
 
 rg, ro = ss
-g = {k: v for k, v in gr(rg, lambda x: None if x == " " else x == "#").items() if v is not None}
+g = {
+    k: v
+    for k, v in gr(rg, lambda x: None if x == " " else x == "#").items()
+    if v is not None
+}
 os = []
 for c in ro[0]:
     if c.isdigit():

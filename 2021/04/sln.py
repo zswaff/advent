@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 from web import *
 
 
@@ -24,7 +24,8 @@ def run():
                 if v[0] == n:
                     v[1] = True
             if any(
-                all(b[(i, j)][1] for j in range(5)) or all(b[(j, i)][1] for j in range(5))
+                all(b[(i, j)][1] for j in range(5))
+                or all(b[(j, i)][1] for j in range(5))
                 for i in range(5)
             ):
                 sm(sum(e for e, f in b.values() if not f) * n)
@@ -55,7 +56,8 @@ def run():
                 if v[0] == n:
                     v[1] = True
             if any(
-                all(b[(i, j)][1] for j in range(5)) or all(b[(j, i)][1] for j in range(5))
+                all(b[(i, j)][1] for j in range(5))
+                or all(b[(j, i)][1] for j in range(5))
                 for i in range(5)
             ):
                 ws[ind] = True

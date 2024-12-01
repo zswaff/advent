@@ -4,7 +4,7 @@
 
 from functools import cache
 
-from common import *
+from aoc import *
 from web import *
 
 

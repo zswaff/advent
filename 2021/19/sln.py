@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 
 ROTS = [
@@ -39,7 +39,11 @@ ss = [{tuple(int(g) for g in f.split(",")) for f in e[1:]} for e in ss]
 def diffs(cent, rest, rot):
     return (
         {
-            tuple(np.matmul((e[0] - cent[0], e[1] - cent[1], e[2] - cent[2]), rot).tolist())
+            tuple(
+                np.matmul(
+                    (e[0] - cent[0], e[1] - cent[1], e[2] - cent[2]), rot
+                ).tolist()
+            )
             for e in rest
         },
         tuple(np.matmul(cent, rot).tolist()),
@@ -75,4 +79,10 @@ sm(len(r))
 
 
 # part 2
-sm(max(abs(x0 - x1) + abs(y0 - y1) + abs(z0 - z1) for x0, y0, z0 in scrs for x1, y1, z1 in scrs))
+sm(
+    max(
+        abs(x0 - x1) + abs(y0 - y1) + abs(z0 - z1)
+        for x0, y0, z0 in scrs
+        for x1, y1, z1 in scrs
+    )
+)

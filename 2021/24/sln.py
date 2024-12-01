@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 
 zds = [int(ls[i].split()[-1]) for i in range(4, len(ls), 18)]

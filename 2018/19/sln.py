@@ -3,7 +3,7 @@
 
 
 from assembly import *
-from common import *
+from aoc import *
 from web import *
 
 

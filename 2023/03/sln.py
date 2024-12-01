@@ -4,7 +4,7 @@
 
 from itertools import count
 
-from common import *
+from aoc import *
 
 
 # part 1

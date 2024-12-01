@@ -42,8 +42,8 @@ of excellence stylistically.
 
 ## Project Structure
 
+- `aoc.py` utility for standard imports
 - `assembly.py` utility for assembly problems
-- `common.py` utility for standard imports
 - `search.py` utility for search problems
 - `timer.py` utility for timing a process
 - `web.py` utility for interacting with the website
@@ -75,7 +75,7 @@ cd ./[year]/[day]
 ## Next Steps
 
 - [ ] Simplify imports so root doesn't have to be in PYTHONPATH
-- [ ] Centralize 100% of imports into `common.py` and replace all imports
+- [ ] Centralize 100% of imports into `aoc.py` and replace all imports
 - [ ] Fix TODOs
 - [ ] Migrate all problems to use `web.py`
 - [ ] Migrate all search problems to use `search.py`

@@ -6,7 +6,7 @@ import json
 
 from bidict import bidict
 
-from common import *
+from aoc import *
 
 
 # part 1

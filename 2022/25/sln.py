@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 RM = {"-": -1, "=": -2}
 RMR = {v: k for k, v in RM.items()}

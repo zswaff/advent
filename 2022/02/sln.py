@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-from common import *
+from aoc import *
 
 O = {"A": 1, "B": 2, "C": 3}
 S = {"X": 1, "Y": 2, "Z": 3}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from common import *
+from aoc import *
 from search import BaseSearchState
 from web import *
 
@@ -18,7 +18,9 @@ for y, l in enumerate(ls):
         tg.add((y, x))
 g = {}
 for y, x in tg:
-    g[(y, x)] = [(d, y + dy, x + dx) for d, (dy, dx) in enumerate(DIRS) if (y + dy, x + dx) in tg]
+    g[(y, x)] = [
+        (d, y + dy, x + dx) for d, (dy, dx) in enumerate(DIRS) if (y + dy, x + dx) in tg
+    ]
 
 
 def run(cs, atk):
