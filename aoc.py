@@ -62,7 +62,7 @@ def gr(
     lines: list[str], fn: Callable[[str], _T] | None = None
 ) -> dict[tuple[int, int], _T]:
     if fn is None:
-        fn = lambda x: x  # pylint: disable=unnecessary-lambda-assignment
+        fn = lambda x: x
     return {(x, y): fn(e) for y, l in enumerate(lines) for x, e in enumerate(l)}
 
 
@@ -73,7 +73,7 @@ def cngr(
     edge_map: dict[_T, dict[_T, int]], targets: list[_T]
 ) -> dict[_T, dict[_T, int]]:
     class State(BaseSearchState):
-        def __init__(self, loc, dist):  # pylint: disable=redefined-outer-name
+        def __init__(self, loc, dist):
             super().__init__()
             self.loc = loc
             self.dist = dist
