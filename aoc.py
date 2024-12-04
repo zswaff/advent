@@ -63,7 +63,7 @@ def pa(
 
 
 def pas(
-    pattern: str | list[str], lines: list[str] | None
+    pattern: str | list[str], lines: list[str] | None = None
 ) -> list[tuple[Any, ...]] | list[tuple[int, tuple[Any, ...]]]:
     if lines is None:
         lines = ls
@@ -82,7 +82,7 @@ _T = TypeVar("_T")
 
 
 def gr(
-    lines: list[str] | None, fn: Callable[[str], _T] | None = None
+    lines: list[str] | None = None, fn: Callable[[str], _T] | None = None
 ) -> dict[tuple[int, int], _T]:
     if lines is None:
         lines = ls
