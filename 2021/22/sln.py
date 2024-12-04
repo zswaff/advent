@@ -8,7 +8,7 @@ from aoc import *
 # part 1
 d = defaultdict(bool)
 for l in ls:
-    o, x1, x2, y1, y2, z1, z2 = pa(l, "{} x={i}..{i},y={i}..{i},z={i}..{i}")
+    o, x1, x2, y1, y2, z1, z2 = pa("{} x={i}..{i},y={i}..{i},z={i}..{i}", l)
     if x1 < -50 or x1 > 50:
         continue
     o = o == "on"
@@ -152,7 +152,7 @@ class R:
 subs = []
 t = []
 for l in reversed(ls):
-    o, x1, x2, y1, y2, z1, z2 = pa(l, "{} x={i}..{i},y={i}..{i},z={i}..{i}")
+    o, x1, x2, y1, y2, z1, z2 = pa("{} x={i}..{i},y={i}..{i},z={i}..{i}", l)
     nr = R(x1, x2, y1, y2, z1, z2, o)
     if o == "off":
         subs.append(nr)

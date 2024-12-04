@@ -11,7 +11,7 @@ DIRS = {"U": (0, 1), "R": (1, 0), "D": (0, -1), "L": (-1, 0)}
 hx = hy = tx = ty = 0
 v = {(0, 0)}
 for l in ls:
-    nd, nm = pa(l, "{} {i}")
+    nd, nm = pa("{} {i}", l)
     for _ in range(nm):
         hx += DIRS[nd][0]
         hy += DIRS[nd][1]
@@ -32,7 +32,7 @@ sm(len(v))
 ks = [[0, 0] for i in range(10)]
 v = {(0, 0)}
 for l in ls:
-    nd, nm = pa(l, "{} {i}")
+    nd, nm = pa("{} {i}", l)
     for _ in range(nm):
         ks[0][0] += DIRS[nd][0]
         ks[0][1] += DIRS[nd][1]

@@ -9,7 +9,7 @@ DIRS = OrderedDict([(">", (1, 0)), ("v", (0, 1)), ("<", (-1, 0)), ("^", (0, -1))
 
 
 # part 1
-g = {k: [] if v == "." else [v] for k, v in gr(ls).items() if v != "#"}
+g = {k: [] if v == "." else [v] for k, v in gr().items() if v != "#"}
 start = min(e for e in g.keys())
 end = max((e for e in g.keys()), key=lambda e: e[1])
 mnx, mxx = min(e[0] for e in g), max(e[0] for e in g)

@@ -10,7 +10,7 @@ x = 1
 c = 0
 q = []
 for l in ls:
-    op, rest = pa(l, ["noop", "addx {i}"])
+    op, rest = pa(["noop", "addx {i}"], l)
     if op == 0:
         q.append([0, 0])
     if op == 1:
@@ -31,7 +31,7 @@ sx = 1
 q = []
 pts = set()
 for l in ls:
-    op, rest = pa(l, ["noop", "addx {i}"])
+    op, rest = pa(["noop", "addx {i}"], l)
     if op == 0:
         q.append([0, 0])
     if op == 1:

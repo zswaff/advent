@@ -12,7 +12,7 @@ g = {}
 for l in ls:
     lx = ly = None
     for p in l.split(" -> "):
-        x, y = pa(p, "{i},{i}")
+        x, y = pa("{i},{i}", p)
         if lx is not None:
             if x == lx:
                 g.update({(x, i): True for i in range(min(y, ly), max(y, ly) + 1)})
@@ -48,7 +48,7 @@ g = {}
 for l in ls:
     lx = ly = None
     for p in l.split(" -> "):
-        x, y = pa(p, "{i},{i}")
+        x, y = pa("{i},{i}", p)
         if lx is not None:
             if x == lx:
                 g.update({(x, i): True for i in range(min(y, ly), max(y, ly) + 1)})

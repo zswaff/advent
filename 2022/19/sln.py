@@ -7,8 +7,8 @@ from aoc import *
 
 rawbs = [
     pa(
-        l,
         "Blueprint {i}: Each ore robot costs {i} ore. Each clay robot costs {i} ore. Each obsidian robot costs {i} ore and {i} clay. Each geode robot costs {i} ore and {i} obsidian.",
+        l,
     )
     for l in ls
 ]

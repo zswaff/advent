@@ -15,7 +15,7 @@ for l in stacks:
             continue
         ps[i].append(c)
 for l in ops:
-    n, s, d = pa(l, "move {i} from {i} to {i}")
+    n, s, d = pa("move {i} from {i} to {i}", l)
     mv = ps[s][-n:]
     ps[s] = ps[s][:-n]
     ps[d] += reversed(mv)
@@ -33,7 +33,7 @@ for l in stacks:
             continue
         ps[i].append(c)
 for l in ops:
-    n, s, d = pa(l, "move {i} from {i} to {i}")
+    n, s, d = pa("move {i} from {i} to {i}", l)
     mv = ps[s][-n:]
     ps[s] = ps[s][:-n]
     ps[d] += mv

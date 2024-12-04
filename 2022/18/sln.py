@@ -18,7 +18,7 @@ def sz(cld):
     return c
 
 
-ds = {tuple(pa(l, "{i},{i},{i}")) for l in ls}
+ds = {tuple(pa("{i},{i},{i}", l)) for l in ls}
 
 
 # part 1

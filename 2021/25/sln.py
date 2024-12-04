@@ -6,7 +6,7 @@ from aoc import *
 
 
 # part 1
-g = gr(ls)
+g = gr()
 mxx, mxy = max(e[0] for e in g.keys()) + 1, max(e[1] for e in g.keys()) + 1
 for i in count(1):
     c = 0

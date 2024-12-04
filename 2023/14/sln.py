@@ -10,7 +10,7 @@ from aoc import *
 
 
 # part 1
-g = gr(ls)
+g = gr()
 mx = max(e[0] for e in g)
 my = max(e[1] for e in g)
 c = 0
@@ -28,7 +28,7 @@ sm(c)
 
 
 # part 2
-g = {k: v for k, v in gr(ls).items() if v != "."}
+g = {k: v for k, v in gr().items() if v != "."}
 mx = max(e[0] for e in g)
 my = max(e[1] for e in g)
 sts = bidict({json.dumps(sorted(g.items())): 0})

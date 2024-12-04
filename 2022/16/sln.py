@@ -9,7 +9,7 @@ from aoc import *
 fs = {}
 g = {}
 for l in ls:
-    s, f, _, _, d = pa(l, "Valve {} has flow rate={i}; tunnel{} to valve{} {}")
+    s, f, _, _, d = pa("Valve {} has flow rate={i}; tunnel{} to valve{} {}", l)
     if f != 0:
         fs[s] = f
     g[s] = d.split(", ")

@@ -29,7 +29,7 @@ ms = {}
 ops = {}
 ps = defaultdict(list)
 for l in ls:
-    idx, m = pa(l, ["{}: {} {} {}", "{}: {i}"])
+    idx, m = pa(["{}: {} {} {}", "{}: {i}"], l)
     if idx == 1:
         ms[m[0]] = m[1]
     else:
@@ -55,7 +55,7 @@ ms = {}
 ops = {}
 ps = defaultdict(list)
 for l in ls:
-    idx, m = pa(l, ["{}: {} {} {}", "{}: {i}"])
+    idx, m = pa(["{}: {} {} {}", "{}: {i}"], l)
     if m[0] == "humn":
         continue
     if idx == 1:

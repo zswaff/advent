@@ -7,8 +7,8 @@ from aoc import *
 
 # part 1
 l1, l2 = [], []
-for e in ls:
-    a, b = pa(e, "{i}   {i}")
+for l in ls:
+    a, b = pa("{i}   {i}", l)
     l1.append(a)
     l2.append(b)
 l1.sort()

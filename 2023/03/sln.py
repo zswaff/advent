@@ -8,7 +8,7 @@ from aoc import *
 
 
 # part 1
-grid = gr(ls)
+grid = gr()
 tot = 0
 for (x, y), char in grid.items():
     if not char.isdigit() or grid.get((x - 1, y), ".").isdigit():

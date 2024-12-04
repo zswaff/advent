@@ -31,7 +31,7 @@ sm(c)
 rs = {i for i in range(len(ls)) if all(e == "." for e in ls[i])}
 cs = {i for i in range(len(ls[0])) if all(e == "." for e in [l[i] for l in ls])}
 
-g = gr(ls)
+g = gr()
 pts = [k for k, v in g.items() if v == "#"]
 c = 0
 for i, e in enumerate(pts):

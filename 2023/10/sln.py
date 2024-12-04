@@ -26,7 +26,7 @@ O = {
     "S": "N",
     "W": "E",
 }
-g = gr(ls)
+g = gr()
 s = next(k for k, v in g.items() if v == "S")
 for d in ["N", "E", "S"]:
     c = s

@@ -8,7 +8,7 @@ from aoc import *
 # part 1
 DS = [(0, 1, "v"), (1, 0, ">"), (0, -1, "^"), (-1, 0, "<")]
 
-g = gr(ls)
+g = gr()
 mxx = max(e[0] for e in g)
 mxy = max(e[1] for e in g)
 

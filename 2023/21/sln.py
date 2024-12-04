@@ -7,7 +7,7 @@ from aoc import *
 
 # part 1
 DS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-g = gr(ls)
+g = gr()
 s = next(k for k, v in g.items() if v == "S")
 g[s] = "."
 

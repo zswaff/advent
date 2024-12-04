@@ -6,20 +6,16 @@ from aoc import *
 
 
 # part 1
-instrs = re.findall(r"mul\(\d+,\d+\)", dt)
 c = 0
-for instr in instrs:
-    a, b = pa(instr, "mul({i},{i})")
+for a, b in apa("mul({i},{i})", dt):
     c += a * b
 sm(c)
 
 
 # part 2
-instrs = re.findall(r"mul\(\d+,\d+\)|do\(\)|don't\(\)", dt)
 c = 0
 on = True
-for instr in instrs:
-    i, r = pa(instr, ["mul({i},{i})", "do()", "don't()"])
+for i, r in apa(["mul({i},{i})", "do()", "don't()"], dt):
     if i != 0:
         on = i == 1
         continue

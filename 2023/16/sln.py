@@ -24,7 +24,7 @@ BSR = {
     "W": "N",
 }
 
-g = gr(ls)
+g = gr()
 
 
 def laze(ini):
