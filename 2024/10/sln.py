@@ -16,27 +16,18 @@ class State(BaseSearchState):
         self.x = x
         self.y = y
 
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         return [
             State(self.x + dx, self.y + dy)
             for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]
-            if g.get((self.x + dx, self.y + dy)) == g[self.x, self.y] + 1
+            if g.get((self.x + dx, self.y + dy)) == g[self.p] + 1
         ]
 
     def process(self):
         global c
-        if g[(self.x, self.y)] != 9:
+        if g[self.p] != 9:
             return
         c += 1
-
-    def get_dist_from_start(self):
-        return 0
 
 
 for (x, y), v in g.items():
@@ -57,36 +48,30 @@ class State(BaseSearchState):
         self.x = x
         self.y = y
 
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         res = [
             State(self.x + dx, self.y + dy)
             for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]
-            if g.get((self.x + dx, self.y + dy)) == g[self.x, self.y] + 1
+            if g.get((self.x + dx, self.y + dy)) == g[self.p] + 1
         ]
         for n in res:
-            w[(n.x, n.y)] += w[(self.x, self.y)]
+            w[n.x, n.y] += w[self.p]
         return res
 
     def process(self):
         global c
-        if g[(self.x, self.y)] != 9:
+        if g[self.p] != 9:
             return
-        c += w[(self.x, self.y)]
+        c += w[self.p]
 
     def get_dist_from_start(self):
-        return g[(self.x, self.y)]
+        return g[self.p]
 
 
 for (x, y), v in g.items():
     if v != 0:
         continue
     w = defaultdict(int)
-    w[(x, y)] = 1
+    w[x, y] = 1
     State(x, y).search()
 sm(c)

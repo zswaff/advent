@@ -67,7 +67,7 @@ class BaseSearchState(ABC):
         pass
 
     def get_dist_from_start(self):
-        return getattr(self, "dist")
+        return getattr(self, "dist", 0)
 
     def get_vars(self):
         return {k: v for k, v in vars(self).items() if k not in self.ignored_vars}
@@ -98,3 +98,7 @@ class BaseSearchState(ABC):
                     nbor.get_dist_from_start() + nbor.get_dist_to_finish_heuristic(),
                 )
         return BaseSearchState.Result(None, vis, None)
+
+    @property
+    def p(self):
+        return getattr(self, "x"), getattr(self, "y")
