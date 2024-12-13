@@ -62,9 +62,6 @@ class State(BaseSearchState):
             r.append(State(nempty, ngoal, self.dist + 1))
         return r
 
-    def get_dist_from_start(self):
-        return self.dist
-
     def get_dist_to_finish_heuristic(self):
         return 0
 

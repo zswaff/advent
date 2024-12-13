@@ -32,9 +32,6 @@ class State(BaseSearchState):
         self.x = x
         self.y = y
 
-    def is_valid(self):
-        return True
-
     def is_finished(self):
         return all(
             g[(self.x, self.y)] < g.get((self.x + dx, self.y + dy), inf)

@@ -18,9 +18,6 @@ class State(BaseSearchState):
         self.lv = lv
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
     def is_finished(self):
         return self.lv == 14 and self.z == 0
 
@@ -34,9 +31,6 @@ class State(BaseSearchState):
             r.append(State(nz, self.lv + 1, self.dist - (w * (10 ** (13 - self.lv)))))
         return r
 
-    def get_dist_from_start(self):
-        return self.dist
-
 
 sm(-State(0, 0, 0).search().distance)
 
@@ -48,9 +42,6 @@ class State(BaseSearchState):
         self.z = z
         self.lv = lv
         self.dist = dist
-
-    def is_valid(self):
-        return True
 
     def is_finished(self):
         return self.lv == 14 and self.z == 0
@@ -64,9 +55,6 @@ class State(BaseSearchState):
             nz = ((self.z // zds[self.lv]) * ((25 * x) + 1)) + ((w + yas[self.lv]) * x)
             r.append(State(nz, self.lv + 1, self.dist + (w * (10 ** (13 - self.lv)))))
         return r
-
-    def get_dist_from_start(self):
-        return self.dist
 
 
 sm(State(0, 0, 0).search().distance)

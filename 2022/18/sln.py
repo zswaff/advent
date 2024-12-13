@@ -49,14 +49,8 @@ class State(BaseSearchState):
             and mnz <= self.z <= mxz
         )
 
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         return [State(self.x + dx, self.y + dy, self.z + dz, 0) for dx, dy, dz in DIRS]
-
-    def get_dist_from_start(self):
-        return self.dist
 
     def process(self):
         os.add((self.x, self.y, self.z))

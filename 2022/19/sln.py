@@ -77,9 +77,6 @@ def calc(cs, rnds):
                 res.append(State(nrss, self.rbs, tuple(nals), ndist))
             return res
 
-        def get_dist_from_start(self):
-            return self.dist
-
         def process(self):
             nonlocal mx
             mx = max(mx, self.rss[3])

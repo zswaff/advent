@@ -31,21 +31,12 @@ class State(BaseSearchState):
         self.y = y
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         return [
             State(self.x + dx, self.y + dy, self.dist + 1)
             for dx, dy in DS.values()
             if (self.x + dx, self.y + dy) not in es
         ]
-
-    def get_dist_from_start(self):
-        return self.dist
 
 
 sm(len(es) + len(State(1, 1, 0).search().visited))

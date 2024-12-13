@@ -35,9 +35,6 @@ class State(BaseSearchState):
             if int(c, 16) > 10
         ]
 
-    def get_dist_from_start(self):
-        return self.dist
-
 
 # part 1
 def bfs(self):

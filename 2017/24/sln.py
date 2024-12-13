@@ -20,21 +20,19 @@ class State(BaseSearchState):
         self.tot = tot
         self.visited = visited
 
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         res = []
         for n in comps - set(self.visited):
             a, b = n
             if a == self.last:
-                res.append(State(b, self.tot + a + b, tuple(sorted(self.visited + (n,)))))
+                res.append(
+                    State(b, self.tot + a + b, tuple(sorted(self.visited + (n,))))
+                )
                 continue
             if b == self.last:
-                res.append(State(a, self.tot + a + b, tuple(sorted(self.visited + (n,)))))
+                res.append(
+                    State(a, self.tot + a + b, tuple(sorted(self.visited + (n,))))
+                )
         return res
 
     def get_dist_from_start(self):
@@ -61,24 +59,28 @@ class State(BaseSearchState):
         self.tot = tot
         self.visited = visited
 
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         res = []
         for n in comps - set(self.visited):
             a, b = n
             if a == self.last:
                 res.append(
-                    State(self.length + 1, b, self.tot + a + b, tuple(sorted(self.visited + (n,))))
+                    State(
+                        self.length + 1,
+                        b,
+                        self.tot + a + b,
+                        tuple(sorted(self.visited + (n,))),
+                    )
                 )
                 continue
             if b == self.last:
                 res.append(
-                    State(self.length + 1, a, self.tot + a + b, tuple(sorted(self.visited + (n,))))
+                    State(
+                        self.length + 1,
+                        a,
+                        self.tot + a + b,
+                        tuple(sorted(self.visited + (n,))),
+                    )
                 )
         return res
 

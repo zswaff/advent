@@ -15,7 +15,9 @@ class State(BaseSearchState):
         self.dist = dist
 
     def __hash__(self):
-        return hash((self.elvl, tuple(tuple(sorted(v)) for _, v in sorted(self.lvls.items()))))
+        return hash(
+            (self.elvl, tuple(tuple(sorted(v)) for _, v in sorted(self.lvls.items())))
+        )
 
     def is_valid(self):
         for lvl in self.lvls.values():
@@ -46,16 +48,17 @@ class State(BaseSearchState):
                     res.append(s)
         return res
 
-    def get_dist_from_start(self):
-        return self.dist
-
     def get_dist_to_finish_heuristic(self):
         return sum((4 - k) * len(v) for k, v in self.lvls.items())
 
 
 # part 1
 print(
-    State(1, {1: {"T", "t"}, 2: {"B", "U", "R", "L"}, 3: {"b", "u", "r", "l"}, 4: set()}, 0)
+    State(
+        1,
+        {1: {"T", "t"}, 2: {"B", "U", "R", "L"}, 3: {"b", "u", "r", "l"}, 4: set()},
+        0,
+    )
     .search()
     .result
 )

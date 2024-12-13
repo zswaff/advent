@@ -85,18 +85,12 @@ class State(BaseSearchState):
     def is_valid(self):
         return -0.5 <= self.x <= mx + 0.5 and -0.5 <= self.y <= my + 0.5
 
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         return [
             State(self.x + dx / 2, self.y + dy / 2, self.dist + 1)
             for k, (dx, dy) in D.items()
             if (self.x + dx / 2, self.y + dy / 2) not in bounds
         ]
-
-    def get_dist_from_start(self):
-        return self.dist
 
 
 out = {(e.x, e.y) for e in State(-0.5, -0.5, 0).search().visited}

@@ -25,9 +25,6 @@ class State(BaseSearchState):
         self.op = op
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
     def is_finished(self):
         return self.dist == 30
 
@@ -48,9 +45,6 @@ class State(BaseSearchState):
                 )
             )
         return res
-
-    def get_dist_from_start(self):
-        return self.dist
 
     def process(self):
         global mx
@@ -73,12 +67,6 @@ class State2(BaseSearchState):
         self.scores = scores
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         if self.dist >= 26:
             return []
@@ -93,9 +81,6 @@ class State2(BaseSearchState):
         if len(res) == 0:
             res.append(State2(self.l, nscores, 26))
         return res
-
-    def get_dist_from_start(self):
-        return self.dist
 
     def process(self):
         if self.dist < 26:

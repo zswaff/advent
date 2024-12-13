@@ -20,17 +20,8 @@ class State(BaseSearchState):
         self.name = name
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         return [State(e, self.dist + 1) for e in g[self.name]]
-
-    def get_dist_from_start(self):
-        return self.dist
 
 
 print(len(State("0", 0).search().visited))

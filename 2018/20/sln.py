@@ -42,17 +42,8 @@ class State(BaseSearchState):
         self.loc = loc
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         return [State(e, self.dist + 1) for e in g[self.loc]]
-
-    def get_dist_from_start(self):
-        return self.dist
 
     def process(self):
         global mx

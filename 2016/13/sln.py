@@ -35,9 +35,6 @@ class State(BaseSearchState):
             for dx, dy in [(0, 1), (1, 0), (0, -1), (-1, 0)]
         ]
 
-    def get_dist_from_start(self):
-        return self.dist
-
 
 # part 1
 print(State(1, 1, 0).search().result)

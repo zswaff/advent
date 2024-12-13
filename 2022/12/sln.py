@@ -22,9 +22,6 @@ class State(BaseSearchState):
         self.y = y
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
     def is_finished(self):
         return (self.x, self.y) == e
 
@@ -35,9 +32,6 @@ class State(BaseSearchState):
             for dx, dy in DIRS
             if g.get((self.x + dx, self.y + dy), inf) <= mx
         ]
-
-    def get_dist_from_start(self):
-        return self.dist
 
 
 sm(State(*s, 0).search().distance)
@@ -51,9 +45,6 @@ class State2(BaseSearchState):
         self.y = y
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
     def is_finished(self):
         return g[(self.x, self.y)] == ord("a")
 
@@ -64,9 +55,6 @@ class State2(BaseSearchState):
             for dx, dy in DIRS
             if g.get((self.x + dx, self.y + dy), -inf) >= mn
         ]
-
-    def get_dist_from_start(self):
-        return self.dist
 
 
 sm(State2(*e, 0).search().distance)

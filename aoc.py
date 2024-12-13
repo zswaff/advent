@@ -103,17 +103,8 @@ def cngr(
             self.loc = loc
             self.dist = dist
 
-        def is_valid(self):
-            return True
-
-        def is_finished(self):
-            return False
-
         def get_neighbors(self):
             return [State(k, self.dist + v) for k, v in edge_map[self.loc].items()]
-
-        def get_dist_from_start(self):
-            return self.dist
 
         def process(self):
             if self.loc == target or self.loc not in targets:

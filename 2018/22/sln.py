@@ -52,18 +52,24 @@ class State(BaseSearchState):
         self.dist = dist
 
     def is_valid(self):
-        return self.x >= 0 and self.y >= 0 and gnt(self.x, self.y)[1] in VALID_EQUIP[self.equip]
+        return (
+            self.x >= 0
+            and self.y >= 0
+            and gnt(self.x, self.y)[1] in VALID_EQUIP[self.equip]
+        )
 
     def is_finished(self):
         return self.x == tx and self.y == ty and self.equip == "t"
 
     def get_neighbors(self):
-        return [State(self.x + dx, self.y + dy, self.equip, self.dist + 1) for dx, dy in DIRS] + [
-            State(self.x, self.y, e, self.dist + 7) for e in VALID_EQUIP.keys() if e != self.equip
+        return [
+            State(self.x + dx, self.y + dy, self.equip, self.dist + 1)
+            for dx, dy in DIRS
+        ] + [
+            State(self.x, self.y, e, self.dist + 7)
+            for e in VALID_EQUIP.keys()
+            if e != self.equip
         ]
-
-    def get_dist_from_start(self):
-        return self.dist
 
     def get_dist_to_finish_heuristic(self):
         return abs(tx - self.x) + abs(ty - self.y)

@@ -13,9 +13,6 @@ class State(BaseSearchState):
         self.hall = hall
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
     def is_finished(self):
         return self.stacks == (("A", "A"), ("B", "B"), ("C", "C"), ("D", "D"))
 
@@ -81,9 +78,6 @@ class State(BaseSearchState):
             )
         return r
 
-    def get_dist_from_start(self):
-        return self.dist
-
 
 ssts = tuple(zip(ls[2].split("#")[3:7], ls[3].split("#")[1:5]))
 sm(State(ssts, (None,) * 11, 0).search().distance)
@@ -96,9 +90,6 @@ class State(BaseSearchState):
         self.stacks = stacks
         self.hall = hall
         self.dist = dist
-
-    def is_valid(self):
-        return True
 
     def is_finished(self):
         return self.stacks == (("A",) * 4, ("B",) * 4, ("C",) * 4, ("D",) * 4)
@@ -160,9 +151,6 @@ class State(BaseSearchState):
                 )
             )
         return r
-
-    def get_dist_from_start(self):
-        return self.dist
 
     def get_dist_to_finish_heuristic(self):
         LS = {"A": 2, "B": 4, "C": 6, "D": 8}

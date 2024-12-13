@@ -21,12 +21,6 @@ class State(BaseSearchState):
         self.loc = loc
         self.visited = visited
 
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
-
     def get_neighbors(self):
         if self.loc == "end":
             return []
@@ -54,12 +48,6 @@ class State(BaseSearchState):
         super().__init__()
         self.loc = loc
         self.visited = visited
-
-    def is_valid(self):
-        return True
-
-    def is_finished(self):
-        return False
 
     def get_neighbors(self):
         if self.loc == "end":

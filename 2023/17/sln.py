@@ -34,9 +34,6 @@ class State(BaseSearchState):
         self.s = s
         self.dist = dist
 
-    def is_valid(self):
-        return True
-
     def is_finished(self):
         return self.x == mx and self.y == my
 
@@ -53,9 +50,6 @@ class State(BaseSearchState):
                 res.append(State(nx, ny, self.d, self.s + 1, self.dist + g[(nx, ny)]))
         return res
 
-    def get_dist_from_start(self):
-        return self.dist
-
 
 sm(min(State(0, 0, e, 0, 0).search().distance for e in "ES"))
 
@@ -69,9 +63,6 @@ class State(BaseSearchState):
         self.d = d
         self.s = s
         self.dist = dist
-
-    def is_valid(self):
-        return True
 
     def is_finished(self):
         return self.x == mx and self.y == my
@@ -89,9 +80,6 @@ class State(BaseSearchState):
             if (nx, ny) in g:
                 res.append(State(nx, ny, self.d, self.s + 1, self.dist + g[(nx, ny)]))
         return res
-
-    def get_dist_from_start(self):
-        return self.dist
 
 
 sm(min(State(0, 0, e, 0, 0).search().distance for e in "ES"))

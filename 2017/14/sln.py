@@ -24,7 +24,9 @@ def knot_hash(s):
         l = l[:ln][::-1] + l[ln:]
         l = l[-pos:] + l[:-pos]
         pos = (pos + ln + skip) % SZ
-    return "".join(f"{e:0>2x}" for e in [reduce(xor, l[i * 16 : (i + 1) * 16]) for i in range(16)])
+    return "".join(
+        f"{e:0>2x}" for e in [reduce(xor, l[i * 16 : (i + 1) * 16]) for i in range(16)]
+    )
 
 
 def bin_knot_hash(s):
@@ -36,7 +38,11 @@ print(sum(sum(int(c) for c in bin_knot_hash(f"{INP}-{e}")) for e in range(128)))
 
 
 # part 2
-g = {(x, y): c == "1" for y in range(128) for x, c in enumerate(bin_knot_hash(f"{INP}-{y}"))}
+g = {
+    (x, y): c == "1"
+    for y in range(128)
+    for x, c in enumerate(bin_knot_hash(f"{INP}-{y}"))
+}
 
 
 class State(BaseSearchState):
@@ -47,9 +53,6 @@ class State(BaseSearchState):
 
     def is_valid(self):
         return 0 <= self.x < 128 and 0 <= self.y < 128 and g[(self.x, self.y)]
-
-    def is_finished(self):
-        return False
 
     def get_neighbors(self):
         return [State(self.x + dx, self.y + dy) for dx, dy in DIRS]
