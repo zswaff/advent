@@ -20,7 +20,7 @@ from search import *
 from web import *
 
 
-__PATTERN_VARIABLE_INFO = {"": (".", lambda x: x), "i": (r"\d", int)}
+__PATTERN_VARIABLE_INFO = {"": (".", lambda x: x), "i": (r"-?\d", int)}
 
 
 math_e = e

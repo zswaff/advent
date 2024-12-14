@@ -8,12 +8,8 @@ from aoc import *
 # part 1
 c = 0
 for s in ss:
-    axs, ax, ays, ay = pa("Button A: X{}{i}, Y{}{i}", s[0])
-    ax *= -1 if axs == "-" else 1
-    ay *= -1 if ays == "-" else 1
-    bxs, bx, bys, by = pa("Button B: X{}{i}, Y{}{i}", s[1])
-    bx *= -1 if bxs == "-" else 1
-    by *= -1 if bys == "-" else 1
+    ax, ay = pa("Button A: X{i}, Y{i}", s[0])
+    bx, by = pa("Button B: X{i}, Y{i}", s[1])
     px, py = pa("Prize: X={i}, Y={i}", s[2])
 
     class State(BaseSearchState):
@@ -47,12 +43,8 @@ sm(c)
 # part 2
 c = 0
 for s in ss:
-    axs, ax, ays, ay = pa("Button A: X{}{i}, Y{}{i}", s[0])
-    ax *= -1 if axs == "-" else 1
-    ay *= -1 if ays == "-" else 1
-    bxs, bx, bys, by = pa("Button B: X{}{i}, Y{}{i}", s[1])
-    bx *= -1 if bxs == "-" else 1
-    by *= -1 if bys == "-" else 1
+    ax, ay = pa("Button A: X{i}, Y{i}", s[0])
+    bx, by = pa("Button B: X{i}, Y{i}", s[1])
     px, py = pa("Prize: X={i}, Y={i}", s[2])
     px += 10000000000000
     py += 10000000000000
