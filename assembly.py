@@ -14,7 +14,9 @@ class BaseAssembler(ABC):
 
         self.step = -1
         self.instr_idx = 0
+        self.instr_idx_delta = 1
         self.jump = None
+        self.jump_abs = False
 
     @abstractmethod
     def is_finished(self):
@@ -48,15 +50,22 @@ class BaseAssembler(ABC):
     def is_paused(self):
         return False
 
+    def get_cmd_and_args(self):
+        cmd, *args = self.instrs[self.instr_idx]
+        return cmd, args
+
     def eval(self, val):
         return val if isinstance(val, int) else self.registers[val]
 
     def update_instr_idx(self):
         if self.jump is not None:
-            self.instr_idx += self.jump
+            if self.jump_abs:
+                self.instr_idx = self.jump
+            else:
+                self.instr_idx += self.jump
             self.jump = None
             return
-        self.instr_idx += 1
+        self.instr_idx += self.instr_idx_delta
 
     def run(self):
         for self.step in count(self.step + 1):
@@ -69,12 +78,8 @@ class BaseAssembler(ABC):
             if self.is_paused():
                 return BaseAssembler.Result(self.get_result(), False)
 
-            instr = self.instrs[self.instr_idx]
-            cmd, args = instr[0], instr[1:]
-
+            cmd, args = self.get_cmd_and_args()
             fn = getattr(self, f"i__{cmd}")
             fn(*args)
 
             self.update_instr_idx()
-
-            return None
