@@ -32,6 +32,7 @@ class State(BaseSearchState):
         self.r2 = r2
         self.f = f
         self.dist = dist
+        # print(tgt, msg, r1, r2, f, dist)
 
     def is_valid(self):
         return (
@@ -113,6 +114,7 @@ class State(BaseSearchState):
         self.rs = rs
         self.f = f
         self.dist = dist
+        # print(tgt, msg, *rs, f, dist)
 
     def is_valid(self):
         return (
@@ -130,24 +132,22 @@ class State(BaseSearchState):
             State(
                 self.tgt,
                 self.msg,
-                (r[0] + d[0], r[1] + d[1]) + self.rs[1:],
+                ((r[0] + d[0], r[1] + d[1]),) + self.rs[1:],
                 self.f,
                 self.dist + 1,
             )
             for d in RK.values()
             if d != A
         ]
-        for i, e in enumerate(self.rs[:-1]):
+        for i, e in enumerate(self.rs[:-1], 1):
             d = RK[e]
             if d != A:
-                r = self.rs[i + 1]
+                r = self.rs[i]
                 res.append(
                     State(
                         self.tgt,
                         self.msg,
-                        self.rs[: i + 1]
-                        + (r[0] + d[0], r[1] + d[1])
-                        + self.rs[i + 2 :],
+                        self.rs[:i] + ((r[0] + d[0], r[1] + d[1]),) + self.rs[i + 1 :],
                         self.f,
                         self.dist + 1,
                     )
