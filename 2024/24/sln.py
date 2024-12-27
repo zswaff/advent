@@ -10,27 +10,17 @@ vs, rs = ss
 vs = {e: f == "1" for e, f in pas("{}: {}", vs)}
 bw = {f: e for *e, f in pas("{} {} {} -> {}", rs)}
 
-l = []
-
 
 @cache
 def get(v):
     if v in vs:
-        r = vs[v]
-        l.append((v, r))
-        return r
+        return vs[v]
     v1, op, v2 = bw[v]
     if op == "AND":
-        r = get(v1) and get(v2)
-        l.append((v, r))
-        return r
+        return get(v1) and get(v2)
     if op == "OR":
-        r = get(v1) or get(v2)
-        l.append((v, r))
-        return r
-    r = get(v1) != get(v2)
-    l.append((v, r))
-    return r
+        return get(v1) or get(v2)
+    return get(v1) != get(v2)
 
 
 s = "".join(
@@ -40,3 +30,19 @@ sm(int(s, 2))
 
 
 # part 2
+def test(vs, bw):
+    worked = True
+    for i in range(3):
+
+        @cache
+        def get(v):
+            if v in vs:
+                return vs[v]
+            v1, op, v2 = bw[v]
+            if op == "AND":
+                return get(v1) and get(v2)
+            if op == "OR":
+                return get(v1) or get(v2)
+            return get(v1) != get(v2)
+
+    return worked

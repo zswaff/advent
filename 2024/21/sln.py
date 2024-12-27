@@ -32,7 +32,6 @@ class State(BaseSearchState):
         self.r2 = r2
         self.f = f
         self.dist = dist
-        # print(tgt, msg, r1, r2, f, dist)
 
     def is_valid(self):
         return (
@@ -106,80 +105,56 @@ sm(
 
 
 # part 2
-class State(BaseSearchState):
-    def __init__(self, tgt, msg, rs, f, dist):
-        super().__init__()
-        self.tgt = tgt
-        self.msg = msg
-        self.rs = rs
-        self.f = f
-        self.dist = dist
-        # print(tgt, msg, *rs, f, dist)
+L1PS = [
+    "<^^^AvvvA^^Avv>A",
+    "^<<A^^A>vvvA>A",
+    "^<<A>A^^>AvvvA",
+    "<^A^^Avv>AvA",
+    "<^^A<A>vvA>A",
+]
+RM = {
+    ("AA"): "A",
+    ("A^"): "<A",
+    ("A<"): "v<<A",
+    ("Av"): "<vA",
+    ("A>"): "vA",
+    ("^A"): ">A",
+    ("^^"): "A",
+    ("^<"): "v<A",
+    ("^>"): "v>A",
+    ("<A"): ">>^A",
+    ("<^"): ">^A",
+    ("<<"): "A",
+    ("<v"): ">A",
+    ("vA"): "^>A",
+    ("v<"): "<A",
+    ("vv"): "A",
+    ("v>"): ">A",
+    (">A"): "^A",
+    (">^"): "<^A",
+    (">v"): "<A",
+    (">>"): "A",
+}
 
-    def is_valid(self):
-        return (
-            self.tgt.startswith(self.msg)
-            and all(e in RK for e in self.rs)
-            and self.f in FK
-        )
-
-    def is_finished(self):
-        return self.msg == self.tgt
-
-    def get_neighbors(self):
-        r = self.rs[0]
-        res = [
-            State(
-                self.tgt,
-                self.msg,
-                ((r[0] + d[0], r[1] + d[1]),) + self.rs[1:],
-                self.f,
-                self.dist + 1,
-            )
-            for d in RK.values()
-            if d != A
-        ]
-        for i, e in enumerate(self.rs[:-1], 1):
-            d = RK[e]
-            if d != A:
-                r = self.rs[i]
-                res.append(
-                    State(
-                        self.tgt,
-                        self.msg,
-                        self.rs[:i] + ((r[0] + d[0], r[1] + d[1]),) + self.rs[i + 1 :],
-                        self.f,
-                        self.dist + 1,
-                    )
-                )
-                return res
-        d = RK[self.rs[-1]]
-        if d != A:
-            res.append(
-                State(
-                    self.tgt,
-                    self.msg,
-                    self.rs,
-                    (self.f[0] + d[0], self.f[1] + d[1]),
-                    self.dist + 1,
-                )
-            )
-            return res
-        res.append(
-            State(
-                self.tgt,
-                self.msg + str(FK[self.f]),
-                self.rs,
-                self.f,
-                self.dist + 1,
-            )
-        )
-        return res
-
-
-sm(
-    sum(
-        int(l[:-1]) * State(l, "", ((2, 0),) * 25, (2, 3), 0).search().distance
-        for l in ls
-    )
-)
+rrm = {}
+for k, v in RM.items():
+    rrm[k] = Counter()
+    rrm[k][f"A{v[0]}"] += 1
+    for a, b in zip(v, v[1:]):
+        rrm[k][f"{a}{b}"] += 1
+foo = set()
+c = 0
+for l, l1p in zip(ls, L1PS):
+    lm = Counter()
+    lm[f"A{l1p[0]}"] += 1
+    for a, b in zip(l1p, l1p[1:]):
+        lm[f"{a}{b}"] += 1
+    for _ in range(25):
+        nlm = Counter()
+        for k, v in lm.items():
+            foo.add(k)
+            for k2, v2 in rrm[k].items():
+                nlm[k2] += v * v2
+        lm = nlm
+    c += int(l[:-1]) * sum(lm.values())
+sm(c)
