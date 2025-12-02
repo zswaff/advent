@@ -1,17 +1,15 @@
 # Advent of Code Solutions
 
-
 ## Introduction
 
-This repo has solutions to the [Advent of Code](https://adventofcode.com/) 
-online coding problems. It solves all historical problems and will be updated 
+This repo has solutions to the [Advent of Code](https://adventofcode.com/)
+online coding problems. It solves all historical problems and will be updated
 to solve new ones as they are released.
 
-The solutions are written for combined development and execution speed (i.e. 
-to minimize the total time from when I start reading the problem to when I have 
-submitted the correct answer) and are therefore not up to the highest standards 
+The solutions are written for combined development and execution speed (i.e.
+to minimize the total time from when I start reading the problem to when I have
+submitted the correct answer) and are therefore not up to the highest standards
 of excellence stylistically.
-
 
 ## Utilities
 
@@ -21,7 +19,7 @@ of excellence stylistically.
 | -------- | --------- |
 | `dt`     |  raw data |
 | `ls`     |  lines    |
-| `l `     |  line     |
+| `l`      |  line     |
 | `ss`     |  sections |
 | `sm(…)`  |  submit   |
 
@@ -39,7 +37,6 @@ of excellence stylistically.
 - Search
 - Timer
 
-
 ## Project Structure
 
 - `aoc.py` utility for standard imports
@@ -53,24 +50,22 @@ of excellence stylistically.
     - `sln.py` the solution file
     - `inp.txt` the input from the specific problem; optional if the input data is in solution file
 
-
 ## Yearly Setup
 
 Set the `AOC_SESSION` environment variable by following the following steps in Chrome
 
-1. Login to [AOC online](https://adventofcode.com/)
+1. Open [AOC online](https://adventofcode.com/) and Log in
 2. Right click > Inspect > Application > Cookies > https://adventofcode.com/
 3. Copy the value of the session cookie to the `AOC_SESSION` environment variable
-
 
 ## Execution
 
 Run a given solution with
+
 ```bash
 cd ./[year]/[day]
 ./sln.py
 ```
-
 
 ## Next Steps
 
