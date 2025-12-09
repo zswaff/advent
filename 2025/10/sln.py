@@ -6,7 +6,9 @@ from aoc import *
 
 
 # part 1
-vs = [tuple(int(e) for e in l.split(",")) for l in ls]
+vs = []
+for l in ls:
+    vs.append(tuple(int(e) for e in l.split(",")))
 es = []
 for i, v1 in enumerate(vs):
     for j, v2 in enumerate(vs[i + 1 :], i + 1):
