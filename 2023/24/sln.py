@@ -36,6 +36,7 @@ s = z3.Solver()
 for d in range(3):
     for e, v in zip(t, vs2):
         s.add(res[d] + res[d + 3] * e == v[d] + v[d + 3] * e)
-s.check()
+if s.check() != z3.sat:
+    raise RuntimeError("No solution found")
 m = s.model()
 sm(m.eval(sum(res[:3])))

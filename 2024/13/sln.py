@@ -58,7 +58,7 @@ for s in ss:
 
     opt.minimize(objective)
     if opt.check() != z3.sat:
-        continue
+        raise RuntimeError("No solution found")
     model = opt.model()
     c += 3 * model[A].as_long() + model[B].as_long()
 sm(c)
